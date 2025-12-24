@@ -28,6 +28,7 @@
 <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="maplibre-gl-starfield-0.1.js"></script>
+<script src="maplibre-gl-layers-control.min.js"></script>
 
 <div id="map-container"></div>
 <div id="starfield-container"></div>
@@ -54,6 +55,12 @@ map.addControl(
 map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
 // map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: "koenV"}), 'bottom-left');
 
+let layersControl = new LayersControl({
+        title: 'Layers',
+        customLabels: labels,
+      });
+map.addControl(layersControl, 'bottom-left');
+    
 const starryBg = new MapLibreStarryBackground({
   starCount: 100, // Customize number of stars
   glowIntensity: 0.1, // Customize glow intensity (0.0 to 1.0)
