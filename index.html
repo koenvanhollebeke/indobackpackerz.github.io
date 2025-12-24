@@ -125,6 +125,7 @@ map.on('click', (e) => {
     toggleIt = collapsed;
     }
   else {
+    $(".sidebar-content").empty();
     toggleIt = !collapsed;
   }
   if (toggleIt) toggleSidebar('right');
