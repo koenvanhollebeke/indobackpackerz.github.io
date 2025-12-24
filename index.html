@@ -115,7 +115,7 @@ map.on('click', (e) => {
     [e.point.x + 5, e.point.y + 5]
   ];
   const clickedFeatures = map.queryRenderedFeatures(bbox, {
-    layers: ['places']
+    layers: ['snorkeling-spot']
   });
   if (clickedFeatures.length > 0) {
     description = clickedFeatures[0].properties.description;
@@ -131,6 +131,16 @@ map.on('click', (e) => {
   if (toggleIt) toggleSidebar('right');
 });
 
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'snorkeling-spot', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'snorkeling-spot', () => {
+  map.getCanvas().style.cursor = '';
+});
+
+    
 var collapsed = true;
 function toggleSidebar(id) {
   var elem = document.getElementById(id);
