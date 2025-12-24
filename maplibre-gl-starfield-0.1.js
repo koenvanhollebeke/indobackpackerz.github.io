@@ -53,21 +53,21 @@ class MapLibreStarryBackground {
     }
 
     // Set container styles if needed
-    this.containers.starfield.style.position = "absolute";
-    this.containers.starfield.style.top = "0";
-    this.containers.starfield.style.left = "0";
-    this.containers.starfield.style.width = "100%";
-    this.containers.starfield.style.height = "100%";
-    this.containers.starfield.style.zIndex = "1";
-    this.containers.starfield.style.pointerEvents = "none";
+    //this.containers.starfield.style.position = "absolute";
+    //this.containers.starfield.style.top = "0";
+    //this.containers.starfield.style.left = "0";
+    //this.containers.starfield.style.width = "100%";
+    //this.containers.starfield.style.height = "100%";
+    //this.containers.starfield.style.zIndex = "1";
+    //this.containers.starfield.style.pointerEvents = "none";
 
-    this.containers.glow.style.position = "absolute";
-    this.containers.glow.style.top = "0";
-    this.containers.glow.style.left = "0";
-    this.containers.glow.style.width = "100%";
-    this.containers.glow.style.height = "100%";
-    this.containers.glow.style.zIndex = "2";
-    this.containers.glow.style.pointerEvents = "none";
+    //this.containers.glow.style.position = "absolute";
+    //this.containers.glow.style.top = "0";
+    //this.containers.glow.style.left = "0";
+    //this.containers.glow.style.width = "100%";
+    //this.containers.glow.style.height = "100%";
+    //this.containers.glow.style.zIndex = "2";
+    //this.containers.glow.style.pointerEvents = "none";
 
     return true;
   }
