@@ -8,9 +8,17 @@
 
   <style>
     body { margin: 0; padding: 0; background-color: #020a16; }
-#map-container { position: absolute; top: 0; bottom: 0; width: 100%; z-index: 3; }
-#starfield-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-#globe-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+    html, body, #map { height: 100%; margin: 0px; }
+    #map-container { position: absolute; top: 0; bottom: 0; width: 100%; height: 100%; z-index: 3; }
+    #starfield-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+    #globe-glow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+
+    .rounded-rect { background: white; border-radius: 10px; box-shadow: 0 0 50px -25px black; }
+    .flex-center { position: absolute; display: flex; justify-content: center; align-items: center; }
+    .flex-center.right { right: 0px; }
+    .sidebar-content { position: absolute; width: 95%; height: 95%; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: gray; }
+    .sidebar { transition: transform 1s; z-index: 3; width: 300px; height: 100%; }
+    .right.collapsed { transform: translateX(295px); }
   </style>
 
   
