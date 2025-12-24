@@ -18,13 +18,16 @@
 <body>
   <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="maplibre-gl-starfield-0.1.js"></script>
 
-<div id="starfield-container"></div>
-<div id="globe-glow"></div>
-<div id="map-container"></div>
-
+<div id="main">
+  <div id="map-container"></div>
+  <div id="starfield-container"></div>
+  <div id="globe-glow"></div>
+  <div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
+</div>
+  
   <script>
     const map = new maplibregl.Map({
   container: "map-container",
@@ -80,20 +83,21 @@ map.on("load", async () => {
     filter: ["==", "$type", "Point"],
   });
 
-  map.addSource("sulut", {
-    type: "geojson",
-    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
-  });
-  map.addLayer({
-    id: "SulawesiUtara",
-    type: "line",
-    source: "sulut",
-    layout: {},
-    paint: {
-      "line-color": "#DDED24",
-      "line-opacity": 0.4,
-    },
-  });
+//  map.addSource("sulut", {
+//    type: "geojson",
+//    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
+//  });
+//  map.addLayer({
+//    id: "SulawesiUtara",
+//    type: "line",
+//    source: "sulut",
+//    layout: {},
+//    paint: {
+//      "line-color": "#DDED24",
+//      "line-opacity": 0.4,
+//    },
+//  });
+
 });
 
 
