@@ -33,7 +33,7 @@
   <div id="map-container"></div>
   <div id="starfield-container"></div>
   <div id="globe-glow"></div>
-  <div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
+  <div id="right" class="sidebar sidebar-content rounded-rect flex-center right">
 </div>
   
   <script>
@@ -149,10 +149,10 @@ function toggleSidebar(id) {
   var padding = {};
   if (collapsed ) {
     classes.splice(classes.indexOf('collapsed'), 1);
-    padding[id] = 260;
+    padding[id] = 410;
     map.easeTo({
       padding: padding,
-      duration: 1000 
+      duration: 500 
     });
     } 
   else {
@@ -160,7 +160,7 @@ function toggleSidebar(id) {
     classes.push('collapsed');
     map.easeTo({
       padding: padding,
-      duration: 1000
+      duration: 500
     });
   }
   elem.className = classes.join(' ');
