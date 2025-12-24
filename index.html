@@ -41,6 +41,7 @@
   zoom: 3,
   center: [124.77939886801542, 1.596716355801881],
   style: "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/refs/heads/main/arcgis_hybrid.json",
+  attributionControl: { compact: true, position: 'bottom-left' }
     });
 
 map.addControl(
@@ -51,7 +52,7 @@ map.addControl(
   }), 'top-left'
 );
 map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
-map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: "koenV"}), 'bottom-left');
+// map.addControl(new maplibregl.AttributionControl({compact: true, customAttribution: "koenV"}), 'bottom-left');
 
 const starryBg = new MapLibreStarryBackground({
   starCount: 100, // Customize number of stars
