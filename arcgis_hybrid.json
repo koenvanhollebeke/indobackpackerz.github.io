@@ -23,7 +23,6 @@
       0
     ]
   },
-  "attributionControl": false,
   "sources": {
     "ortoEsri": {
       "type": "raster",
