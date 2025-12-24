@@ -24,9 +24,6 @@
     ]
   },
   "attributionControl": false,
-  "canvasContextAttributes": {
-    "antialias": true
-  },
   "sources": {
     "ortoEsri": {
       "type": "raster",
