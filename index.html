@@ -108,6 +108,54 @@ map.on("load", async () => {
 
 });
 
+map.on('click', (e) => {
+  var description, toggleIt;
+  const bbox = [
+    [e.point.x - 5, e.point.y - 5],
+    [e.point.x + 5, e.point.y + 5]
+  ];
+  const clickedFeatures = map.queryRenderedFeatures(bbox, {
+    layers: ['places']
+  });
+  if (clickedFeatures.length > 0) {
+    description = clickedFeatures[0].properties.description;
+  }
+  if (description) {
+    $(".sidebar-content").empty();
+    $(".sidebar-content").append(description)
+    toggleIt = collapsed;
+    }
+  else {
+    toggleIt = !collapsed;
+  }
+  if (toggleIt) toggleSidebar('right');
+});
+
+var collapsed = true;
+function toggleSidebar(id) {
+  var elem = document.getElementById(id);
+  var classes = elem.className.split(' ');
+  collapsed = classes.indexOf('collapsed') !== -1;
+  var padding = {};
+  if (collapsed ) {
+    classes.splice(classes.indexOf('collapsed'), 1);
+    padding[id] = 260;
+    map.easeTo({
+      padding: padding,
+      duration: 1000 
+    });
+    } 
+  else {
+    padding[id] = 0;
+    classes.push('collapsed');
+    map.easeTo({
+      padding: padding,
+      duration: 1000
+    });
+  }
+  elem.className = classes.join(' ');
+  collapsed = !collapsed;
+};
 
   </script>
 </body>
