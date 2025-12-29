@@ -186,7 +186,7 @@ map.on("load", async () => {
 });
 var zoomlevel, clickcenter, spot, zoomspot;
 map.on('click', (e) => {
-  var description, identity, date, dates, month, images, toggleIt;
+  var description, identity, date, dates, month, images, i, toggleIt;
   const bbox = [
     [e.point.x - 5, e.point.y - 5],
     [e.point.x + 5, e.point.y + 5]
