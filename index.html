@@ -186,7 +186,7 @@ map.on("load", async () => {
 });
 var zoomlevel, clickcenter, spot, zoomspot;
 map.on('click', (e) => {
-  var description, toggleIt;
+  var description, identity, date, dates, month, images, toggleIt;
   const bbox = [
     [e.point.x - 5, e.point.y - 5],
     [e.point.x + 5, e.point.y + 5]
@@ -198,12 +198,12 @@ map.on('click', (e) => {
 	zoomlevel = map.getZoom();
 	clickcenter = map.getCenter();
     description = clickedFeatures[0].properties.description;
-	let identity = clickedFeatures[0].properties.name;
-	let date = clickedFeatures[0].properties.date;
-	let dates = new Date(date);
+	identity = clickedFeatures[0].properties.name;
+	date = clickedFeatures[0].properties.date;
+	dates = new Date(date);
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	let month = months[dates.getMonth()];
-	let images = JSON.parse(clickedFeatures[0].properties.image);
+	month = months[dates.getMonth()];
+	images = JSON.parse(clickedFeatures[0].properties.image);
 	zoomspot = clickedFeatures[0].properties.zoomlevel;
 	spot = clickedFeatures[0].geometry.coordinates;
 
