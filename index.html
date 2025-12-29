@@ -232,6 +232,9 @@ map.on('click', (e) => {
 
 	$(".flex-item").empty();
     $(".flex-item").html(html);
+	initGallery('./galleries.json', {
+      speed: 600,
+    })
 	  
     toggleIt = collapsed;
 	map.setCenter(spot);
