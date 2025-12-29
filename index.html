@@ -225,9 +225,11 @@ map.on('click', (e) => {
 			html += '<img src=' + images[i-1] + ' width="550" >';
 			i--;
 		};
+		html +='<div class="image-container">';
 		html +='<button class="image-item" data-modal="true" data-gallery="Food" aria-label="Open Food image gallery">';
         html +='<img src=' + images[0] + ' width="550" alt="Food">';
-		html +='</button>'		
+		html +='</button>'
+		html +='</div>'
 	};
 
 	$(".flex-item").empty();
