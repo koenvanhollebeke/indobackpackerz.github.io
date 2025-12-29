@@ -212,25 +212,38 @@ map.on('click', (e) => {
 	html += "<h1>"+ identity +"</h1>";
 	html += "<p> date: " + month + " " + String(dates.getFullYear()) + "</p>";
 	html += "<p>"+ description +"</p>";
-	i = images.length;
-	while (i > 0) {
-		html += '<img src=' + images[i-1] + ' width="550" >';
-		i--;
+
+//	i = images.length;
+//	while (i > 0) {
+//		html += '<img src=' + images[i-1] + ' width="550" >';
+//		i--;
+//	};
+	if (Object.keys(images).length > 0) {
+		i = Object.keys(images).length;
+		while (i > 0) {
+			html += '<img src=' + images[i-1] + ' width="550" >';
+			i--;
+		};
+		html +='<button class="image-item" data-modal="true" data-gallery="Food" >';
+        html +='<img src=' + images[0] + ' width="550" >';
+		html +='</button>'		
 	};
-    $(".flex-item").empty();
+
+	$(".flex-item").empty();
     $(".flex-item").html(html);
+	  
     toggleIt = collapsed;
 	map.setCenter(spot);
-	map.zoomTo(zoomspot, { duration: 600 });
-//	map.setZoom(zoomspot);
+	map.zoomTo(zoomspot, { duration: 1000 });
+	map.setZoom(zoomspot);
     }
 	
 	
   else {
     $(".flex-item").empty();
 	map.setCenter(clickcenter);
-//	map.setZoom(zoomlevel);
-	map.zoomTo(zoomlevel, { duration: 600 });
+	map.setZoom(zoomlevel);
+	map.zoomTo(zoomlevel, { duration: 1000 });
     toggleIt = !collapsed;
   }
   if (toggleIt) toggleSidebar('right');
