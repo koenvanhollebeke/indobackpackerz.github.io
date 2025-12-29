@@ -199,11 +199,11 @@ map.on('click', (e) => {
 	clickcenter = map.getCenter();
     description = clickedFeatures[0].properties.description;
 	let identity = clickedFeatures[0].properties.name;
-	date = clickedFeatures[0].properties.date;
-	dates = new Date(date);
+	let date = clickedFeatures[0].properties.date;
+	let dates = new Date(date);
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	month = months[dates.getMonth()];
-	images = JSON.parse(clickedFeatures[0].properties.image);
+	let month = months[dates.getMonth()];
+	let images = JSON.parse(clickedFeatures[0].properties.image);
 	zoomspot = clickedFeatures[0].properties.zoomlevel;
 	spot = clickedFeatures[0].geometry.coordinates;
 
