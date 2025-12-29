@@ -37,7 +37,13 @@
 	<div id="starfield-container"></div>
 	<div id="globe-glow"></div>
 	<div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
-		<div class="flex-item"></div>
+		<div class="flex-item">
+			 <div class="image-container">
+      			<button class="image-item" data-modal="true" data-gallery="Food" aria-label="Open Food image gallery">
+        			<img src="./images/food-1.jpg" width="300" alt="Food">
+      			</button>
+			</div>	 
+		</div>
 	</div>
 </div>
   
@@ -225,13 +231,13 @@ map.on('click', (e) => {
 			html += '<img src=' + images[i-1] + ' width="550" >';
 			i--;
 		};
-		html +='<div class="container">';
-		html +='<div class="image-container">';
-		html +='<button class="image-item" data-modal="true" data-gallery="Food" aria-label="Open Food image gallery">';
-        html +='<img src=' + images[0] + ' width="550" alt="Food">';
-		html +='</button>'
-		html +='</div>'
-		html +='</div>'
+//		html +='<div class="container">';
+//		html +='<div class="image-container">';
+//		html +='<button class="image-item" data-modal="true" data-gallery="Food" aria-label="Open Food image gallery">';
+//        html +='<img src=' + images[0] + ' width="550" alt="Food">';
+//		html +='</button>'
+//		html +='</div>'
+//		html +='</div>'
 	};
 
 	$(".flex-item").empty();
