@@ -222,14 +222,14 @@ map.on('click', (e) => {
     toggleIt = collapsed;
 	map.setCenter(spot);
 	map.zoomTo(zoomspot, { duration: 600 });
-	map.setZoom(zoomspot);
+//	map.setZoom(zoomspot);
     }
 	
 	
   else {
     $(".flex-item").empty();
 	map.setCenter(clickcenter);
-	map.setZoom(zoomlevel);
+//	map.setZoom(zoomlevel);
 	map.zoomTo(zoomlevel, { duration: 600 });
     toggleIt = !collapsed;
   }
