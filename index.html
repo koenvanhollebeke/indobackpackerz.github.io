@@ -242,7 +242,7 @@
 		});
 
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
-		map.on('click', (e) => {
+		map.on('click', 'snorkeling-spot', (e) => {
   		var description, toggleIt, identity, date, dates, month, images, i, j;
   		const bbox = [
     		[e.point.x - 5, e.point.y - 5],
