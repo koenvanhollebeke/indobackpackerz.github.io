@@ -63,6 +63,7 @@
 		<div id="starfield-container"></div>
 		<div id="globe-glow"></div>
 		<div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
+			<span class="close cursor" onclick="closeSidebar()">&times;</span>
 			<div class="flex-item"></div>
 		</div>
 	</div>
@@ -94,6 +95,15 @@
   		modalImg.src = slides[n].src;
   		captionText.innerHTML = n + 1 + ' / ' + slides.length;
 		}
+	function closeSidebar() {
+  		$(".flex-item").empty();
+		map.flyTo({
+			center: clickcenter,
+        	zoom: zoomlevel,
+        	essential: true
+		});
+		toggleSidebar('right');
+	}
 		
     const map = new maplibregl.Map({
   		container: "map-container",
