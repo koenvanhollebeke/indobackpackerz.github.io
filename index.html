@@ -8,7 +8,7 @@
 
   <style>
     body { display: flex; height: 100vh; margin: 0; padding: 0; background-color: rgb(31, 28, 28); }
-	#main { position:relative; height:100%; width: 100%; margin: 0px; }
+		#main { position:relative; height:100%; width: 100%; margin: 0px; }
  
     #map-container { display: flex; position: relative; width: 100%; height: 100%; z-index: 3; }
     #starfield-container { display: flex; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
@@ -20,156 +20,209 @@
     .sidebar-content { top:0; width: 80%; height: 90%; font-family: Arial, Helvetica, sans-serif; font-size: 16px; color: white; flex: 0 0 auto; }
     .sidebar { transition: transform 0.5s; z-index: 3; width: 600px; height: 100%; }
     .right.collapsed { width: 0px; }
-	.flex-item { margin: 1em; }
-	
-  </style>
+		.flex-item { margin: 1em; }
+		.my-image { margin-right: 10px; } 
+		.cursor { cursor: pointer; }
+		img.hover-shadow { transition: 0.3s; }
+		.hover-shadow:hover { box-shadow: 0 4px 8px 0 rgba(240, 240, 240, 0.2), 0 6px 20px 0 rgba(240, 240, 240, 0.19); }
 
-  
+		/* The Modal (background) */
+		.modal { position: fixed; z-index: 4; padding-top: 30px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: black; }
+		/* Modal Content */
+		.modal-content { position: relative; background-color: #fefefe; margin: auto; padding: 0; width: 90%; max-width: 750px; max-height: 100vh; }
+		/* The Close Button */
+		.close { color: white; position: absolute; top: 10px; right: 25px; font-size: 35px; font-weight: bold; }
+		.close:hover,
+		.close:focus { color: #999; text-decoration: none; cursor: pointer; }
+		/* Next & previous buttons */
+		.prev,
+		.next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; margin-top: -50px; color: white; font-weight: bold; font-size: 20px; transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none; -webkit-user-select: none; }
+		/* Position the "next button" to the right */
+		.next { right: 0; border-radius: 3px 0 0 3px; }
+		/* On hover, add a black background color with a little bit see-through */
+		.prev:hover,
+		.next:hover { background-color: rgba(0, 0, 0, 0.8); }
+		/* Number text (1/3 etc) */
+		.numbertext { color: #f2f2f2; font-size: 12px; padding: 8px 12px; position: absolute; top: 0; }
+		.caption-container { text-align: center; background-color: black; padding: 2px 16px; color: white; }
+		img { margin-bottom: -4px; }
+		.caption-container { text-align: center; background-color: black; padding: 2px 16px; color: white; }
+		.demo { opacity: 0.6; }
+		.active,
+		.demo:hover { opacity: 1; }
+  </style>	
 </head>
 <body>
   <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
-<link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="maplibre-gl-starfield-0.1.js"></script>
+	<link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="maplibre-gl-starfield-0.1.js"></script>
 
-<div id="main">
-	<div id="map-container"></div>
-	<div id="starfield-container"></div>
-	<div id="globe-glow"></div>
-	<div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
-		<div class="flex-item"></div>
+	<div id="main">
+		<div id="map-container"></div>
+		<div id="starfield-container"></div>
+		<div id="globe-glow"></div>
+		<div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
+			<div class="flex-item"></div>
+		</div>
 	</div>
-</div>
+	<div id="myModal" class="modal" hidden=true>
+  	<span class="close cursor" onclick="closeModal()">&times;</span>
+  	<div class="modal-content">
+    	<div class="mySlides">
+	  		<div class="numbertext">1 / 4</div>
+      	<img src="" style="width:100%">
+    	</div>
+    	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    	<a class="next" onclick="plusSlides(1)">&#10095;</a>
+  	</div>
+	</div>
   
   <script type="module">
-	import initGallery from "./galleryApp.js";
-	initGallery('./galleries.json', {
-      speed: 600,
-    });
+		//modal functions 
+  	function openModal() { document.getElementById("myModal").style.display = "block"; }
+		function closeModal() {  document.getElementById("myModal").style.display = "none"; }
+		var slideIndex = 0;
+		function plusSlides(n) { showSlides(slideIndex += n); }
+		function currentSlide(n) { showSlides(slideIndex = n); }
+		function showSlides(n) {
+  		var i;
+  		var slides = document.querySelectorAll('.flex-item img');
+  		var captionText = document.getElementsByClassName("numbertext")[0];
+  		var modalImg = document.querySelector('.modal-content img');
+  		n %= slides.length;
+  		modalImg.src = slides[n].src;
+  		captionText.innerHTML = n + 1 + ' / ' + slides.length;
+		}
+		
     const map = new maplibregl.Map({
-  container: "map-container",
-  zoom: 3,
-  center: [124.77939886801542, 1.596716355801881],
-  style: "arcgis_hybrid.json",
-  attributionControl: false,
+  		container: "map-container",
+  		zoom: 3,
+  		center: [124.77939886801542, 1.596716355801881],
+  		style: "arcgis_hybrid.json",
+  		attributionControl: false,
     });
 
-map.addControl(
-  new maplibregl.NavigationControl({
-    visualizePitch: true,
-    showZoom: true,
-    showCompass: true,
-  }), 'top-left'
-);
-map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
-map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
+		map.addControl(
+  		new maplibregl.NavigationControl({
+    		visualizePitch: true,
+    		showZoom: true,
+    		showCompass: true,
+  		}), 'top-left'
+		);
+		map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
+		map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
 
-const starryBg = new MapLibreStarryBackground({
-  starCount: 100, // Customize number of stars
-  glowIntensity: 0.1, // Customize glow intensity (0.0 to 1.0)
-});
-map.on("style.load", function () {
-  map.setProjection({ type: "globe" });
-  starryBg.attachToMap(map, "starfield-container", "globe-glow");
-});
+		const starryBg = new MapLibreStarryBackground({
+  		starCount: 100, // Customize number of stars
+  		glowIntensity: 0.1, // Customize glow intensity (0.0 to 1.0)
+		});
+		map.on("style.load", function () {
+  		map.setProjection({ type: "globe" });
+  		starryBg.attachToMap(map, "starfield-container", "globe-glow");
+		});
 
-map.on("load", async () => {
-  const image = await map.loadImage(
-    "https://i.ibb.co/CnhHVH3/1870-snorkel-4x.png",
-  );
-  map.addImage("custom-marker", image.data);
-  map.addSource("snorkelingspot", {
-    type: "geojson",
-    data: {
-		"type": "FeatureCollection",
-		"features": [
-			{
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						126.70748,
-						3.94514
+		map.on("load", async () => {
+  		const image = await map.loadImage( "https://i.ibb.co/CnhHVH3/1870-snorkel-4x.png", );
+  		map.addImage("custom-marker", image.data);
+  		map.addSource("snorkelingspot", {
+    		type: "geojson",
+    		data: {
+					"type": "FeatureCollection",
+					"features": [
+						{
+							"type": "Feature",
+							"geometry": {
+								"type": "Point",
+								"coordinates": [
+									126.70748,
+									3.94514
+								]
+							},
+							"properties": {
+								"_umap_options": {
+									"showLabel": null
+								},
+								"description": "date: Aug 2014\nplace: Distance from coast: ~100-500m, and you'll need to swim it\nCurrents: very light currents, but mind the change of tides when there is serious current between the two islands\nClarity: good/excellent (morning, half Augustus)\nDescription: the sea floor is slowly dropiing off - there is coral all the way till the tip, sometimes intermittent with sand",
+								"name": " Sara besar",
+								"date": "2014-08-01",
+								"image" : [ ],
+								"zoomlevel" : 15,
+								"coralsourceACA" : "",
+								"coralsourceBIG" : ""
+							},
+							"id": "MyNjM"
+						},
+						{
+							"type": "Feature",
+							"geometry": {
+								"type": "Point",
+								"coordinates": [
+									124.377118,
+									-8.221284
+								]
+							},
+							"properties": {
+								"_umap_options": {
+									"showLabel": null
+								},
+								"description": "date: Oct 2017\nplace: at the small port here in Abangbul; took a boat from Sebanjar (350k/day)",
+								"name": "Abangbul",
+								"date": "2017-10-01",
+								"image" : [ ],
+								"zoomlevel" : 15,
+								"coralsourceACA" : "",
+								"coralsourceBIG" : ""
+							},
+							"id": "YxNjg"
+						},
+						{
+							"type": "Feature",
+							"geometry": {
+							"type": "Point",
+								"coordinates": [
+									129.76255,
+									-4.51811
+								]
+							},
+							"properties": {
+								"_umap_options": {
+									"showLabel": null
+								},
+								"description": "date: Nov 2013\nplace: Steep walls, and good corals - unless you are a very good swimmer only acessible by boat.\n\n{{https://dl.dropboxusercontent.com/scl/fi/seg115fuoo20vp5jjr8w5/DSC03939.jpg?rlkey=jaojbj1k9soewez1ny9o8fldc&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/s6voppyckwftrynpou7yv/DSC03940.jpg?rlkey=lux6xvht5owmb6ge2ebt0hpm7&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/724vb7aa9zj9gz7w7qnbv/DSC03941.jpg?rlkey=q6vfk5zuj9k6inmneyxfj3ja5&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/3zh5zr9rj9um8zgkjdevx/DSC03942.jpg?rlkey=xxrzagqrqtgs8bdcsm3hha0gk&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/xb5p606cr4ukjnohi7wea/DSC03943.jpg?rlkey=8mo24qnfn84izycpevzo4adb4&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/w4fde4h6jwl6qs3nkw5xp/DSC03945.jpg?rlkey=5q10opck7f6oq7ax0870rc0tm&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/ehvmcro6r4ebg9khgmv1r/DSC03946.jpg?rlkey=8o5eum0n6ej8k3t26dfsys4wg&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/lcf23luiui7ew4zg9aneb/DSC03947.jpg?rlkey=so8xpatn6j1os55lk6xkt06up&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/h18whj5m7v3vzbbiwaqne/DSC03948.jpg?rlkey=rzp2o8gpz65y67tya7deu7dk7&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/2fxuss7vr4lnies3kdosp/DSC03949.jpg?rlkey=z1jt6hp2x5fj9yj719irtfx19&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/3o0ipi4l60k90acuqsa4w/DSC03950.jpg?rlkey=6j8swioz3dgygw06vrisaebkb&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/nowrq3bqbv7ix6da387w4/DSC03951.jpg?rlkey=n6qmgy7nldw7s5zw7t74t1mgb&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/viqar9wmw5jw84s7gdpg7/DSC03952.jpg?rlkey=ugyzd674qe66lyc6rv3vrbfdg&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/q16kp5bwvze0zis8wvntj/DSC03954.jpg?rlkey=cx32hxga2yfej76mvs1c3c9pz&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/gl907awwcyr5idy2d6vo6/DSC03955.jpg?rlkey=nyfiazc2i9u0zojmd4bv7ygp5&raw=1}}",
+								"name": "Ai Tanjung Barat",
+								"date": "2013-11-01",
+								"image" : [ "https://dl.dropboxusercontent.com/scl/fi/seg115fuoo20vp5jjr8w5/DSC03939.jpg?rlkey=jaojbj1k9soewez1ny9o8fldc&raw=1", "https://dl.dropboxusercontent.com/scl/fi/s6voppyckwftrynpou7yv/DSC03940.jpg?rlkey=lux6xvht5owmb6ge2ebt0hpm7&raw=1", "https://dl.dropboxusercontent.com/scl/fi/724vb7aa9zj9gz7w7qnbv/DSC03941.jpg?rlkey=q6vfk5zuj9k6inmneyxfj3ja5&raw=1", "https://dl.dropboxusercontent.com/scl/fi/3zh5zr9rj9um8zgkjdevx/DSC03942.jpg?rlkey=xxrzagqrqtgs8bdcsm3hha0gk&raw=1", "https://dl.dropboxusercontent.com/scl/fi/xb5p606cr4ukjnohi7wea/DSC03943.jpg?rlkey=8mo24qnfn84izycpevzo4adb4&raw=1", "https://dl.dropboxusercontent.com/scl/fi/w4fde4h6jwl6qs3nkw5xp/DSC03945.jpg?rlkey=5q10opck7f6oq7ax0870rc0tm&raw=1", "https://dl.dropboxusercontent.com/scl/fi/ehvmcro6r4ebg9khgmv1r/DSC03946.jpg?rlkey=8o5eum0n6ej8k3t26dfsys4wg&raw=1", "https://dl.dropboxusercontent.com/scl/fi/lcf23luiui7ew4zg9aneb/DSC03947.jpg?rlkey=so8xpatn6j1os55lk6xkt06up&raw=1", "https://dl.dropboxusercontent.com/scl/fi/h18whj5m7v3vzbbiwaqne/DSC03948.jpg?rlkey=rzp2o8gpz65y67tya7deu7dk7&raw=1", "https://dl.dropboxusercontent.com/scl/fi/2fxuss7vr4lnies3kdosp/DSC03949.jpg?rlkey=z1jt6hp2x5fj9yj719irtfx19&raw=1", "https://dl.dropboxusercontent.com/scl/fi/3o0ipi4l60k90acuqsa4w/DSC03950.jpg?rlkey=6j8swioz3dgygw06vrisaebkb&raw=1", "https://dl.dropboxusercontent.com/scl/fi/nowrq3bqbv7ix6da387w4/DSC03951.jpg?rlkey=n6qmgy7nldw7s5zw7t74t1mgb&raw=1", "https://dl.dropboxusercontent.com/scl/fi/viqar9wmw5jw84s7gdpg7/DSC03952.jpg?rlkey=ugyzd674qe66lyc6rv3vrbfdg&raw=1", "https://dl.dropboxusercontent.com/scl/fi/q16kp5bwvze0zis8wvntj/DSC03954.jpg?rlkey=cx32hxga2yfej76mvs1c3c9pz&raw=1", "https://dl.dropboxusercontent.com/scl/fi/gl907awwcyr5idy2d6vo6/DSC03955.jpg?rlkey=nyfiazc2i9u0zojmd4bv7ygp5&raw=1"
+								],
+								"zoomlevel" : 15,
+								"coralsourceACA" : "./geojson/coralACA_banda.json",
+								"coralsourceBIG" : "./geojson/coralBIG_banda.json"
+							},
+							"id": "kyOTA"
+						},
 					]
 				},
-				"properties": {
-					"_umap_options": {
-						"showLabel": null
-					},
-					"description": "date: Aug 2014\nplace: Distance from coast: ~100-500m, and you'll need to swim it\nCurrents: very light currents, but mind the change of tides when there is serious current between the two islands\nClarity: good/excellent (morning, half Augustus)\nDescription: the sea floor is slowly dropiing off - there is coral all the way till the tip, sometimes intermittent with sand",
-					"name": " Sara besar",
-					"date": "2014-08-01",
-					"image" : [ ],
-					"zoomlevel" : 15
-				},
-				"id": "MyNjM"
-			},
-			{
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						124.377118,
-						-8.221284
-					]
-				},
-				"properties": {
-					"_umap_options": {
-						"showLabel": null
-					},
-					"description": "date: Oct 2017\nplace: at the small port here in Abangbul; took a boat from Sebanjar (350k/day)",
-					"name": "Abangbul",
-					"date": "2017-10-01",
-					"image" : [ ],
-					"zoomlevel" : 15
-				},
-				"id": "YxNjg"
-			},
-			{
-				"type": "Feature",
-				"geometry": {
-					"type": "Point",
-					"coordinates": [
-						129.76255,
-						-4.51811
-					]
-				},
-				"properties": {
-					"_umap_options": {
-						"showLabel": null
-					},
-					"description": "date: Nov 2013\nplace: Steep walls, and good corals - unless you are a very good swimmer only acessible by boat.\n\n{{https://dl.dropboxusercontent.com/scl/fi/seg115fuoo20vp5jjr8w5/DSC03939.jpg?rlkey=jaojbj1k9soewez1ny9o8fldc&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/s6voppyckwftrynpou7yv/DSC03940.jpg?rlkey=lux6xvht5owmb6ge2ebt0hpm7&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/724vb7aa9zj9gz7w7qnbv/DSC03941.jpg?rlkey=q6vfk5zuj9k6inmneyxfj3ja5&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/3zh5zr9rj9um8zgkjdevx/DSC03942.jpg?rlkey=xxrzagqrqtgs8bdcsm3hha0gk&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/xb5p606cr4ukjnohi7wea/DSC03943.jpg?rlkey=8mo24qnfn84izycpevzo4adb4&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/w4fde4h6jwl6qs3nkw5xp/DSC03945.jpg?rlkey=5q10opck7f6oq7ax0870rc0tm&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/ehvmcro6r4ebg9khgmv1r/DSC03946.jpg?rlkey=8o5eum0n6ej8k3t26dfsys4wg&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/lcf23luiui7ew4zg9aneb/DSC03947.jpg?rlkey=so8xpatn6j1os55lk6xkt06up&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/h18whj5m7v3vzbbiwaqne/DSC03948.jpg?rlkey=rzp2o8gpz65y67tya7deu7dk7&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/2fxuss7vr4lnies3kdosp/DSC03949.jpg?rlkey=z1jt6hp2x5fj9yj719irtfx19&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/3o0ipi4l60k90acuqsa4w/DSC03950.jpg?rlkey=6j8swioz3dgygw06vrisaebkb&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/nowrq3bqbv7ix6da387w4/DSC03951.jpg?rlkey=n6qmgy7nldw7s5zw7t74t1mgb&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/viqar9wmw5jw84s7gdpg7/DSC03952.jpg?rlkey=ugyzd674qe66lyc6rv3vrbfdg&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/q16kp5bwvze0zis8wvntj/DSC03954.jpg?rlkey=cx32hxga2yfej76mvs1c3c9pz&raw=1}}\n{{https://dl.dropboxusercontent.com/scl/fi/gl907awwcyr5idy2d6vo6/DSC03955.jpg?rlkey=nyfiazc2i9u0zojmd4bv7ygp5&raw=1}}",
-					"name": "Ai Tanjung Barat",
-					"date": "2013-11-01",
-					"image" : [ "https://dl.dropboxusercontent.com/scl/fi/seg115fuoo20vp5jjr8w5/DSC03939.jpg?rlkey=jaojbj1k9soewez1ny9o8fldc&raw=1",  "https://dl.dropboxusercontent.com/scl/fi/s6voppyckwftrynpou7yv/DSC03940.jpg?rlkey=lux6xvht5owmb6ge2ebt0hpm7&raw=1","https://dl.dropboxusercontent.com/scl/fi/724vb7aa9zj9gz7w7qnbv/DSC03941.jpg?rlkey=q6vfk5zuj9k6inmneyxfj3ja5&raw=1"
-					],
-					"zoomlevel" : 15
-				},
-				"id": "kyOTA"
-			},
-		]
-	},
-  });
-  map.addLayer({
-    id: "snorkeling-spot",
-    type: "symbol",
-    source: "snorkelingspot",
-    layout: {
-      "icon-image": "custom-marker",
-      "icon-size": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        10,
-        0.5, // At zoom 10, icon size is 0.5x
-        15,
-        0.6, // At zoom 15, icon size is 1.5x
-        20,
-        0.7, // At zoom 20, icon size is 2.0x
-      ],
-    },
-    filter: ["==", "$type", "Point"],
-  });
+  		});
+  		map.addLayer({
+    		id: "snorkeling-spot",
+    		type: "symbol",
+    		source: "snorkelingspot",
+    		layout: {
+      		"icon-image": "custom-marker",
+      		"icon-size": [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		10,
+        		0.5, // At zoom 10, icon size is 0.5x
+        		15,
+        		0.6, // At zoom 15, icon size is 1.5x
+        		20,
+        		0.7, // At zoom 20, icon size is 2.0x
+      		],
+    		},
+    		filter: ["==", "$type", "Point"],
+  		});
 
 //  map.addSource("sulut", {
 //    type: "geojson",
@@ -186,72 +239,105 @@ map.on("load", async () => {
 //    },
 //  });
 
-});
-var zoomlevel, clickcenter, spot, zoomspot;
-map.on('click', (e) => {
-  var description, identity, date, dates, month, images, i, toggleIt;
-  const bbox = [
-    [e.point.x - 5, e.point.y - 5],
-    [e.point.x + 5, e.point.y + 5]
-  ];
-  const clickedFeatures = map.queryRenderedFeatures(bbox, {
-    layers: ['snorkeling-spot']
-  });
-  if (clickedFeatures.length > 0) {
-	zoomlevel = map.getZoom();
-	clickcenter = map.getCenter();
-    description = clickedFeatures[0].properties.description;
-	identity = clickedFeatures[0].properties.name;
-	date = clickedFeatures[0].properties.date;
-	dates = new Date(date);
-	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-	month = months[dates.getMonth()];
-	images = JSON.parse(clickedFeatures[0].properties.image);
-	zoomspot = clickedFeatures[0].properties.zoomlevel;
-	spot = clickedFeatures[0].geometry.coordinates;
+		});
 
-  }
-  if (description) {
-	var html = "";
-	html += "<h1>"+ identity +"</h1>";
-	html += "<p> date: " + month + " " + String(dates.getFullYear()) + "</p>";
-	html += "<p>"+ description +"</p>";
+		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
+		map.on('click', (e) => {
+  		var description, identity, date, dates, month, images, i, j;
+  		const bbox = [
+    		[e.point.x - 5, e.point.y - 5],
+    		[e.point.x + 5, e.point.y + 5]
+  		];
+  		const clickedFeatures = map.queryRenderedFeatures(bbox, {
+    		layers: ['snorkeling-spot']
+  		});
+  		if (clickedFeatures.length > 0) {
+				zoomlevel = map.getZoom();
+				clickcenter = map.getCenter();
+    		description = clickedFeatures[0].properties.description;
+				identity = clickedFeatures[0].properties.name;
+				date = clickedFeatures[0].properties.date;
+				dates = new Date(date);
+				const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+				month = months[dates.getMonth()];
+				images = JSON.parse(clickedFeatures[0].properties.image);
+				zoomspot = clickedFeatures[0].properties.zoomlevel;
+				spot = clickedFeatures[0].geometry.coordinates;
+				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
+				coralACA = clickedFeatures[0].properties.coralsourceACA;
+  		}
+  		if (description) {
+				var html = "";
+				html += "<h1>"+ identity +"</h1>";
+				html += "<p> date: " + month + " " + String(dates.getFullYear()) + "</p>";
+				html += "<p>"+ description +"</p>";
 
 //	i = images.length;
 //	while (i > 0) {
 //		html += '<img src=' + images[i-1] + ' width="550" >';
 //		i--;
 //	};
+				
 	if (Object.keys(images).length > 0) {
 		i = Object.keys(images).length;
+		j = 0;
 		while (i > 0) {
-			html += '<img src=' + images[i-1] + ' width="550" >';
+			html += '<img class="my-image hover-shadow cursor" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
 			i--;
+			j++;
 		};
-		html +='<div class="container">';
-		html +='<div class="image-container">';
-		html +='<button class="image-item" data-modal="true" data-gallery="Food" aria-label="Open Food image gallery">';
-        html +='<img src=' + images[0] + ' width="550" alt="Food">';
-		html +='</button>'
-		html +='</div>'
-		html +='</div>'
 	};
 
 	$(".flex-item").empty();
-    $(".flex-item").html(html);
-	  
-    toggleIt = collapsed;
+  $(".flex-item").html(html);
+
+	if (coralBIG) {
+		map.addSource("coralBIG", { type: "geojson", data: coralBIG });
+		map.addLayer({
+    	id: "CoralmapBIG",
+			type: "line",
+			source: "coralBIG",
+			layout: {},
+			paint: {
+				"line-color": "#DDED24",
+				"line-opacity": 0.6,
+			},
+		});
+	};
+	if (coralACA) {
+		map.addSource("coralACA", { type: "geojson", data: coralACA });
+		map.addLayer({
+    	id: "CoralmapACA",
+			type: "fill",
+			source: "coralACA",
+			layout: {},
+			paint: {
+				"fill-color": "#DDED24",
+				"fill-opacity": 0.6,
+			},
+		});
+	};
+				
+  toggleIt = collapsed;
 	map.setCenter(spot);
 	map.zoomTo(zoomspot, { duration: 1000 });
 	map.setZoom(zoomspot);
     }
-	
 	
   else {
     $(".flex-item").empty();
 	map.setCenter(clickcenter);
 	map.setZoom(zoomlevel);
 	map.zoomTo(zoomlevel, { duration: 1000 });
+
+	if (coralBIG) {
+		map.removeLayer('CoralmapBIG');
+		map.removeSource('coralBIG');
+	};
+	if (coralACA) {
+		map.removeLayer('CoralmapACA');
+		map.removeSource('coralACA');
+	};	
     toggleIt = !collapsed;
   }
   if (toggleIt) toggleSidebar('right');
