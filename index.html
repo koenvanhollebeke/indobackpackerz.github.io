@@ -324,16 +324,26 @@
 	};
 				
   toggleIt = collapsed;
-	map.setCenter(spot);
-	map.zoomTo(zoomspot, { duration: 1000 });
-	map.setZoom(zoomspot);
+	map.flyTo({
+		center: spot,
+        zoom: zoomspot,
+        essential: true
+	});
+//	map.setCenter(spot);
+//	map.zoomTo(zoomspot, { duration: 1000 });
+//	map.setZoom(zoomspot);
     }
 	
   else {
     $(".flex-item").empty();
-	map.setCenter(clickcenter);
-	map.setZoom(zoomlevel);
-	map.zoomTo(zoomlevel, { duration: 1000 });
+	map.flyTo({
+		center: clickcenter,
+        zoom: zoomlevel,
+        essential: true
+	});
+//	map.setCenter(clickcenter);
+//	map.setZoom(zoomlevel);
+//	map.zoomTo(zoomlevel, { duration: 1000 });
 
 	if (coralBIG) {
 		map.removeLayer('CoralmapBIG');
