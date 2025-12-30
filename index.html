@@ -282,7 +282,7 @@
 		i = Object.keys(images).length;
 		j = 0;
 		while (i > 0) {
-			html += '<img class="my-image hover-shadow cursor" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
+			html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
 			i--;
 			j++;
 		};
