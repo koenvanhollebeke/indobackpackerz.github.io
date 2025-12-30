@@ -97,11 +97,13 @@
 		}
 	function closeSidebar() {
   		$(".flex-item").empty();
-		map.flyTo({
-			center: clickcenter,
-        	zoom: zoomlevel,
-        	essential: true
-		});
+//		map.flyTo({
+//			center: clickcenter,
+//        	zoom: zoomlevel,
+//        	essential: true
+//		});
+		map.setCenter(clickcenter);
+		map.setZoom(zoomlevel);
 		if (coralBIG) {
 		map.removeLayer('CoralmapBIG');
 		map.removeSource('coralBIG');
@@ -342,14 +344,14 @@
 	};
 				
   toggleIt = collapsed;
-	map.flyTo({
-		center: spot,
-        zoom: zoomspot,
-        essential: true
-	});
-//	map.setCenter(spot);
+//	map.flyTo({
+//		center: spot,
+//        zoom: zoomspot,
+//        essential: true
+//	});
+	map.setCenter(spot);
 //	map.zoomTo(zoomspot, { duration: 1000 });
-//	map.setZoom(zoomspot);
+	map.setZoom(zoomspot);
     }
 	
   else {
