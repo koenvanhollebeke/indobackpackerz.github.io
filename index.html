@@ -295,12 +295,13 @@
 		map.addSource("coralBIG", { type: "geojson", data: coralBIG });
 		map.addLayer({
     	id: "CoralmapBIG",
-			type: "fill",
+			type: "line",
 			source: "coralBIG",
 			layout: {},
 			paint: {
 				"line-color": "#DDED24",
 				"line-opacity": 0.4,
+				"line-width": 1.5,
 			},
 		});
 	};
