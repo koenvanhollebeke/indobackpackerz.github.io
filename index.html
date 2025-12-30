@@ -102,6 +102,14 @@
         	zoom: zoomlevel,
         	essential: true
 		});
+		if (coralBIG) {
+		map.removeLayer('CoralmapBIG');
+		map.removeSource('coralBIG');
+	};
+	if (coralACA) {
+		map.removeLayer('CoralmapACA');
+		map.removeSource('coralACA');
+	};
 		toggleSidebar('right');
 	}
 		
