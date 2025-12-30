@@ -50,6 +50,178 @@
 		.demo { opacity: 0.6; }
 		.active,
 		.demo:hover { opacity: 1; }
+
+	  /* Mapzoom Custom control styling */
+    .custom-map-control {
+      background-color: rgba(255, 255, 255, 1);
+      border-radius: 3px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+      width: 29px;
+      height: 29px;
+      font-size: 10px;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      /* Centers items horizontally */
+      align-items: center;
+      /* Ensure it's above the map but part of the map's control flow */
+      z-index: 1;
+      pointer-events: auto;
+      /* Allow interaction with the control */
+	}
+	
+	/* MapLibre GL Layer Manager Styles */
+.layer-manager {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 13px;
+}
+
+/* When expanded */
+.layer-manager:has(.layer-manager-panel:not([style*="display: none"])) {
+  max-width: 350px;
+  min-width: 150px;
+}
+
+/* When collapsed */
+.layer-manager:has(.layer-manager-panel[style*="display: none"]) {
+  width: auto;
+  min-width: auto;
+}
+
+.layer-manager-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.layer-manager-toggle {
+  background: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  width: 29px;
+  height: 29px;
+  min-width: 29px;
+  min-height: 29px;
+}
+
+.layer-manager-toggle:hover {
+  background: #f5f5f5;
+}
+
+.layer-manager-toggle svg {
+  display: block;
+  margin: auto;
+}
+
+.layer-manager-panel {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.layer-manager-section {
+  margin-bottom: 10px;
+}
+
+.layer-manager-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.layer-manager-title span {
+  margin-right: 6px;
+}
+
+.layer-manager-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer-manager-item {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 1px;
+  transition: all 0.2s;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 2px;
+  align-items: center;
+}
+
+.layer-manager-item:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+	
+.layer-manager-checkbox {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.layer-manager-label {
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  color: #333;
+  min-width: 0;
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.layer-manager-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+.layer-manager-opacity {
+  flex: 1;
+}
+	
+.layer-manager-btn-style {
+  padding: 4px 6px;
+  font-size: 16px;
+}
+
+.layer-manager-btn-style:hover {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+	
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .layer-manager {
+    max-width: 280px;
+    min-width: 250px;
+  }
+}
+	  
   </style>	
 </head>
 <body>
@@ -80,6 +252,160 @@
 	</div>
   
   <script>
+
+	  /**
+ * MapLibre GL Layer Manager Plugin
+ * Provides UI controls for managing layer visibility, opacity, and styles
+ */
+class LayerManager {
+  constructor(options = {}) {
+    this.map = null;
+    this.container = null;
+    this.layers = options.layers || [];
+    this.position = options.position || 'top-left';
+    this.collapsed = options.collapsed || false;
+//    this.styleEditors = new Map();
+    this.layerConfigs = new Map();
+
+    // Initialize layer configurations
+    this.layers.forEach(layer => {
+      this.layerConfigs.set(layer.id, {
+        visible: layer.visible !== false,
+        opacity: layer.opacity || 1.0,
+        minzoom: layer.minzoom,
+        maxzoom: layer.maxzoom
+      });
+    });
+  }
+
+  onAdd(map) {
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group layer-manager';
+
+    // Create the main panel
+    this.panel = document.createElement('div');
+    this.panel.className = 'layer-manager-panel';
+    if (this.collapsed) {
+      this.panel.style.display = 'none';
+    }
+
+    // Create header
+    const header = this._createHeader();
+    this.container.appendChild(header);
+
+    // Create layers section
+    const layersSection = this._createLayersSection();
+    this.panel.appendChild(layersSection);
+
+    this.container.appendChild(this.panel);
+
+    return this.container;
+  }
+
+  onRemove() {
+    this.container.parentNode.removeChild(this.container);
+    this.map = null;
+  }
+
+  _createHeader() {
+    const header = document.createElement('div');
+    header.className = 'layer-manager-header';
+
+    const icon = document.createElement('button');
+    icon.className = 'layer-manager-toggle';
+    // SVG layers icon
+    icon.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+      <polyline points="2 17 12 22 22 17"></polyline>
+      <polyline points="2 12 12 17 22 12"></polyline>
+    </svg>`;
+    icon.title = 'Toggle Layers';
+    icon.onclick = () => this._togglePanel();
+
+    header.appendChild(icon);
+    return header;
+  }
+
+  _togglePanel() {
+    if (this.panel.style.display === 'none') {
+      this.panel.style.display = '';
+      this.collapsed = false;
+    } else {
+      this.panel.style.display = 'none';
+      this.collapsed = true;
+    }
+  }
+
+  _createLayersSection() {
+    const section = document.createElement('div');
+    section.className = 'layer-manager-section';
+    // Title
+    const title = document.createElement('div');
+    title.className = 'layer-manager-title';
+	title.innerHTML = `<span style="vertical-align: middle;">Available Layers</span>`;
+    section.appendChild(title);
+    // Layers list
+    const list = document.createElement('div');
+    list.className = 'layer-manager-list';
+    this.layers.forEach(layer => {
+      const layerItem = this._createLayerItem(layer);
+      list.appendChild(layerItem);
+    });
+    section.appendChild(list);
+    return section;
+  }
+
+  _createLayerItem(layer) {
+    const item = document.createElement('div');
+    item.className = 'layer-manager-item';
+    item.dataset.layerId = layer.id;
+    // Checkbox for visibility
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'layer-manager-checkbox';
+    checkbox.checked = this.layerConfigs.get(layer.id).visible;
+    checkbox.onchange = (e) => this._toggleLayerVisibility(layer.id, e.target.checked);
+    // Labelling
+    const label = document.createElement('label');
+    label.className = 'layer-manager-label';
+    label.textContent = layer.name || layer.id;
+    label.onclick = () => checkbox.click();
+    item.appendChild(checkbox);
+    item.appendChild(label);
+    return item;
+  }
+
+  _toggleLayerVisibility(layerId, visible) {
+    const visibility = visible ? 'visible' : 'none';
+    this.map.setLayoutProperty(layerId, 'visibility', visibility);
+    this.layerConfigs.get(layerId).visible = visible;
+  }
+}
+
+  
+  class ZoomControl {
+      onAdd(map) {
+        this._map = map;
+        this._container = document.createElement('div'); // Create a new div element
+        this._container.className = 'maplibregl-ctrl custom-map-control'; // Add SDK's control class and your custom class
+
+        this._updateZoomHandler = () => {
+          this._container.innerHTML = `${map.getZoom().toFixed(2)}`;
+        };
+        // Initial text with current zoom
+        this._updateZoomHandler();
+        // Add event listener for zoom changes
+        map.on('zoomend', this._updateZoomHandler);
+        return this._container;
+      }
+
+      onRemove() {
+        this._container.parentNode.removeChild(this._container);
+        this._map = undefined;
+      }
+    }
+	  
 		//modal functions 
   	function openModal() { document.getElementById("myModal").style.display = "block"; }
 		function closeModal() {  document.getElementById("myModal").style.display = "none"; }
@@ -134,6 +460,8 @@
 		map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
 		map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
 
+	  	map.addControl(new ZoomControl(), 'top-left');
+	  
 		const starryBg = new MapLibreStarryBackground({
   		starCount: 100, // Customize number of stars
   		glowIntensity: 0.1, // Customize glow intensity (0.0 to 1.0)
@@ -245,22 +573,34 @@
     		filter: ["==", "$type", "Point"],
   		});
 
-//  map.addSource("sulut", {
-//    type: "geojson",
-//    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
-//  });
-//  map.addLayer({
-//    id: "SulawesiUtara",
-//    type: "line",
-//    source: "sulut",
-//    layout: {},
-//    paint: {
-//      "line-color": "#DDED24",
-//      "line-opacity": 0.4,
-//    },
-//  });
+map.addSource("sulut", {
+    type: "geojson",
+    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
+  });
+  map.addLayer({
+    id: "SulawesiUtara",
+    type: "line",
+    source: "sulut",
+    layout: {},
+    paint: {
+      "line-color": "#DDED24",
+      "line-opacity": 0.4,
+    },
+  });
 
-		});
+});
+
+map.on("load", function () {
+      const layerManager = new LayerManager({
+        layers: [
+          { id: "snorkeling-spot", name: "spots", visible: true },
+          { id: "SulawesiUtara", name: "provinces", visible: true }
+        ],
+        position: "top-left",
+        collapsed: true,
+      });
+	map.addControl(layerManager, "top-left");
+});
 
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
