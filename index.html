@@ -686,80 +686,7 @@ class LayerManager {
   		map.addImage("custom-marker", image.data);
   		map.addSource("snorkelingspot", {
     		type: "geojson",
-    		data: {
-					"type": "FeatureCollection",
-					"features": [
-						{
-							"type": "Feature",
-							"geometry": {
-								"type": "Point",
-								"coordinates": [
-									126.70748,
-									3.94514
-								]
-							},
-							"properties": {
-								"_umap_options": {
-									"showLabel": null
-								},
-								"description": "date: Aug 2014\nplace: Distance from coast: ~100-500m, and you'll need to swim it\nCurrents: very light currents, but mind the change of tides when there is serious current between the two islands\nClarity: good/excellent (morning, half Augustus)\nDescription: the sea floor is slowly dropiing off - there is coral all the way till the tip, sometimes intermittent with sand",
-								"name": " Sara besar",
-								"date": "2014-08-01",
-								"image" : [ ],
-								"zoomlevel" : 14.5,
-								"coralsourceACA" : "",
-								"coralsourceBIG" : ""
-							},
-							"id": "MyNjM"
-						},
-						{
-							"type": "Feature",
-							"geometry": {
-								"type": "Point",
-								"coordinates": [
-									124.377118,
-									-8.221284
-								]
-							},
-							"properties": {
-								"_umap_options": {
-									"showLabel": null
-								},
-								"description": "date: Oct 2017\nplace: at the small port here in Abangbul; took a boat from Sebanjar (350k/day)",
-								"name": "Abangbul",
-								"date": "2017-10-01",
-								"image" : [ ],
-								"zoomlevel" : 14.5,
-								"coralsourceACA" : "",
-								"coralsourceBIG" : ""
-							},
-							"id": "YxNjg"
-						},
-						{
-							"type": "Feature",
-							"geometry": {
-							"type": "Point",
-								"coordinates": [
-									129.76255,
-									-4.51811
-								]
-							},
-							"properties": {
-								"_umap_options": {
-									"showLabel": null
-								},
-								"description": "date: Nov 2013\nplace: Steep walls, and good corals - unless you are a very good swimmer only acessible by boat.",
-								"name": "Ai Tanjung Barat",
-								"date": "2013-11-01",
-								"image" : [ "https://dl.dropboxusercontent.com/scl/fi/seg115fuoo20vp5jjr8w5/DSC03939.jpg?rlkey=jaojbj1k9soewez1ny9o8fldc&raw=1", "https://dl.dropboxusercontent.com/scl/fi/s6voppyckwftrynpou7yv/DSC03940.jpg?rlkey=lux6xvht5owmb6ge2ebt0hpm7&raw=1", "https://dl.dropboxusercontent.com/scl/fi/724vb7aa9zj9gz7w7qnbv/DSC03941.jpg?rlkey=q6vfk5zuj9k6inmneyxfj3ja5&raw=1", "https://dl.dropboxusercontent.com/scl/fi/3zh5zr9rj9um8zgkjdevx/DSC03942.jpg?rlkey=xxrzagqrqtgs8bdcsm3hha0gk&raw=1", "https://dl.dropboxusercontent.com/scl/fi/xb5p606cr4ukjnohi7wea/DSC03943.jpg?rlkey=8mo24qnfn84izycpevzo4adb4&raw=1", "https://dl.dropboxusercontent.com/scl/fi/w4fde4h6jwl6qs3nkw5xp/DSC03945.jpg?rlkey=5q10opck7f6oq7ax0870rc0tm&raw=1", "https://dl.dropboxusercontent.com/scl/fi/ehvmcro6r4ebg9khgmv1r/DSC03946.jpg?rlkey=8o5eum0n6ej8k3t26dfsys4wg&raw=1", "https://dl.dropboxusercontent.com/scl/fi/lcf23luiui7ew4zg9aneb/DSC03947.jpg?rlkey=so8xpatn6j1os55lk6xkt06up&raw=1", "https://dl.dropboxusercontent.com/scl/fi/h18whj5m7v3vzbbiwaqne/DSC03948.jpg?rlkey=rzp2o8gpz65y67tya7deu7dk7&raw=1", "https://dl.dropboxusercontent.com/scl/fi/2fxuss7vr4lnies3kdosp/DSC03949.jpg?rlkey=z1jt6hp2x5fj9yj719irtfx19&raw=1", "https://dl.dropboxusercontent.com/scl/fi/3o0ipi4l60k90acuqsa4w/DSC03950.jpg?rlkey=6j8swioz3dgygw06vrisaebkb&raw=1", "https://dl.dropboxusercontent.com/scl/fi/nowrq3bqbv7ix6da387w4/DSC03951.jpg?rlkey=n6qmgy7nldw7s5zw7t74t1mgb&raw=1", "https://dl.dropboxusercontent.com/scl/fi/viqar9wmw5jw84s7gdpg7/DSC03952.jpg?rlkey=ugyzd674qe66lyc6rv3vrbfdg&raw=1", "https://dl.dropboxusercontent.com/scl/fi/q16kp5bwvze0zis8wvntj/DSC03954.jpg?rlkey=cx32hxga2yfej76mvs1c3c9pz&raw=1", "https://dl.dropboxusercontent.com/scl/fi/gl907awwcyr5idy2d6vo6/DSC03955.jpg?rlkey=nyfiazc2i9u0zojmd4bv7ygp5&raw=1"
-								],
-								"zoomlevel" : 14.5,
-								"coralsourceACA" : "./geojson/coralACA_banda.json",
-								"coralsourceBIG" : "./geojson/coralBIG_banda.json"
-							},
-							"id": "kyOTA"
-						},
-					]
+    		data: "./snorkeling_indonesia_public.geojson",	
 				},
   		});
   		map.addLayer({
@@ -831,7 +758,8 @@ map.on("load", function () {
 				dates = new Date(date);
 				const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 				month = months[dates.getMonth()];
-				images = JSON.parse(clickedFeatures[0].properties.image);
+				// images = JSON.parse(clickedFeatures[0].properties.image);
+				images = JSON.parse("[ " + clickedFeatures[0].properties.image.replaceAll('{{','"').replaceAll('}}','"') + " ]");
 				zoomspot = clickedFeatures[0].properties.zoomlevel;
 				spot = clickedFeatures[0].geometry.coordinates;
 				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
