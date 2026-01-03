@@ -2612,28 +2612,6 @@
         "howtogetthere": "There are 2 possibilities getting here:\n(1) Get to Bunaken from Manado (public boat from Calaca port) and then rent a small boat from Bunaken to get you here.\n(2) take a public boat to Manado Tua from Calaca port in Manado (Bualo, Papindang or Pangalingan). As usual the public boats (Mo-Sa; will come here from Manado Tua in the morning (8-9am) and go back there around 2-4pm. Only one boat a day so you will have to sleep in Manado Tua. No official homestay/hostels and only one resort here (Woka Eco Resort and Dive).",
         "date": "2022-11-19",
         "rating": "8",
-        "entrancecost": 0
-      },
-      "id": "UyMzY"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          124.708364,
-          1.619023
-        ]
-      },
-      "properties": {
-        "_umap_options": {
-          "showLabel": null
-        },
-        "description": "Daytrip from Bunaken. \nReef is good in most places, even on the top. Wall is steep. Some bombing damage towards the Manado Tua Dua village pier.\nRent a boat from Bunaken island to get here (~350k/boat - 2022)",
-        "name": "Manado Tua Dua/Negri",
-        "howtogetthere": "There are 2 possibilities getting here:\n(1) Get to Bunaken from Manado (public boat from Calaca port) and then rent a small boat from Bunaken to get you here.\n(2) take a public boat to Manado Tua from Calaca port in Manado (Bualo, Papindang or Pangalingan). As usual the public boats (Mo-Sa; will come here from Manado Tua in the morning (8-9am) and go back there around 2-4pm. Only one boat a day so you will have to sleep in Manado Tua. No official homestay/hostels and only one resort here (Woka Eco Resort and Dive).",
-        "date": "2022-11-19",
-        "rating": "8",
         "entrancecost": 0,
         "image": "{{https://www.dropbox.com/scl/fi/p9mfgnvtfx0tv9pva46cu/IMG_20221119_072756.jpg?rlkey=he323vq7vy2f4z9tlmoqt2mxp&st=5059mdyb&raw=1}},{{https://www.dropbox.com/scl/fi/f9a0a2nere22vld7fo0dr/PB197185.jpg?rlkey=mwru9luaxd6vqqj7uo33t63yp&st=7qrw0apr&raw=1}},{{https://www.dropbox.com/scl/fi/s4xylvqlnjm5vfchgfs2u/PB197186.jpg?rlkey=qhh5y193cyd2qn6pj2ymn6kc3&st=ac8hv7aj&raw=1}},{{https://www.dropbox.com/scl/fi/womnnra4ov2fz7x41vz44/PB197187.jpg?rlkey=avu3888b3nn8062ep2o41wqqx&st=m0ditsag&raw=1}},{{https://www.dropbox.com/scl/fi/a33hphapyljsq7e5svyxa/PB197188.jpg?rlkey=h3ehl4bb6hf0eikezwpxjq584&st=f23ok4fr&raw=1}},{{https://www.dropbox.com/scl/fi/5p4jonp2r9iueybg0qefb/PB197189.jpg?rlkey=vjridgjihp0pu0qot9pfeqzba&st=rds3jmz9&raw=1}},{{https://www.dropbox.com/scl/fi/oloyhdsa6zozmbek6q8dr/PB197190.jpg?rlkey=fdktq0huus9vv0n981jqjcglz&st=tvc3g4fo&raw=1}},{{https://www.dropbox.com/scl/fi/dflgn7eqi58fr26m4ziu0/PB197194.jpg?rlkey=3ihx1jpcmhbbpjngyq2p5g01e&st=b3y55r2r&raw=1}},{{https://www.dropbox.com/scl/fi/ajqwpg4ltqgl6x4wztiaz/PB197195.jpg?rlkey=2e7r8tku18ysxdegxkiyobfjn&st=ab4g1ud3&raw=1}},{{https://www.dropbox.com/scl/fi/fmu6f65kj7xu3m5qcur3i/PB197196.jpg?rlkey=oijrz0gnbkxfhzbd9wjptd05f&st=q72wrt2j&raw=1}},{{https://www.dropbox.com/scl/fi/yoh714uwysw8ye6491v6h/PB197197.jpg?rlkey=8bycg13qlxm2ntuiptlisghfq&st=bkw02q69&raw=1}},{{https://www.dropbox.com/scl/fi/ey5jspu5w341i7ktf4rut/PB197198.jpg?rlkey=amdsv0sxqp48lmrm3cf97v9mp&st=3u6v9wcw&raw=1}},{{https://www.dropbox.com/scl/fi/eozqic1025mcnc1qfx286/PB197201.jpg?rlkey=g23tfgux1d0svrmeyv3gqibh1&st=y8c7fmw4&raw=1}},{{https://www.dropbox.com/scl/fi/9slyp47l8qszui9zu74fb/PB197203.jpg?rlkey=hiig780dhftt3ht450n9jtjri&st=bkqp1qcm&raw=1}},{{https://www.dropbox.com/scl/fi/lqv1ue5oxpsi09acuco9r/PB197207.jpg?rlkey=5qbl50z5q15yprz01xbfsujm7&st=v1p2b857&raw=1}},{{https://www.dropbox.com/scl/fi/agpy1g5hngg5eu4mt8q6c/PB197210.jpg?rlkey=3g892qlf27qrtn8ykvbjdb0xl&st=ikcfsomv&raw=1}},{{https://www.dropbox.com/scl/fi/vo98l5lbej6ergxjmbti1/PB197211.jpg?rlkey=z58zbo4yiibx1czf9h7wxdmpk&st=rz0lhzc6&raw=1}},{{https://www.dropbox.com/scl/fi/4a73qrxhhfwh7ecg73hdn/PB197214.jpg?rlkey=dwpxj3271lrjuolyn5pte1wmx&st=c0omh3a9&raw=1}},{{https://www.dropbox.com/scl/fi/fyted41c11j6tw4dar41i/PB197215.jpg?rlkey=y18ghdta2gq24af9j7v345hib&st=pzclq7ib&raw=1}},{{https://www.dropbox.com/scl/fi/4x5btz4mj64cl1cq6opat/PB197217.jpg?rlkey=3g03xbrpduzct3iepddnh9o11&st=ndei574j&raw=1}},{{https://www.dropbox.com/scl/fi/46f3aba165hjgl16tg8w0/PB197219.jpg?rlkey=qyagda9fyiviw5ezw9hsrckkr&st=o3r01qpw&raw=1}},{{https://www.dropbox.com/scl/fi/g88ilqnk5el9g65wnvi20/PB197220.jpg?rlkey=fyi7wcd23bvyvet05p7bodz35&st=69b86e29&raw=1}},{{https://www.dropbox.com/scl/fi/s6eij9n3nykrgh26pbg3i/PB197221.jpg?rlkey=dqriahtxqwk79863sjpfrq6xp&st=zoznnoy0&raw=1}},{{https://www.dropbox.com/scl/fi/a9dzrrifft5iu9pgzxa2t/PB197222.jpg?rlkey=hvj78cnggjcxtbosqdld235dm&st=bxaxyz93&raw=1}}",
         "zoomlevel": 14,
@@ -3982,7 +3960,7 @@
         "entrancecost": 0,
         "image": "{{https://www.dropbox.com/scl/fi/e9qc1y038o1amfw3thlfw/IMG_20221116_081727.jpg?rlkey=dm5lozgav0ilc0bf1p98d6d8j&st=z7691jgb&raw=1}},{{https://www.dropbox.com/scl/fi/ans6ofp66wzcx3m8eh98h/PB167143.jpg?rlkey=qf2i60l1mysr4lagptdlly07r&st=nz35de9c&raw=1}},{{https://www.dropbox.com/scl/fi/bto29u0fu7if3to09ji4i/PB167144.jpg?rlkey=b7vf9t23l2i16jci3cwcvta6o&st=ptx0jcoc&raw=1}},{{https://www.dropbox.com/scl/fi/4g20nxrstf5u8pc31ds4s/PB167147.jpg?rlkey=aiflgamrccifvcoy0z77yuxjr&st=nt1vvnxp&raw=1}},{{https://www.dropbox.com/scl/fi/9nkrooyhknjn9pujbee20/PB167148.jpg?rlkey=71rg8p38rlcb7cu4flld1c2so&st=5uevgk2k&raw=1}},{{https://www.dropbox.com/scl/fi/kjg1g941xm77jra7jqtk4/PB167149.jpg?rlkey=dsv23qthnhwups5l278xnxs4t&st=dmtgn136&raw=1}},{{https://www.dropbox.com/scl/fi/p97vvjld995rd25wur9ic/PB167152.jpg?rlkey=lc4zd92kkn3gn9j17tcn73qxl&st=gd9uhdoa&raw=1}},{{https://www.dropbox.com/scl/fi/pq5qq38bx6evus68sn7e0/PB167153.jpg?rlkey=uvzobtc1eytmnttnz5xa9kduw&st=jl6x2qp0&raw=1}},{{https://www.dropbox.com/scl/fi/1eccsnwq8w3i1xrqo77jv/PB167155.jpg?rlkey=bs2tu4eyz7yiela9n8y2yl25j&st=qjlbzqlw&raw=1}},{{https://www.dropbox.com/scl/fi/tjfkhk90kze4jjv0r2fa2/PB167157.jpg?rlkey=vb9mpb7clxia0zdhy2q14tcd4&st=6ej2m28z&raw=1}},{{https://www.dropbox.com/scl/fi/14pp7gm6fktg0dbjj5im0/PB167159.jpg?rlkey=zywx0wduaiw5qjul3cc681845&st=8zpp29jh&raw=1}},{{https://www.dropbox.com/scl/fi/m9al085tfotk534fcj8uv/PB167161.jpg?rlkey=mweqcw815n3gt4le41sutdupz&st=n3vczu2z&raw=1}},{{https://www.dropbox.com/scl/fi/jtukuwzk3jhs68vuwgkqw/PB167163.jpg?rlkey=guuazrrnrjorb23ue2x1ix4wa&st=woc0hms8&raw=1}},{{https://www.dropbox.com/scl/fi/wgf10zbpjctvfb6yh7cv7/PB167164.jpg?rlkey=c4t8que8jbdo23tpfijferf56&st=lrin8n7n&raw=1}},{{https://www.dropbox.com/scl/fi/44z8d8trh4tkn9hn1mdqu/PB167166.jpg?rlkey=rh2qwfpyzudlzx93zamjcud0h&st=09tjgqas&raw=1}},{{https://www.dropbox.com/scl/fi/sp90brpt5n5bczlftlrbu/PB167168.jpg?rlkey=x40y0qf1hidv1kdf6pvk9wx1f&st=ez04rsax&raw=1}}",
         "zoomlevel": 14,
-        "coralsourceBIG": "coralBIG_pulisan.json"
+        "coralsourceBIG": "./geojson/coralBIG_pulisan.json"
       },
       "id": "M4NzY"
     },
@@ -6892,7 +6870,7 @@
         "howtogetthere": "Get to Pulisan village (or even to Pulisan beach) with a daily Damri minibus from Manado (Mo-Sa; [[https://www.instagram.com/p/C2PVSS6vxmV/]]) - once a day, so you will need to sleep in the area. From the village the beaches are on walking distance (a few kms). Mind that the The Pulisan resort beach is not accesible over land as the road is private. The other beaches have all free paths but potentially a difficult hike (overgrown).",
         "image": "{{https://www.dropbox.com/scl/fi/rkms9lis8hf0a9nw7e9m3/IMG_20250814_131432.jpg?rlkey=vmccdr7mbk8mes1lk1lq3vtwb&st=ayvclwpy&raw=1}},{{https://www.dropbox.com/scl/fi/az5rwvwdl49uwjlacftgq/P8140033.jpg?rlkey=2q1e5v7h1q2o5h2e8t5k6i7jt&st=ryiz650z&raw=1}},{{https://www.dropbox.com/scl/fi/3qtmuzutosvo8wsiemp6d/P8140036.jpg?rlkey=lkdpjgwkhe0z1maetsvf7gkjp&st=5tp4rjdl&raw=1}},{{https://www.dropbox.com/scl/fi/9j7hkezrpu2ec3pirme54/P8140042.jpg?rlkey=c9nl0s8b3ieu32fq5zp13abul&st=c16a5djd&raw=1}},{{https://www.dropbox.com/scl/fi/swrtur2gxxy7hs8190cbg/P8140043.jpg?rlkey=sdq34xx2kjlrd7dj0qbn0pmk8&st=epu7pva5&raw=1}},{{https://www.dropbox.com/scl/fi/fx7kver7qne47dozf7t3c/P8140047.jpg?rlkey=ohezp4ookh7nmzzamzuaidfs7&st=nytklolm&raw=1}},{{https://www.dropbox.com/scl/fi/qrb8h2jg20mq9f61zqqt0/P8140051.jpg?rlkey=r53cmpk05zit5yysirvz0acxn&st=r39ewkvy&raw=1}},{{https://www.dropbox.com/scl/fi/guvaoksvbmzwtbz9asik7/P8140059.jpg?rlkey=k3y9105pxuhtotibd1h7f7jn3&st=w3q1gl7n&raw=1}},{{https://www.dropbox.com/scl/fi/tkpy2i3wv6rtmk1c59fwa/P8140062.jpg?rlkey=qm3f1a7pfc1tps844xyu4s7ee&st=518do05a&raw=1}},{{https://www.dropbox.com/scl/fi/31auwzy9buums6uet45h3/P8140063.jpg?rlkey=gn9yr4bbde5psv6qk8fc7nkeq&st=vkyngfrs&raw=1}},{{https://www.dropbox.com/scl/fi/p5kholz2azpr7o0camh49/P8140067.jpg?rlkey=fv0kktr1t6iq1qyqgp9g4h9tg&st=ftbikmc2&raw=1}},{{https://www.dropbox.com/scl/fi/0hwxes3wky6al0s9gzjox/P8140069.jpg?rlkey=vtcet5fyf2t5td1kag4ouy80h&st=bdzsg93q&raw=1}},{{https://www.dropbox.com/scl/fi/d723l0deezaqlawvf3foa/P8140073.jpg?rlkey=8gaqgv3zscd6n8hncbsc1oqmn&st=7fvkbx7h&raw=1}}",
         "zoomlevel": 14,
-        "coralsourceBIG": "coralBIG_pulisan.json"
+        "coralsourceBIG": "./geojson/coralBIG_pulisan.json"
       },
       "id": "p7JyX"
     },
@@ -6917,7 +6895,7 @@
         "howtogetthere": "Get to Pulisan village (or even to Pulisan beach) with a daily Damri minibus from Manado (Mo-Sa; [[https://www.instagram.com/p/C2PVSS6vxmV/]]) - once a day, so you will need to sleep in the area. From the village the beaches are on walking distance (a few kms). Mind that the The Pulisan resort beach is not accesible over land as the road is private. The other beaches have all free paths but potentially a difficult hike (overgrown).",
         "image": "{{https://www.dropbox.com/scl/fi/miy6p09hk0cagwdvyhsav/IMG_20250814_132936.jpg?rlkey=ql41g9svmwcddm21ke14t47qy&st=55udaod0&raw=1}},{{https://www.dropbox.com/scl/fi/3h4y3h96fn4pxrejcd5gq/P8140076.jpg?rlkey=bii0tec6bgxbmhqfegu6lhvno&st=lvpz9yia&raw=1}},{{https://www.dropbox.com/scl/fi/ef697v7v7djggf6xefk93/P8140077.jpg?rlkey=f9t5z3g6gkodbeecchvqc9yq9&st=aeg274yb&raw=1}},{{https://www.dropbox.com/scl/fi/6poc87rqkmvuagxadfvee/P8140079.jpg?rlkey=h1buaocjrcuagw1adhintzj3v&st=5u2etx9c&raw=1}},{{https://www.dropbox.com/scl/fi/l599mdf3iugrhygpokp93/P8140082.jpg?rlkey=6a9nd8nlj3pd4k6wuf19iy68w&st=3s1huwwk&raw=1}},{{https://www.dropbox.com/scl/fi/hhrxydgu8mj6avmooiny5/P8140083.jpg?rlkey=7o3yrxdkt2ru18s0hcikaexh3&st=dgvbrj4b&raw=1}},{{https://www.dropbox.com/scl/fi/b49t550wou9vhrweh7s2o/P8140084.jpg?rlkey=rdpfolnitfvfpnnc1qcdsa7e1&st=b26b9mt1&raw=1}},{{https://www.dropbox.com/scl/fi/dv0sqhgi3y2zzanevxko5/P8140087.jpg?rlkey=4y08xfz5o6hgiahqir26a3086&st=ztolhilj&raw=1}},{{https://www.dropbox.com/scl/fi/hfz6csolsku794x1c95hm/P8140090.jpg?rlkey=f3z78sqeodyvqo6ssx253c1oy&st=riga778f&raw=1}},{{https://www.dropbox.com/scl/fi/wqtnwl3ecxs1ot7ng1wwk/P8140091.jpg?rlkey=xi4g5b0lskc5kf0m8ic4g1wuj&st=9wucjo3m&raw=1}},{{https://www.dropbox.com/scl/fi/10kxqu7xlrjg2s6uh495u/P8140092.jpg?rlkey=48au91rhsaxxj24ew04737xon&st=obocwc7m&raw=1}},{{https://www.dropbox.com/scl/fi/mc3wya73ztd5r44deyf7k/P8140096.jpg?rlkey=cd7jcqg8g3uyg6k4jwiua9vxr&st=hpeelzbu&raw=1}},{{https://www.dropbox.com/scl/fi/749crqenakk3ofzxyheia/P8140099.jpg?rlkey=sd26hns5dwd4rz5sboal2v1rr&st=4tkhacfq&raw=1}}",
         "zoomlevel": 14,
-        "coralsourceBIG": "coralBIG_pulisan.json"
+        "coralsourceBIG": "./geojson/coralBIG_pulisan.json"
       },
       "id": "lqKdF"
     },
@@ -8128,28 +8106,6 @@
         "name": "Toya Pakeh wall"
       },
       "id": "Y2MDE"
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          124.78274,
-          1.46384
-        ]
-      },
-      "properties": {
-        "_umap_options": {
-          "showLabel": null
-        },
-        "description": "Right in front of the three crosses at this spot. About 200-300m from the coast. Decent visibility and little currents (morning only as the waters tend to get quickly murky by noon).\nBetter than in front of Malalayang which has a lot of coral restoration.",
-        "name": "Tugu Boboca",
-        "date": "2020-11-25",
-        "howtogetthere": "Manado angkots/minibuses (blue, look for the one showing Malalayang on this minuscule sign) will get you to the Terminal Malalayang, after which it is a short walk to this point. Easily recognizaeble with the three huge crosses on top of it. ",
-        "rating": "6.5",
-        "entrancecost": 0
-      },
-      "id": "UxOTc"
     },
     {
       "type": "Feature",
