@@ -726,18 +726,23 @@ map.addSource("mermaidspot", {
           	},
     		'paint': {
 				'circle-color': [
+					'let',
+  						'hardandsoft',
+  						["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral']], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral']]],
+  					[
                     'case',
-                    ['<=', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 10],
+                    ['<=', 'hardandsoft', 10],
                     colors[0],
-                    ['all', ['>', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 10], ['<=', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 25]],
+                    ['all', ['>', ['var', 'hardandsoft'], 10], ['<=', ['var', 'hardandsoft'], 25]],
                     colors[1],
-                    ['all', ['>', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 25], ['<=', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 35]],
+                    ['all', ['>', ['var', 'hardandsoft'], 25], ['<=', ['var', 'hardandsoft'], 35]],
                     colors[2],
-                    ['all', ['>', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 35], ['<=', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 50]],
+                    ['all', ['>', ['var', 'hardandsoft'], 35], ['<=', ['var', 'hardandsoft'], 50]],
                     colors[3],
-					['all', ['>', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 50], ['<=', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], 75]],
+					['all', ['>', ['var', 'hardandsoft'], 50], ['<=', ['var', 'hardandsoft'], 75]],
                     colors[4],
 					colors[5],
+					],
                 ],
                 'circle-opacity': 0.6,
                 'circle-radius': 10,
@@ -750,8 +755,7 @@ map.addSource("mermaidspot", {
             'layout': {
                 'text-field': [
                     'number-format',
-                    ["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral'], 0]],
-                    {'min-fraction-digits': 0, 'max-fraction-digits': 0}
+                    ["round", ["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral'], 0]]],
                 ],
 				'text-font': ['Noto Sans Regular'],
                 'text-size': 9,
