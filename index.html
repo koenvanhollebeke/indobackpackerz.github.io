@@ -710,6 +710,41 @@ class LayerManager {
     		filter: ["==", "$type", "Point"],
   		});
 
+// colors to use for the categories
+const colors = ['#A52A2A', '#FF0000', '#FFA500', '#FFFF00', '#32CD32', '#008000'];
+map.addSource("mermaidspot", {
+    		type: "geojson",
+    		data: "./snorkeling_indonesia_mermaid.geojson",
+				});
+			
+  		map.addLayer({
+    		id: "mermaid-spot",
+    		'type': "circle",
+    		source: "mermaidspot",
+    		'paint': {
+                'circle-color': [
+					'let',
+                    'hardandsoft',
+                    ['+', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral']], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral']]],
+                    'case',
+                    ['<=', 'hardandsoft', 10],
+                    colors[0],
+                    ['all', ['>', 'hardandsoft', 10], ['<=', 'hardandsoft', 25]],
+                    colors[1],
+                    ['all', ['>', 'hardandsoft', 25], ['<=', 'hardandsoft', 35]],
+                    colors[2],
+                    ['all', ['>', 'hardandsoft', 35], ['<=', 'hardandsoft', 50]],
+                    colors[3],
+					['all', ['>', 'hardandsoft', 50], ['<=', 'hardandsoft', 75]],
+                    colors[4],
+					['all', ['>', 'hardandsoft', 75], ['<=', 'hardandsoft', 100]],
+					colors[5],
+                ],
+                'circle-opacity': 0.8,
+                'circle-radius': 12,
+	  		},
+  		});
+			
 map.addSource("sulut", {
     type: "geojson",
     data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
@@ -730,7 +765,8 @@ map.addSource("sulut", {
 map.on("load", function () {
       const layerManager = new LayerManager({
         layers: [
-          { id: "snorkeling-spot", name: "spots", visible: true },
+          { id: "snorkeling-spot", name: "our spots", visible: true },
+		  { id: "mermaid-spot", name: "mermaid spots", visible: false },
           { id: "SulawesiUtara", name: "provinces", visible: true }
         ],
         position: "top-left",
