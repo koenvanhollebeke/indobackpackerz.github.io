@@ -723,9 +723,9 @@ map.addSource("mermaidspot", {
     		source: "mermaidspot",
     		'paint': {
                 'circle-color': [
-					'let',
+					'var',
                     'hardandsoft',
-                    ['+', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral']], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral']]],
+                    ['+', ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral'], 0]],
                     'case',
                     ['<=', ['var', 'hardandsoft'], 10],
                     colors[0],
