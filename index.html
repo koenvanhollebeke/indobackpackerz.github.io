@@ -700,7 +700,7 @@ class LayerManager {
         		["linear"],
         		["zoom"],
         		10,
-        		0.5, // At zoom 10, icon size is 0.5x
+        		0.4, // At zoom 10, icon size is 0.5x
         		15,
         		0.6, // At zoom 15, icon size is 1.5x
         		20,
@@ -750,7 +750,7 @@ map.addSource("mermaidspot", {
             'layout': {
                 'text-field': [
                     'number-format',
-                    ['to-number', ["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral']], 0],
+                    ["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral'], 0]],
                     {'min-fraction-digits': 1, 'max-fraction-digits': 1}
                 ],
                 'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
