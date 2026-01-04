@@ -687,6 +687,8 @@ class LayerManager {
   		map.addSource("snorkelingspot", {
     		type: "geojson",
     		data: "./snorkeling_indonesia_ourspots.geojson",	
+			cluster: true,
+            clusterRadius: 80,
 				});
 			
   		map.addLayer({
