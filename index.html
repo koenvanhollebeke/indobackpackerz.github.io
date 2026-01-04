@@ -754,8 +754,12 @@ map.addSource("mermaidspot", {
             'source': 'mermaidspot',
             'layout': {
                 'text-field': [
+					'let',
+					'hardandsoft',
+  						["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral']], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral']]],
+					[
                     'number-format',
-                    ["round", ["+", ['to-number', ['get', 'Percent cover by benthic category average: Hard coral'], 0], ['to-number', ['get', 'Percent cover by benthic category average: Soft coral'], 0]]],
+                    ['var', 'hardandsoft'],
                 ],
 				'text-font': ['Noto Sans Regular'],
                 'text-size': 9,
