@@ -819,7 +819,7 @@ let currentFeatureCoordinates = undefined;
                 map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
-                const description2 = "";
+                var description2 = "";
 				description2 += "<h2>"+ e.features[0].properties["Project name"] + " - " + e.features[0].properties["Site"] + "</h2>";
 				description2 += "<p> date: " + e.features[0].properties["Day"] + "/" + e.features[0].properties["Month"] + "/" + e.features[0].properties["Year"] + "</p>";
 				description2 += "<p> depth: " + e.features[0].properties["Depth average"] + "m </p>";
