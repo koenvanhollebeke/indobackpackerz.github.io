@@ -819,16 +819,24 @@ let currentFeatureCoordinates = undefined;
                 map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
+				const HC = Number(e.features[0].properties["Percent cover by benthic category average: Hard coral"]).toFixed(1);
+				const SC = Number(e.features[0].properties["Percent cover by benthic category average: Soft coral"]).toFixed(1);
+				const MA = Number(e.features[0].properties["Percent cover by benthic category average: Macroalgae"]).toFixed(1);
+				const S = Number(e.features[0].properties["Percent cover by benthic category average: Sand"]).toFixed(1);
+				const R = Number(e.features[0].properties["Percent cover by benthic category average: Rubble"]).toFixed(1);
+				const TA = Number(e.features[0].properties["Percent cover by benthic category average: Turf algae"]).toFixed(1);
+				const CA = Number(e.features[0].properties["Percent cover by benthic category average: Cyanobacteria"]).toFixed(1);
+				const B = Number(e.features[0].properties["Percent cover by benthic category average: Bare substrate"]).toFixed(1);
+				const OT = Number(e.features[0].properties["Percent cover by benthic category average: Other invertebrates"]).toFixed(1);
                 var description2 = "";
-				description2 += "<h2>"+ e.features[0].properties["Project name"] + " - " + e.features[0].properties["Site"] + "</h2>";
-				description2 += "<p> date: " + e.features[0].properties["Day"] + "/" + e.features[0].properties["Month"] + "/" + e.features[0].properties["Year"] + "</p>";
-				description2 += "<p> depth: " + e.features[0].properties["Depth average"] + "m </p>";
-				description2 += "<p> visibility: " + e.features[0].properties["Visibility"] + "</p>";
-				description2 += "<p> current: " + e.features[0].properties["Current"] + "</p>";
-				description2 += "<p> benthic HC/SC/MA/S/R/TA/CA/B/OT: " + e.features[0].properties["Percent cover by benthic category average: Hard coral"] + "/" + e.features[0].properties["Percent cover by benthic category average: Soft coral"] + "/" + e.features[0].properties["Percent cover by benthic category average: Macroalgae"] + "/" + e.features[0].properties["Percent cover by benthic category average: Sand"] + "/" + e.features[0].properties["Percent cover by benthic category average: Rubble"] + "/" + e.features[0].properties["Percent cover by benthic category average: Turf algae"] + "/" + e.features[0].properties["Percent cover by benthic category average: Cyanobacteria"] + "/" + e.features[0].properties["Percent cover by benthic category average: Bare substrate"] + "/" + e.features[0].properties["Percent cover by benthic category average: Other invertebrates"] + "% </p>";
-				description2 += "<p></p>";
+				description2 += "<b>" + e.features[0].properties["Project name"] + " - " + e.features[0].properties["Site"] + "</b>";
+				description2 += "<p> date: " + e.features[0].properties["Day"] + "/" + e.features[0].properties["Month"] + "/" + e.features[0].properties["Year"] + "<br>";
+				description2 += "depth: " + e.features[0].properties["Depth average"] + "m<br>";
+				description2 += "visibility: " + e.features[0].properties["Visibility"] + "<br>";
+				description2 += "current: " + e.features[0].properties["Current"] + "</p>";
+				description2 += "<p> benthic HC/SC/MA/S/R/TA/CA/B/OT: " + HC + "/" + SC + "/" + MA + "/" + S + "/" + R + "/" + TA + "/" + CA + "/" + B + "/" + OT + "% </p>";
 				description2 += "<p> citation: " + e.features[0].properties["Suggested citation"] + "</p>";
-
+				
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
                 // over the copy being pointed to.
@@ -842,7 +850,7 @@ let currentFeatureCoordinates = undefined;
             }
         });
 
-        map.on('mouseleave', 'places', () => {
+        map.on('mouseleave', 'mermaid-spot', () => {
             currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
             popup.remove();
