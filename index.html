@@ -834,8 +834,8 @@ let currentFeatureCoordinates = undefined;
 				description2 += "depth: " + e.features[0].properties["Depth average"] + "m<br>";
 				description2 += "visibility: " + e.features[0].properties["Visibility"] + "<br>";
 				description2 += "current: " + e.features[0].properties["Current"] + "</p>";
-				description2 += "<p> benthic HC/SC/MA/S/R/TA/CA/B/OT: " + HC + "/" + SC + "/" + MA + "/" + S + "/" + R + "/" + TA + "/" + CA + "/" + B + "/" + OT + "% </p>";
-				description2 += "<p> citation: " + e.features[0].properties["Suggested citation"] + "</p>";
+				description2 += "<p>benthic <b>HC</b>/<b>SC</b>/MA/S/R/TA/CA/B/OT: <b>" + HC + "</b>/<b>" + SC + "</b>/" + MA + "/" + S + "/" + R + "/" + TA + "/" + CA + "/" + B + "/" + OT + "% </p>";
+				description2 += "<p>citation: " + e.features[0].properties["Suggested citation"] + "</p>";
 				
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
