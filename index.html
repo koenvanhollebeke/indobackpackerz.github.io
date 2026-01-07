@@ -907,7 +907,7 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(description2).addTo(map);
+                popup.setLngLat(coordinates).setMaxWidth(300px).setHTML(description2).addTo(map);
             }
         });
 
@@ -941,7 +941,7 @@ let currentFeatureCoordinates = undefined;
 				description3 += "<b>" + e.features[0].properties["location"] + " - " + e.features[0].properties["station"] + "</b>";
 				description3 += "<p> date: " + e.features[0].properties["year"] + "<p>";
 				description3 += "<p>benthic <b>HC</b>/<b>SC</b>/DC/DCA/FS/SP/OT/R/S/SI/RK: <b>" + HC + "</b>/<b>" + SC + "</b>/" + DC + "/" + DCA + "/" + FS + "/" + SP + "/" + OT + "/" + R + "/" + S + "/" + SI + "/" + RK + "% </p>";
-				description3 += "<p>citation: snapshot of" + "<a href=" + e.features[0].properties["source"] + ">kondisi ekosistem dashboard</a></p>";
+				description3 += "<p>citation: snapshot of " + "<a href=" + e.features[0].properties["source"] + ">kondisi ekosistem dashboard</a></p>";
 				
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
@@ -952,7 +952,7 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(description3).addTo(map);
+                popup.setLngLat(coordinates).setMaxWidth(300px).setHTML(description3).addTo(map);
             }
         });
 
