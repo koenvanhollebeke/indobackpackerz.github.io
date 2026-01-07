@@ -771,6 +771,65 @@ map.addSource("mermaidspot", {
                 'text-color': 'white'
             }
         });
+
+map.addSource("CRMISspot", {
+		type: "geojson",
+  		data: "./snorkeling_indonesia_CRMIS.geojson",
+	});
+map.addLayer({
+    		id: "CRMIS-spot",
+    		'type': "circle",
+    		source: "CRMISspot",
+			layout: {
+            visibility: "none",
+          	},
+    		'paint': {
+				'circle-color': [
+					'let',
+  						'hardandsoft',
+  						["+", ['to-number', ['get', 'hc']], ['to-number', ['get', 'sc']]],
+  					[
+                    'case',
+                    ['<=', ['to-number', ['var', 'hardandsoft'], 0], 10],
+                    colors[0],
+                    ['all', ['>', ['to-number', ['var', 'hardandsoft'], 0], 10], ['<=', ['to-number', ['var', 'hardandsoft'], 0], 25]],
+                    colors[1],
+                    ['all', ['>', ['to-number', ['var', 'hardandsoft'], 0], 25], ['<=', ['to-number', ['var', 'hardandsoft'], 0], 35]],
+                    colors[2],
+                    ['all', ['>', ['to-number', ['var', 'hardandsoft'], 0], 35], ['<=', ['to-number', ['var', 'hardandsoft'], 0], 50]],
+                    colors[3],
+					['all', ['>', ['to-number', ['var', 'hardandsoft'], 0], 50], ['<=', ['to-number', ['var', 'hardandsoft'], 0], 75]],
+                    colors[4],
+					colors[5],
+					],
+                ],
+                'circle-opacity': 0.8,
+                'circle-radius': 10,
+	  		},
+  		});
+	map.addLayer({
+            'id': 'CRMIS-spot_label',
+            'type': 'symbol',
+            'source': 'CRMISspot',
+            'layout': {
+                'text-field': [
+					'let',
+					'hardandsoft',
+  						['round', ["+", ['to-number', ['get', 'hc']], ['to-number', ['get', 'sc']]]],
+					[
+                    'number-format',
+                    ['to-number', ['var', 'hardandsoft'], 0],
+					{'max-fraction-digits': 0},
+                	],
+				],
+				'text-font': ['Noto Sans Regular'],
+                'text-size': 9,
+				visibility: "none",
+            },
+            'paint': {
+                'text-color': 'white'
+            }
+        });
 			
 map.addSource("sulut", {
     type: "geojson",
@@ -794,7 +853,9 @@ map.on("load", function () {
         layers: [
           { id: "snorkeling-spot", name: "our spots", visible: true },
 		  { id: "mermaid-spot", name: "mermaid spots", visible: false },
-		  { id: "mermaid-spot_label", name: "mermaid spots %HC", visible: false },
+		  { id: "mermaid-spot_label", name: "mermaid spots %hard&soft coral", visible: false },
+		  { id: "CRMIS-spot", name: "CRMIS spots", visible: false },
+		  { id: "CRMIS-spot_label", name: "CRMIS spots %hard&soft coral", visible: false },
           { id: "SulawesiUtara", name: "provinces", visible: true }
         ],
         position: "top-left",
@@ -851,6 +912,51 @@ let currentFeatureCoordinates = undefined;
         });
 
         map.on('mouseleave', 'mermaid-spot', () => {
+            currentFeatureCoordinates = undefined;
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
+
+		map.on('mousemove', 'CRMIS-spot', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+                // Change the cursor style as a UI indicator.
+                map.getCanvas().style.cursor = 'pointer';
+
+                const coordinates = e.features[0].geometry.coordinates.slice(); 
+				const HC = Number(e.features[0].properties["hc"]).toFixed(1);
+				const SC = Number(e.features[0].properties["sc"]).toFixed(1);
+				const DC = Number(e.features[0].properties["dc"]).toFixed(1);
+				const DCA = Number(e.features[0].properties["dca"]).toFixed(1);
+				const FS = Number(e.features[0].properties["fs"]).toFixed(1);
+				const SP = Number(e.features[0].properties["sp"]).toFixed(1);
+				const OT = Number(e.features[0].properties["ot"]).toFixed(1);
+				const R = Number(e.features[0].properties["r"]).toFixed(1);
+				const S = Number(e.features[0].properties["s"]).toFixed(1);
+				const SI = Number(e.features[0].properties["si"]).toFixed(1);
+				const RK = Number(e.features[0].properties["rk"]).toFixed(1);
+                var description3 = "";
+				description3 += "<b>" + e.features[0].properties["location"] + " - " + e.features[0].properties["station"] + "</b>";
+				description3 += "<p> date: " + e.features[0].properties["year"] + "<p>";
+				description3 += "<p>benthic <b>HC</b>/<b>SC</b>/DC/DCA/FS/SP/OT/R/S/SI/RK: <b>" + HC + "</b>/<b>" + SC + "</b>/" + DC + "/" + DCA + "/" + FS + "/" + SP + "/" + /OT + "/" + R + "/" + S + "/" + SI + "/" + RK + "% </p>";
+				description3 += "<p>citation: snapshot of" + "<a href=" + e.features[0].properties["source"] + ">kondisi ekosistem dashboard</a></p>";
+				
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+                popup.setLngLat(coordinates).setHTML(description3).addTo(map);
+            }
+        });
+
+		map.on('mouseleave', 'CRMIS-spot', () => {
             currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
             popup.remove();
