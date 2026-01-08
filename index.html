@@ -404,6 +404,7 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.css" integrity="sha512-IylZQnfgxyZ4rs0/u4TjuOthOSWKwh47nrCPuscGnyidnt1mrhKdja/uUxfvkLaMusDAWV3DgKHHpfzNdTdGhw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="maplibre-gl-starfield-0.1.js"></script>
+	<script src="https://www.gstatic.com/charts/loader.js"></script> 
 
    <header id="header" class="row">   
    		<div class="header-logo">
@@ -972,7 +973,7 @@ let currentFeatureCoordinates = undefined;
                 // based on the feature found.
 				new maplibregl.Popup()
                 .setLngLat(coordinates)
-                .setHTML(description2)
+                .setHTML(description3)
                 .addTo(map);
             //    popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
             }
