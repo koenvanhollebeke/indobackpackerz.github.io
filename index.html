@@ -914,7 +914,7 @@ let currentFeatureCoordinates = undefined;
                 .setLngLat(coordinates)
                 .setHTML(description2)
                 .addTo(map);
-        //        popup.setLngLat(coordinates).setHTML(description2).addTo(map);
+        //        popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description2).addTo(map);
             }
         });
 
@@ -935,13 +935,13 @@ let currentFeatureCoordinates = undefined;
   //          popup.remove();
   //      });
 
-		map.on('mousemove', 'CRMIS-spot', (e) => {
+		map.on('click', 'CRMIS-spot', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
                 // Change the cursor style as a UI indicator.
-                map.getCanvas().style.cursor = 'pointer';
+                // map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
 				const HC = Number(e.features[0].properties["hc"]).toFixed(1);
@@ -970,15 +970,29 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
+				new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description2)
+                .addTo(map);
+            //    popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
             }
         });
 
-		map.on('mouseleave', 'CRMIS-spot', () => {
-            currentFeatureCoordinates = undefined;
-            map.getCanvas().style.cursor = '';
-            popup.remove();
+	// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'CRMIS-spot', () => {
+            map.getCanvas().style.cursor = 'pointer';
         });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'CRMIS-spot', () => {
+            map.getCanvas().style.cursor = '';
+        });
+	  
+	//	map.on('mouseleave', 'CRMIS-spot', () => {
+    //        currentFeatureCoordinates = undefined;
+    //        map.getCanvas().style.cursor = '';
+    //        popup.remove();
+    //    });
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
