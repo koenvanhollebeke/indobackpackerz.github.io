@@ -393,7 +393,10 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
   text-rendering: optimizeLegibility;
   margin-bottom: 2.4rem;
 }
-
+.maplibregl-popup {
+        max-width: 300px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+	  
   </style>	
 </head>
 <body>
@@ -865,19 +868,19 @@ map.on("load", function () {
 });
 
 // Create a popup, but don't add it to the map yet.
-const popup = new maplibregl.Popup({
-   closeButton: false,
-   closeOnClick: false
-});
+//const popup = new maplibregl.Popup({
+//   closeButton: false,
+//   closeOnClick: false
+//});
 
 let currentFeatureCoordinates = undefined;
-        map.on('mousemove', 'mermaid-spot', (e) => {
+        map.on('click', 'mermaid-spot', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
                 // Change the cursor style as a UI indicator.
-                map.getCanvas().style.cursor = 'pointer';
+           //     map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
 				const HC = Number(e.features[0].properties["Percent cover by benthic category average: Hard coral"]).toFixed(1);
@@ -907,15 +910,26 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description2).addTo(map);
+                popup.setLngLat(coordinates).setHTML(description2).addTo(map);
             }
         });
 
-        map.on('mouseleave', 'mermaid-spot', () => {
-            currentFeatureCoordinates = undefined;
-            map.getCanvas().style.cursor = '';
-            popup.remove();
+	  // Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'mermaid-spot', () => {
+            map.getCanvas().style.cursor = 'pointer';
         });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'mermaid-spot', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+	  
+  //      map.on('mouseleave', 'mermaid-spot', () => {
+  //          currentFeatureCoordinates = undefined;
+  //          map.getCanvas().style.cursor = '';
+  //          popup.remove();
+  //      });
 
 		map.on('mousemove', 'CRMIS-spot', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
