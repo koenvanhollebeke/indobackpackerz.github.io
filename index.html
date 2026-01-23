@@ -1047,7 +1047,7 @@ let currentFeatureCoordinates = undefined;
 	};
 
 	if (howtogetthere) {
-		html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','">link</a>') +"</p>";
+		html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 	};
 	if (rating) {
 		html += "<p> our rating: "+ rating +"/10 </p>";
