@@ -960,7 +960,7 @@ let currentFeatureCoordinates = undefined;
 				description3 += "<b>" + e.features[0].properties["location"] + " - " + e.features[0].properties["station"] + "</b>";
 				description3 += "<p> date: " + e.features[0].properties["year"] + "<p>";
 				description3 += "<p>benthic <b>HC</b>/<b>SC</b>/DC/DCA/FS/SP/OT/R/S/SI/RK: <b>" + HC + "</b>/<b>" + SC + "</b>/" + DC + "/" + DCA + "/" + FS + "/" + SP + "/" + OT + "/" + R + "/" + S + "/" + SI + "/" + RK + "% </p>";
-				description3 += "<p>citation: snapshot of " + "<a href=" + e.features[0].properties["source"] + ">kondisi ekosistem dashboard</a></p>";
+				description3 += '<p>citation: snapshot of ' + '<a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">kondisi ekosistem dashboard</a></p>';
 				
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
@@ -1053,8 +1053,8 @@ let currentFeatureCoordinates = undefined;
 		html += "<p> our rating: "+ rating +"/10 </p>";
 	};
 			
-	html += '<p>&copy; Allen Coral Atlas (2020). Imagery, maps and monitoring of the world&#39;s tropical coral reefs. <a href="https://doi.org/10.5281/zenodo.3833242">doi.org/10.5281/zenodo.3833242</a></p>';
-	html += '<p>&copy; Onemap - karang layer <a href="https://sidako.kkp.go.id/geoserver/index.html">Sidako geoserver</a></p>';
+	html += '<p>&copy; Allen Coral Atlas (2020). Imagery, maps and monitoring of the world&#39;s tropical coral reefs. <a href="https://doi.org/10.5281/zenodo.3833242" target="_blank" rel="noopener noreferrer">doi.org/10.5281/zenodo.3833242</a></p>';
+	html += '<p>&copy; Onemap - karang layer <a href="https://sidako.kkp.go.id/geoserver/index.html" target="_blank" rel="noopener noreferrer">Sidako geoserver</a></p>';
 
 
 	$(".flex-item").empty();
