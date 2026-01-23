@@ -997,7 +997,7 @@ let currentFeatureCoordinates = undefined;
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
-  		var description, toggleIt, identity, date, dates, month, images, i, j;
+  		var description, toggleIt, identity, date, dates, month, images, i, j, howtogetthere, rating;
   		const bbox = [
     		[e.point.x - 5, e.point.y - 5],
     		[e.point.x + 5, e.point.y + 5]
@@ -1020,6 +1020,9 @@ let currentFeatureCoordinates = undefined;
 				spot = clickedFeatures[0].geometry.coordinates;
 				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
 				coralACA = clickedFeatures[0].properties.coralsourceACA;
+			howtogetthere = clickedFeatures[0].properties.howtogetthere;
+			rating = clickedFeatures[0].properties.rating;
+			
   		}
   		if (description) {
 				var html = "";
@@ -1043,6 +1046,13 @@ let currentFeatureCoordinates = undefined;
 		};
 	};
 
+	if (howtogetthere) {
+		html += "<p> how to get there: "+ howtogetthere +"</p>";
+	}
+	if {rating) {
+		html += "<p> our rating: "+ rating +"/10 </p>";
+	}
+			
 	html += '<p>&copy; Allen Coral Atlas (2020). Imagery, maps and monitoring of the world&#39;s tropical coral reefs. <a href="https://doi.org/10.5281/zenodo.3833242">doi.org/10.5281/zenodo.3833242</a></p>';
 	html += '<p>&copy; Onemap - karang layer <a href="https://sidako.kkp.go.id/geoserver/index.html">Sidako geoserver</a></p>';
 
