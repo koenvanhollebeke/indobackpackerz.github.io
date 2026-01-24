@@ -379,6 +379,37 @@ a:focus {
   color: rgba(255, 255, 255, 0.1);
 }
 
+@media(max-width: 768px) {
+	#header { height: 32px; }
+	.header-logo { left: 10px; }
+	.header-logo a { 
+  		width: 110px;
+  		height: 25px;
+		background-size: 110px 25px;
+	}
+	.button { 
+		font-size: 0.9rem;
+		height: 2.4rem;
+		line-height: calc(5.4rem - .6rem);
+		padding: 0 1rem;
+		margin: 0 .1rem 0.9rem 0;
+		border-radius: .2rem;
+	}
+	.cta {
+		right: 10px;
+		top: 3px;
+		height: 25px;
+    	line-height: calc(25px - .6rem);
+    	padding: 0 10px;
+  	}
+	.source-logo { right: 150px; }
+	.source-logo a {
+  		width: 120px;
+  		height: 18px;
+	}
+	.copyright span { font-size: 0.4rem; }
+}
+	  
 #popupDialog {
             position: absolute;
             top: 50%;
