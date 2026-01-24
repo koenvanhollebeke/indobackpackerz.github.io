@@ -1057,7 +1057,9 @@ let currentFeatureCoordinates = undefined;
 				const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 				month = months[dates.getMonth()];
 				// images = JSON.parse(clickedFeatures[0].properties.image);
-				images = JSON.parse("[ " + clickedFeatures[0].properties.image.replaceAll('{{','"').replaceAll('}}','"') + " ]");
+				if (clickedFeatures[0].properties.image) {
+					images = JSON.parse("[ " + clickedFeatures[0].properties.image.replaceAll('{{','"').replaceAll('}}','"') + " ]");
+				}
 				zoomspot = clickedFeatures[0].properties.zoomlevel;
 				spot = clickedFeatures[0].geometry.coordinates;
 				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
