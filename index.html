@@ -1080,7 +1080,7 @@ let currentFeatureCoordinates = undefined;
 //		i--;
 //	};
 				
-	if (Object.keys(images).length > 0) {
+	if (clickedFeatures[0].properties.image && Object.keys(images).length > 0) {
 		i = Object.keys(images).length;
 		j = 0;
 		while (i > 0) {
