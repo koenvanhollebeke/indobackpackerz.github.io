@@ -1118,9 +1118,11 @@ let currentFeatureCoordinates = undefined;
 				description4 += "<b>" + e.features[0].properties["name"] + " " + e.features[0].properties["name_station"] + "</b>";
 				description4 += "<p> date: " + e.features[0].properties["year"] + "<p>";
 				description4 += "<p> method: " + e.features[0].properties["method"] + "<br>";
-				description4 += "depth: " + e.features[0].properties["depth"] + "m <p>";
+				if (e.features[0].properties["depth"]) {
+					description4 += "depth: " + e.features[0].properties["depth"] + "m <p>";
+				}
 				description4 += "<p>benthic <b>HC</b>/<b>SC</b>/MA/OT_(CA_HA_TA_SP)/DC/CB/A_(HY_R_Si_S): <b>" + HC + "</b>/<b>" + SC + "</b>/" + MA + "/" + OTs + "/" + DC + "/" + CB + "/" + As + "% </p>";
-				description4 += '<p style="font-size:10px>citation: ' + e.features[0].properties["citation"];
+				description4 += '<p style="font-size:10px">citation: ' + e.features[0].properties["citation"];
 				if (e.features[0].properties["source"].includes("doi")) {
 					description4 += ' ' + '<a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["source"].replace("https://", "") +'</a></p>';
 				}
