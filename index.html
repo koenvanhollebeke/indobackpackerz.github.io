@@ -1097,6 +1097,69 @@ let currentFeatureCoordinates = undefined;
     //        map.getCanvas().style.cursor = '';
     //        popup.remove();
     //    });
+
+	map.on('click', 'Scientificdata-spot', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+                // Change the cursor style as a UI indicator.
+                // map.getCanvas().style.cursor = 'pointer';
+
+                const coordinates = e.features[0].geometry.coordinates.slice(); 
+				const HC = Number(e.features[0].properties["HC"]).toFixed(1);
+				const SC = Number(e.features[0].properties["SC"]).toFixed(1);
+				const MA = Number(e.features[0].properties["MA"]).toFixed(1);
+				const OT_(CA_HA_TA_SP) = Number(e.features[0].properties["OT_(CA_HA_TA_SP)"]).toFixed(1);
+				const DC = Number(e.features[0].properties["DC"]).toFixed(1);
+				const CB = Number(e.features[0].properties["CB"]).toFixed(1);
+				const A_(HY_R_Si_S) = Number(e.features[0].properties["A_(HY_R_Si_S)"]).toFixed(1);
+				var description4 = "";
+				description4 += "<b>" + e.features[0].properties["name"] + " " + e.features[0].properties["name_station"] + "</b>";
+				description4 += "<p> date: " + e.features[0].properties["year"] + "<p>";
+				description4 += "<p> method: " + e.features[0].properties["method"] + "<br>";
+				description4 += "depth: " + e.features[0].properties["method"] + "m <p>";
+				description4 += "<p>benthic <b>HC</b>/<b>SC</b>/MA/OT_(CA_HA_TA_SP)/DC/CB/A_(HY_R_Si_S): <b>" + HC + "</b>/<b>" + SC + "</b>/" + MA + "/" + OT_(CA_HA_TA_SP) + "/" + DC + "/" + CB + "/" + A_(HY_R_Si_S) + "% </p>";
+				description4 += '<p>citation: ' + e.features[0].properties["citation"];
+				if e.features[0].properties["source"].includes("doi") {
+					description4 += ' ' + '<a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["source"].replace("https://", "") +'</a></p>';
+				}
+				else {
+					description4 += ' ' + '<a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">link</a></p>';
+				}; 
+				
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+				new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description4)
+                .addTo(map);
+            //    popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
+            }
+        });
+
+	// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Scientificdata-spot', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Scientificdata-spot', () => {
+            map.getCanvas().style.cursor = '';
+        });
+	  
+	//	map.on('mouseleave', 'Scientificdata-spot', () => {
+    //        currentFeatureCoordinates = undefined;
+    //        map.getCanvas().style.cursor = '';
+    //        popup.remove();
+    //    });
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
