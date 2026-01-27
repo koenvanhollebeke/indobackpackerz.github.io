@@ -1115,7 +1115,7 @@ let currentFeatureCoordinates = undefined;
 				const CB = Number(e.features[0].properties["CB"]).toFixed(1);
 				const As = Number(e.features[0].properties["A_(HY_R_Si_S)"]).toFixed(1);
 				var description4 = "";
-				var images;
+				var images, k, l;
 				if (e.features[0].properties["image"]) {
 					images = JSON.parse("[ " + e.features[0].properties["image"].replaceAll('{{','"').replaceAll('}}','"') + " ]");
 				}
@@ -1129,12 +1129,12 @@ let currentFeatureCoordinates = undefined;
 				
 				description4 += "<p>";
 				if (e.features[0].properties["image"] && Object.keys(images).length > 0) {
-					i = Object.keys(images).length;
-					j = 0;
-					while (i > 0) {
-					description4 += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
-					i--;
-					j++;
+					k = Object.keys(images).length;
+					l = 0;
+					while (k > 0) {
+					description4 += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
+					k--;
+					l++;
 					};
 				};
 				description4 += "</p>";
