@@ -1208,9 +1208,7 @@ let currentFeatureCoordinates = undefined;
 				zoomspot = clickedFeatures[0].properties.zoomlevel;
 				spot = clickedFeatures[0].geometry.coordinates;
 				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
-						console.log(coralBIG);
 				coralACA = clickedFeatures[0].properties.coralsourceACA;
-						console.log(coralACA);
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
 			rating = clickedFeatures[0].properties.rating;
 			
@@ -1261,7 +1259,7 @@ let currentFeatureCoordinates = undefined;
 			paint: {
 				"line-color": "#DDED24",
 				"line-opacity": 0.4,
-				"line-width": 4.0,
+				"line-width": 3.0,
 			},
 		});
 	};
@@ -1273,8 +1271,8 @@ let currentFeatureCoordinates = undefined;
 			source: "coralACA",
 			layout: {},
 			paint: {
-				"fill-color": "#DDED24",
-				"fill-opacity": 0.7,
+				"fill-color": "#C3CF3E",
+				"fill-opacity": 0.4,
 			},
 		});
 	};
