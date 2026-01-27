@@ -672,7 +672,6 @@ class LayerManager {
 		function showSlides(n) {
   		var i;
   		var slides = document.querySelectorAll('.flex-item img');
-			console.log(slides);
   		var captionText = document.getElementsByClassName("numbertext")[0];
   		var modalImg = document.querySelector('.modal-content img');
   		n %= slides.length;
@@ -1209,7 +1208,9 @@ let currentFeatureCoordinates = undefined;
 				zoomspot = clickedFeatures[0].properties.zoomlevel;
 				spot = clickedFeatures[0].geometry.coordinates;
 				coralBIG = clickedFeatures[0].properties.coralsourceBIG;
+						console.log(coralBIG);
 				coralACA = clickedFeatures[0].properties.coralsourceACA;
+						console.log(coralACA);
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
 			rating = clickedFeatures[0].properties.rating;
 			
