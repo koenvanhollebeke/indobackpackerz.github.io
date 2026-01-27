@@ -33,6 +33,7 @@
 		.cursor { cursor: pointer; }
 		img.hover-shadow { transition: 0.3s; }
 		.hover-shadow:hover { box-shadow: 0 4px 8px 0 rgba(240, 240, 240, 0.2), 0 6px 20px 0 rgba(240, 240, 240, 0.19); }
+	    .hover2-shadow:hover { box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 @media(max-width: 768px) {
     .flex-center {
@@ -663,7 +664,7 @@ class LayerManager {
     }
 	  
 		//modal functions 
-  	function openModal() { document.getElementById("myModal").style.display = "block"; }
+  		function openModal() { document.getElementById("myModal").style.display = "block"; }
 		function closeModal() {  document.getElementById("myModal").style.display = "none"; }
 		var slideIndex = 0;
 		function plusSlides(n) { showSlides(slideIndex += n); }
@@ -1132,7 +1133,7 @@ let currentFeatureCoordinates = undefined;
 					//k = Object.keys(images).length;
 					l = 0;
 					while (l < Object.keys(images).length) {
-					description4 += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
+					description4 += '<img class="my-image hover2-shadow cursor" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
 					//k--;
 					l++;
 					};
