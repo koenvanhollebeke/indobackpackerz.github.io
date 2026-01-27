@@ -1128,17 +1128,15 @@ let currentFeatureCoordinates = undefined;
 				}
 				description4 += "<p>benthic <b>HC</b>/<b>SC</b>/MA/OT/DC/CB/A: <b>" + HC + "</b>/<b>" + SC + "</b>/" + MA + "/" + OTs + "/" + DC + "/" + CB + "/" + As + "% </p>";
 				
-				description4 += "<p>";
+				//description4 += "<p>";
 				if (e.features[0].properties["image"] && Object.keys(images).length > 0) {
-					//k = Object.keys(images).length;
 					l = 0;
 					while (l < Object.keys(images).length) {
 					description4 += '<img class="my-image hover2-shadow cursor" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
-					//k--;
 					l++;
 					};
 				};
-				description4 += "</p>";
+				//description4 += "</p>";
 				
 				description4 += '<p style="font-size:10px">citation: ' + e.features[0].properties["citation"];
 				if (e.features[0].properties["source"].includes("doi")) {
