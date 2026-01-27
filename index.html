@@ -1128,7 +1128,7 @@ let currentFeatureCoordinates = undefined;
 				description4 += "<p>benthic <b>HC</b>/<b>SC</b>/MA/OT_(CA_HA_TA_SP)/DC/CB/A_(HY_R_Si_S): <b>" + HC + "</b>/<b>" + SC + "</b>/" + MA + "/" + OTs + "/" + DC + "/" + CB + "/" + As + "% </p>";
 				
 				description4 += "<p>";
-				if (e.features[0].properties.["image"] && Object.keys(images).length > 0) {
+				if (e.features[0].properties["image"] && Object.keys(images).length > 0) {
 					i = Object.keys(images).length;
 					j = 0;
 					while (i > 0) {
