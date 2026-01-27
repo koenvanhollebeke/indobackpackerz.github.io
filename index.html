@@ -1217,7 +1217,7 @@ let currentFeatureCoordinates = undefined;
 				var html = "";
 				html += "<h1>"+ identity +"</h1>";
 				html += "<p> date: " + month + " " + String(dates.getFullYear()) + "</p>";
-				html += "<p>"+ description +"</p>";
+				html += "<p>"+ description.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 
 //	i = images.length;
 //	while (i > 0) {
