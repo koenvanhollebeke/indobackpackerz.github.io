@@ -1133,7 +1133,7 @@ let currentFeatureCoordinates = undefined;
 				if (e.features[0].properties["image"] && Object.keys(images).length > 0) {
 					l = 0;
 					while (l < Object.keys(images).length) {
-					description4 += '<img class="my-image hover2-shadow cursor flex-item" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
+					description4 += '<img class="my-image hover2-shadow cursor" style="image-orientation: from-image" src=' + images[l] + ' width="100" onclick="openModal();currentSlide(' + l + ')">';
 					l++;
 					};
 				};
@@ -1160,6 +1160,8 @@ let currentFeatureCoordinates = undefined;
                 .setLngLat(coordinates)
                 .setHTML(description4)
                 .addTo(map);
+				$(".flex-item").empty();
+  				$(".flex-item").html(description4);
             //    popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
             }
         });
