@@ -460,12 +460,13 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	</header>
     <div id="wrapper">    
 	<div class="map-canvas">
-		<div id="map-container"></div>
+		<div id="map-container">
 		<!-- <div id="starfield-container"></div> -->
 		<!-- <div id="globe-glow"></div> -->
 		<div id="right" class="sidebar sidebar-content rounded-rect flex-center right collapsed">
 			<span class="close cursor" onclick="closeSidebar()">&times;</span>
 			<div class="flex-item"></div>
+		</div>
 		</div>
 	</div>
 	<div id="myModal" class="modal" hidden=true>
@@ -717,7 +718,7 @@ class LayerManager {
 		map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
 		map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
 	    //map.addControl(new maplibregl.FullscreenControl({position: 'top-left'}));
-	    map.addControl(new maplibregl.FullscreenControl({container: document.querySelector('map-canvas')}), 'top-left');
+	    map.addControl(new maplibregl.FullscreenControl({container: document.querySelector('map-container')}), 'top-left');
 
 	  	map.addControl(new ZoomControl(), 'top-left');
 	  
