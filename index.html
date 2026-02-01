@@ -727,8 +727,7 @@ class LayerManager {
 		});
 		map.on("style.load", function () {
   		map.setProjection({ type: "globe" });
-  		//starryBg.attachToMap(map, "starfield-container", "globe-glow");
-		starryBg.attachToMap(map, "starfield-container");
+  		starryBg.attachToMap(map, "starfield-container", "globe-glow");
 		});
 
 		map.on("load", async () => {
