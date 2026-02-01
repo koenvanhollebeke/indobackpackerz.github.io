@@ -716,7 +716,8 @@ class LayerManager {
 		);
 		map.addControl(new maplibregl.ScaleControl({position: 'bottom-left'}));
 		map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
-	    map.addControl(new maplibregl.FullscreenControl({position: 'top-left'}));
+	    //map.addControl(new maplibregl.FullscreenControl({position: 'top-left'}));
+	    map.addControl(new maplibregl.FullscreenControl(), 'top-left');
 
 	  	map.addControl(new ZoomControl(), 'top-left');
 	  
