@@ -439,7 +439,12 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 .maplibregl-popup {
         max-width: 300px;
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-	  
+
+.wpv-addon-maps-render .modal {
+  z-index: 999999;
+  position: relative;
+}
+	
   </style>	
 </head>
 <body>
@@ -497,6 +502,9 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
   
   <script>
 
+	jQuery( document ).on( 'js_event_wpv_addon_maps_init_map_completed', function( event, data ) {
+		jQuery('.modal').clone().appendTo(jQuery('.wpv-addon-maps-render').find('div')[0]);
+	});
 	function functionAbout() {
 		const popDialog =
                 document.getElementById(
