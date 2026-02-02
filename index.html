@@ -472,7 +472,7 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
   			<div class="modal-content">
     			<div class="mySlides">
 	  				<div class="numbertext">1 / 4</div>
-      				<iframe src="" style="width:100%"></iframe>
+      				<img src="" style="width:100%">
     			</div>
     			<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
     			<a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -667,19 +667,17 @@ class LayerManager {
     }
 	  
 		//modal functions 
-  		function openModal() { document.getElementById("myModal").style.display = "block"; console.log(document.getElementById("myModal")); }
+  		function openModal() { document.getElementById("myModal").style.display = "block"; }
 		function closeModal() {  document.getElementById("myModal").style.display = "none"; }
 		var slideIndex = 0;
 		function plusSlides(n) { showSlides(slideIndex += n); }
 		function currentSlide(n) { showSlides(slideIndex = n); }
 		function showSlides(n) {
   		var i;
-  		//var slides = document.querySelectorAll('.flex-item img');
-		var slides = document.querySelectorAll('.flex-item iframe');	
+  		var slides = document.querySelectorAll('.flex-item img');	
 		console.log(slides);
   		var captionText = document.getElementsByClassName("numbertext")[0];
-  		//var modalImg = document.querySelector('.modal-content img');
-		var modalImg = document.querySelector('.modal-content iframe');
+  		var modalImg = document.querySelector('.modal-content img');
 		console.log(modalImg);
   		n %= slides.length;
   		modalImg.src = slides[n].src;
@@ -1238,8 +1236,7 @@ let currentFeatureCoordinates = undefined;
 		i = Object.keys(images).length;
 		j = 0;
 		while (i > 0) {
-			//html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
-			html += '<iframe class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
+			html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
 			i--;
 			j++;
 		};
