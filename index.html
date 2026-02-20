@@ -1413,7 +1413,7 @@ function toggleSidebar(id) {
 			if (howtogetthere) {
 				html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 			};
-			gallery += '<div id="mygallery">';
+//			gallery += '<div id="mygallery">';
 			if (clickedFeatures[0].properties.sources && Object.keys(sources).length > 0) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
@@ -1426,7 +1426,7 @@ function toggleSidebar(id) {
 					i--;
 				};
 			};
-			gallery += '</div>';
+//			gallery += '</div>';
 
 			$(".flex-item").empty();
   			$(".flex-item").append(html);
