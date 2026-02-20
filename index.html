@@ -447,6 +447,8 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.css" integrity="sha512-IylZQnfgxyZ4rs0/u4TjuOthOSWKwh47nrCPuscGnyidnt1mrhKdja/uUxfvkLaMusDAWV3DgKHHpfzNdTdGhw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!-- <script src="maplibre-gl-starfield-0.1.js"></script> -->	
+	<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
 	<script src="https://www.gstatic.com/charts/loader.js"></script> 
 
    <header id="header" class="row">   
@@ -1403,7 +1405,7 @@ function toggleSidebar(id) {
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
 			// lightbox.props.sources = sources;
 			if (description) {
-				var html = "";
+				var html, gallery = "";
 				html += "<h1>"+ identity +"</h1>";
 				html += "<p>"+ description.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 			};
@@ -1411,21 +1413,29 @@ function toggleSidebar(id) {
 			if (howtogetthere) {
 				html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 			};
+			gallery += "<div id="mygallery">";
 			if (clickedFeatures[0].properties.sources && Object.keys(sources).length > 0) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 					if (sources[i-1].includes("youtube")) { 
-						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="120"></a>';
+						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="120"></a>';
 					}
 					else {
-						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="120"></a>';
+						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="120"></a>';
 					}
 					i--;
 				};
 			};
+			gallery += "</div>";
 
 			$(".flex-item").empty();
   			$(".flex-item").html(html);
+			$(".flex-item").append(gallery);
+			$("#mygallery").justifiedGallery({
+    			rowHeight: 120,
+    			margins: 6,
+    			lastRow: 'nojustify'
+  			});
 			refreshFsLightbox();
 			toggleIt = collapsed;
 			map.setCenter(spot);
