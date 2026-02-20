@@ -1387,6 +1387,10 @@ function toggleSidebar(id) {
  var lightbox = new FsLightbox();
  map.on('click', 'external-spot', (e) => {
 	var description, toggleIt, identity, sources, dates, i, j, howtogetthere;
+	const bbox = [
+    		[e.point.x - 5, e.point.y - 5],
+    		[e.point.x + 5, e.point.y + 5]
+  		];
 	const clickedFeatures = map.queryRenderedFeatures(bbox, {
     		layers: ['external-spot']
   		});
@@ -1400,7 +1404,7 @@ function toggleSidebar(id) {
 			console.log(sources);
 			console.log(dates);
 		};
-};
+});
 // Change the cursor to a pointer when the mouse is over the places layer.
 map.on('mouseenter', 'external-spot', () => {
   map.getCanvas().style.cursor = 'pointer';
