@@ -1428,12 +1428,8 @@ function toggleSidebar(id) {
   			$(".flex-item").html(html);
 			refreshFsLightbox();
 			toggleIt = collapsed;
-			map.flyTo({
-				center: spot,
-		        zoom: zoomspot
-			});
-			// map.setCenter(spot);
-			// map.setZoom(zoomspot);
+			map.setCenter(spot);
+			map.setZoom(zoomspot);
 			map.zoomTo(zoomspot, { duration: 1000 });
 		}
 	 else {
