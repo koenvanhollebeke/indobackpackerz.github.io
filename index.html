@@ -1394,7 +1394,7 @@ function toggleSidebar(id) {
 			description = clickedFeatures[0].properties.description;
 			identity = clickedFeatures[0].properties.name;
 			if (clickedFeatures[0].properties.sources) {
-					sources = JSON.parse("[ " + clickedFeatures[0].properties.sources.replaceAll('{{','"').replaceAll('}}','"') + " ]");
+					sources = JSON.parse("[ " + clickedFeatures[0].properties.sources.replaceAll('{{{','"').replaceAll('}}}','"').replaceAll('{{','"').replaceAll('}}','"') + " ]");
 				}
 			dates = clickedFeatures[0].properties.dates;
 			console.log(sources);
