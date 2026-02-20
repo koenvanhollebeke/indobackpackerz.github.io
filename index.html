@@ -1403,7 +1403,7 @@ function toggleSidebar(id) {
 				}
 			dates = clickedFeatures[0].properties.dates;
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
-			// lightbox.props.sources = sources;
+			
 			if (description) {
 				var html, gallery = "";
 				html += "<h1>"+ identity +"</h1>";
@@ -1429,7 +1429,7 @@ function toggleSidebar(id) {
 			gallery += '</div>';
 
 			$(".flex-item").empty();
-  			$(".flex-item").html(html);
+  			$(".flex-item").append(html);
 			$(".flex-item").append(gallery);
 			$("#mygallery").justifiedGallery({
     			rowHeight: 100,
