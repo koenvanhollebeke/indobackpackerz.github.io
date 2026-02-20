@@ -1395,6 +1395,10 @@ function toggleSidebar(id) {
     		layers: ['external-spot']
   		});
   		if (clickedFeatures.length > 0) {
+			zoomspot = clickedFeatures[0].properties.zoomlevel;
+			spot = clickedFeatures[0].geometry.coordinates;
+			zoomlevel = map.getZoom();
+			clickcenter = map.getCenter();
 			description = clickedFeatures[0].properties.description;
 			identity = clickedFeatures[0].properties.name;
 			if (clickedFeatures[0].properties.sources) {
@@ -1403,7 +1407,42 @@ function toggleSidebar(id) {
 			dates = clickedFeatures[0].properties.dates;
 			console.log(sources);
 			console.log(dates);
-		};
+			howtogetthere = clickedFeatures[0].properties.howtogetthere;
+			lightbox.props.sources = sources;
+			if (description) {
+				var html = "";
+				html += "<h1>"+ identity +"</h1>";
+				html += "<p>"+ description.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
+			};
+
+			if (howtogetthere) {
+				html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
+			};
+
+			$(".flex-item").empty();
+  			$(".flex-item").html(html);
+			$(".flex-item").lightbox.open();
+			toggleIt = collapsed;
+			map.flyTo({
+				center: spot,
+		        zoom: zoomspot,
+		        essential: true
+			});
+			map.zoomTo(zoomspot, { duration: 1000 });
+		}
+	 else {
+    		$(".flex-item").empty();
+		    $(".flex-item").lightbox.close();
+			map.flyTo({
+				center: clickcenter,
+        		zoom: zoomlevel,
+        		essential: true
+			});
+			map.zoomTo(zoomlevel, { duration: 1000 });	
+    		toggleIt = !collapsed;
+  }
+  if (toggleIt) toggleSidebar('right');
+	 
 });
 // Change the cursor to a pointer when the mouse is over the places layer.
 map.on('mouseenter', 'external-spot', () => {
