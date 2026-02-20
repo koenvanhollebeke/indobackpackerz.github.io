@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+00000000000000**<!DOCTYPE html>
 <html>
 
 <meta charset="utf-8">
@@ -1418,10 +1418,10 @@ function toggleSidebar(id) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 					if (sources[i-1].includes("youtube")) { 
-						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="120"></a>';
+						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg"></a>';
 					}
 					else {
-						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="120"></a>';
+						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src=' + sources[i-1] + '></a>';
 					}
 					i--;
 				};
@@ -1432,8 +1432,8 @@ function toggleSidebar(id) {
   			$(".flex-item").html(html);
 			$(".flex-item").append(gallery);
 			$("#mygallery").justifiedGallery({
-    			rowHeight: 120,
-    			margins: 6,
+    			rowHeight: 100,
+    			margins: 5,
     			lastRow: 'nojustify'
   			});
 			refreshFsLightbox();
