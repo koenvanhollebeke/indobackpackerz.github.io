@@ -1421,10 +1421,10 @@ function toggleSidebar(id) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 					if (sources[i-1].includes("youtube")) { 
-						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
+						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="120"></a>';
 					}
 					else {
-						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="100"></a>';
+						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="120"></a>';
 					}
 					i--;
 				};
