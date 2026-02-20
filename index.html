@@ -674,11 +674,9 @@ class LayerManager {
 		function currentSlide(n) { showSlides(slideIndex = n); }
 		function showSlides(n) {
   		var i;
-  		var slides = document.querySelectorAll('.flex-item img');	
-		console.log(slides);
+  		var slides = document.querySelectorAll('.flex-item img');
   		var captionText = document.getElementsByClassName("numbertext")[0];
   		var modalImg = document.querySelector('.modal-content img');
-		console.log(modalImg);
   		n %= slides.length;
   		modalImg.src = slides[n].src;
   		captionText.innerHTML = n + 1 + ' / ' + slides.length;
@@ -1355,7 +1353,6 @@ map.on('mouseenter', 'snorkeling-spot', () => {
 map.on('mouseleave', 'snorkeling-spot', () => {
   map.getCanvas().style.cursor = '';
 });
-
     
 var collapsed = true;
 function toggleSidebar(id) {
@@ -1383,7 +1380,6 @@ function toggleSidebar(id) {
   collapsed = !collapsed;
 };
 
- // var lightbox = new FsLightbox();
  map.on('click', 'external-spot', (e) => {
 	var description, toggleIt, identity, sources, dates, i, j, howtogetthere;
 	const bbox = [
@@ -1396,8 +1392,6 @@ function toggleSidebar(id) {
   		if (clickedFeatures.length > 0) {
 			zoomspot = clickedFeatures[0].properties.zoomlevel;
 			spot = clickedFeatures[0].geometry.coordinates;
-			console.log(zoomspot);
-			console.log(spot);
 			zoomlevel = map.getZoom();
 			clickcenter = map.getCenter();
 			description = clickedFeatures[0].properties.description;
@@ -1436,9 +1430,10 @@ function toggleSidebar(id) {
 			toggleIt = collapsed;
 			map.flyTo({
 				center: spot,
-		        zoom: zoomspot,
-		        essential: true
+		        zoom: zoomspot
 			});
+			// map.setCenter(spot);
+			// map.setZoom(zoomspot);
 			map.zoomTo(zoomspot, { duration: 1000 });
 		}
 	 else {
