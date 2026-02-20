@@ -1421,7 +1421,7 @@ function toggleSidebar(id) {
 
 			$(".flex-item").empty();
   			$(".flex-item").html(html);
-			$(".flex-item").lightbox.open();
+			lightbox.open();
 			toggleIt = collapsed;
 			map.flyTo({
 				center: spot,
@@ -1432,7 +1432,7 @@ function toggleSidebar(id) {
 		}
 	 else {
     		$(".flex-item").empty();
-		    $(".flex-item").lightbox.close();
+		    lightbox.close();
 			map.flyTo({
 				center: clickcenter,
         		zoom: zoomlevel,
