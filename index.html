@@ -765,6 +765,33 @@ class LayerManager {
     		filter: ["==", "$type", "Point"],
   		});
 
+		const image2 = await map.loadImage( "https://i.ibb.co/gvF8hsF/1870-snorkel-4x-grey.png", );
+  		map.addImage("custom-marker2", image2.data);
+  		map.addSource("externalspot", {
+    		type: "geojson",
+    		data: "./snorkeling_indonesia_externalspots.geojson",
+				});
+		map.addLayer({
+    		id: "external-spot",
+    		type: "symbol",
+    		source: "externalspot",
+    		layout: {
+      		"icon-image": "custom-marker2",
+      		"icon-size": [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		10,
+        		0.4, // At zoom 10, icon size is 0.5x
+        		15,
+        		0.6, // At zoom 15, icon size is 1.5x
+        		20,
+        		0.7, // At zoom 20, icon size is 2.0x
+      		],
+    		},
+    		filter: ["==", "$type", "Point"],
+  		});
+
 // colors to use for the categories
 const colors = ['#A52A2A', '#FF0000', '#FFA500', '#FFFF00', '#32CD32', '#008000'];
 map.addSource("mermaidspot", {
@@ -967,6 +994,7 @@ map.on("load", function () {
       const layerManager = new LayerManager({
         layers: [
           { id: "snorkeling-spot", name: "our spots", visible: true },
+		  { id: "external-spot", name: "external spots", visible: true },
 		  { id: "mermaid-spot", name: "Mermaid spots", visible: false },
 		  { id: "mermaid-spot_label", name: "Mermaid spots %LC(=HC+SC)", visible: false },
 		  { id: "CRMIS-spot", name: "CRMIS spots", visible: false },
