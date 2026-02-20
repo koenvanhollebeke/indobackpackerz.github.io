@@ -446,8 +446,7 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.js" integrity="sha512-4qLefPK7TDle+A82wrHOa/B75+B8HH0w6Zwu6YaoXxwBrLl8tQ7UmoyS0PCWOobcq3fFe51G+AN+jVZpwN5qOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.7.3/maplibre-gl.css" integrity="sha512-IylZQnfgxyZ4rs0/u4TjuOthOSWKwh47nrCPuscGnyidnt1mrhKdja/uUxfvkLaMusDAWV3DgKHHpfzNdTdGhw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<!-- <script src="maplibre-gl-starfield-0.1.js"></script> -->
-	
+	<!-- <script src="maplibre-gl-starfield-0.1.js"></script> -->	
 	<script src="https://www.gstatic.com/charts/loader.js"></script> 
 
    <header id="header" class="row">   
@@ -1422,7 +1421,7 @@ function toggleSidebar(id) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 //					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
-					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="img" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
+					html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="img" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
 					i--;
 				};
 			};
@@ -1463,6 +1462,6 @@ map.on('mouseleave', 'external-spot', () => {
 
 
   </script>
-  <script src="fslightbox.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.4.1/index.min.js"></script>
 </body>
 </html>
