@@ -1384,7 +1384,7 @@ function toggleSidebar(id) {
   collapsed = !collapsed;
 };
 
- var lightbox = new FsLightbox();
+ // var lightbox = new FsLightbox();
  map.on('click', 'external-spot', (e) => {
 	var description, toggleIt, identity, sources, dates, i, j, howtogetthere;
 	const bbox = [
@@ -1418,10 +1418,17 @@ function toggleSidebar(id) {
 			if (howtogetthere) {
 				html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 			};
+			if (clickedFeatures[0].properties.sources && Object.keys(sources).length > 0) {
+				i = Object.keys(sources).length;
+				while (i > 0) {
+					html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '>' + '</a>';
+					i--;
+				};
+			};
 
 			$(".flex-item").empty();
   			$(".flex-item").html(html);
-			lightbox.open();
+			// lightbox.open();
 			toggleIt = collapsed;
 			map.flyTo({
 				center: spot,
@@ -1432,7 +1439,7 @@ function toggleSidebar(id) {
 		}
 	 else {
     		$(".flex-item").empty();
-		    lightbox.close();
+		    // lightbox.close();
 			map.flyTo({
 				center: clickcenter,
         		zoom: zoomlevel,
