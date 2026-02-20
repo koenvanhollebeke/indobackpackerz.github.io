@@ -1334,11 +1334,11 @@ let currentFeatureCoordinates = undefined;
 //	map.setZoom(zoomlevel);
 //	map.zoomTo(zoomlevel, { duration: 1000 });
 
-	if (coralBIG) {
+	if (map.getLayer('CoralmapBIG')) {
 		map.removeLayer('CoralmapBIG');
 		map.removeSource('coralBIG');
 	};
-	if (coralACA) {
+	if (map.getLayer('CoralmapACA')) {
 		map.removeLayer('CoralmapACA');
 		map.removeSource('coralACA');
 	};	
