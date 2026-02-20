@@ -1421,7 +1421,7 @@ function toggleSidebar(id) {
 			if (clickedFeatures[0].properties.sources && Object.keys(sources).length > 0) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
-					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"' + '></a>';
+					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100" onclick="lightbox.open()"' + '></a>';
 					i--;
 				};
 			};
