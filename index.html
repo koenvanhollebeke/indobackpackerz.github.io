@@ -693,11 +693,11 @@ class LayerManager {
 		toggleIt = !collapsed;
 		map.setCenter(clickcenter);
 		map.setZoom(zoomlevel);
-		if (coralBIG) {
+		if (map.getLayer('CoralmapBIG')) {
 		map.removeLayer('CoralmapBIG');
 		map.removeSource('coralBIG');
 	};
-	if (coralACA) {
+	if (map.getLayer('CoralmapACA')) {
 		map.removeLayer('CoralmapACA');
 		map.removeSource('coralACA');
 	};
