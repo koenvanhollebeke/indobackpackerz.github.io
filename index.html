@@ -1405,7 +1405,8 @@ function toggleSidebar(id) {
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
 			
 			if (description) {
-				var html, gallery = "";
+				var html = "";
+				var gallery = "";
 				html += "<h1>"+ identity +"</h1>";
 				html += "<p>"+ description.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 			};
