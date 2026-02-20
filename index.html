@@ -1384,6 +1384,33 @@ function toggleSidebar(id) {
   collapsed = !collapsed;
 };
 
+ var lightbox = new FsLightbox();
+ map.on('click', 'external-spot', (e) => {
+	var description, toggleIt, identity, sources, dates, i, j, howtogetthere;
+	const clickedFeatures = map.queryRenderedFeatures(bbox, {
+    		layers: ['external-spot']
+  		});
+  		if (clickedFeatures.length > 0) {
+			description = clickedFeatures[0].properties.description;
+			identity = clickedFeatures[0].properties.name;
+			if (clickedFeatures[0].properties.sources) {
+					sources = JSON.parse("[ " + clickedFeatures[0].properties.sources.replaceAll('{{','"').replaceAll('}}','"') + " ]");
+				}
+			dates = clickedFeatures[0].properties.dates;
+			console.log(sources);
+			console.log(dates);
+		};
+};
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'external-spot', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'external-spot', () => {
+  map.getCanvas().style.cursor = '';
+});
+
+
   </script>
 </body>
 </html>
