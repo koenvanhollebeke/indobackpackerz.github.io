@@ -1396,6 +1396,8 @@ function toggleSidebar(id) {
   		if (clickedFeatures.length > 0) {
 			zoomspot = clickedFeatures[0].properties.zoomlevel;
 			spot = clickedFeatures[0].geometry.coordinates;
+			console.log(zoomspot);
+			console.log(spot);
 			zoomlevel = map.getZoom();
 			clickcenter = map.getCenter();
 			description = clickedFeatures[0].properties.description;
@@ -1404,8 +1406,6 @@ function toggleSidebar(id) {
 					sources = JSON.parse("[ " + clickedFeatures[0].properties.sources.replaceAll('{{{','"').replaceAll('}}}','"').replaceAll('{{','"').replaceAll('}}','"') + " ]");
 				}
 			dates = clickedFeatures[0].properties.dates;
-			console.log(sources);
-			console.log(dates);
 			howtogetthere = clickedFeatures[0].properties.howtogetthere;
 			// lightbox.props.sources = sources;
 			if (description) {
@@ -1421,7 +1421,7 @@ function toggleSidebar(id) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 //					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
-					html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="img" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
+					html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
 					i--;
 				};
 			};
@@ -1463,6 +1463,6 @@ map.on('mouseleave', 'external-spot', () => {
 
 
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.4.1/index.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.7.4/index.min.js" integrity="sha512-zX7HYUuLHIKtz4/X0NjpNpSjsM3KPo1A7cKfM2o72osfmmfV7uJbiLZ+KBEM/jpQvEGFAdz3XqPq2GSbkz6qGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
