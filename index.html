@@ -1420,15 +1420,18 @@ function toggleSidebar(id) {
 			if (clickedFeatures[0].properties.sources && Object.keys(sources).length > 0) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
-//					html += '<a data-fslightbox href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
-					html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
+					if (sources[i-1].includes("youtube")) { 
+						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg" width="100"></a>';
+					}
+					else {
+						html += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + sources[i-1] + ' width="100"></a>';
+					}
 					i--;
 				};
 			};
 
 			$(".flex-item").empty();
   			$(".flex-item").html(html);
-			// lightbox.open();
 			refreshFsLightbox();
 			toggleIt = collapsed;
 			map.flyTo({
@@ -1440,7 +1443,6 @@ function toggleSidebar(id) {
 		}
 	 else {
     		$(".flex-item").empty();
-		    // lightbox.close();
 			map.flyTo({
 				center: clickcenter,
         		zoom: zoomlevel,
