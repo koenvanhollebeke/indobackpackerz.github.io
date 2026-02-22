@@ -1261,7 +1261,8 @@ let currentFeatureCoordinates = undefined;
 //		html += '<img src=' + images[i-1] + ' width="550" >';
 //		i--;
 //	};
-				
+			
+	gallery += '<div id="mygallery">';	
 	if (clickedFeatures[0].properties.image && Object.keys(images).length > 0) {
 		i = Object.keys(images).length;
 		j = 0;
@@ -1272,6 +1273,7 @@ let currentFeatureCoordinates = undefined;
 			j++;
 		};
 	};
+	gallery += '</div>';
 
 	if (howtogetthere) {
 		html2 += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
