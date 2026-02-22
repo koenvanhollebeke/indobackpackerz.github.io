@@ -1250,6 +1250,8 @@ let currentFeatureCoordinates = undefined;
   		}
   		if (description) {
 				var html = "";
+				var html2 = "";
+				var gallery = "";
 				html += "<h1>"+ identity +"</h1>";
 				html += "<p> date: " + month + " " + String(dates.getFullYear()) + "</p>";
 				html += "<p>"+ description.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
@@ -1264,25 +1266,35 @@ let currentFeatureCoordinates = undefined;
 		i = Object.keys(images).length;
 		j = 0;
 		while (i > 0) {
-			html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
+//			html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
+			gallery += '<a data-fslightbox="gallery" href=' + images[i-1] + '><img src=' + images[i-1] + '></a>';
 			i--;
 			j++;
 		};
 	};
 
 	if (howtogetthere) {
-		html += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
+		html2 += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
 	};
 	if (rating) {
-		html += "<p> our rating: "+ rating +"/10 </p>";
+		html2 += "<p> our rating: "+ rating +"/10 </p>";
 	};
 			
-	html += '<p>&copy; Allen Coral Atlas (2020). Imagery, maps and monitoring of the world&#39;s tropical coral reefs. <a href="https://doi.org/10.5281/zenodo.3833242" target="_blank" rel="noopener noreferrer">doi.org/10.5281/zenodo.3833242</a></p>';
-	html += '<p>&copy; Onemap - karang layer <a href="https://sidako.kkp.go.id/geoserver/index.html" target="_blank" rel="noopener noreferrer">Sidako geoserver</a></p>';
+	html2 += '<p>&copy; Allen Coral Atlas (2020). Imagery, maps and monitoring of the world&#39;s tropical coral reefs. <a href="https://doi.org/10.5281/zenodo.3833242" target="_blank" rel="noopener noreferrer">doi.org/10.5281/zenodo.3833242</a></p>';
+	html2 += '<p>&copy; Onemap - karang layer <a href="https://sidako.kkp.go.id/geoserver/index.html" target="_blank" rel="noopener noreferrer">Sidako geoserver</a></p>';
 
 
 	$(".flex-item").empty();
-  $(".flex-item").html(html);
+//  $(".flex-item").html(html);
+	$(".flex-item").append(html);
+	$(".flex-item").append(gallery);
+	$(".flex-item").append(html2);
+	$("#mygallery").justifiedGallery({
+    	rowHeight: 100,
+    	margins: 5,
+	   	lastRow: 'nojustify'
+  	});
+	refreshFsLightbox();
 
 	if (coralBIG) {
 		map.addSource("coralBIG", { type: "geojson", data: coralBIG });
