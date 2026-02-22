@@ -449,6 +449,7 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	<!-- <script src="maplibre-gl-starfield-0.1.js"></script> -->	
 	<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css">
 	<script src="https://www.gstatic.com/charts/loader.js"></script> 
 
    <header id="header" class="row">   
@@ -1262,18 +1263,19 @@ let currentFeatureCoordinates = undefined;
 //		i--;
 //	};
 			
-	gallery += '<div id="mygallery">';	
+//	gallery += '<div id="mygallery">';	
 	if (clickedFeatures[0].properties.image && Object.keys(images).length > 0) {
 		i = Object.keys(images).length;
 		j = 0;
 		while (i > 0) {
 //			html += '<img class="my-image hover-shadow cursor" style="image-orientation: from-image" src=' + images[i-1] + ' width="100" onclick="openModal();currentSlide(' + j + ')">';
-			gallery += '<a data-fslightbox="gallery" href=' + images[i-1] + '><img src=' + images[i-1] + '></a>';
+//			gallery += '<a data-fslightbox="gallery" href=' + images[i-1] + '><img src=' + images[i-1] + '></a>';
+			gallery += '<a data-fancybox="gallery" href=' + images[i-1] + '><img src=' + images[i-1] + '></a>';
 			i--;
 			j++;
 		};
 	};
-	gallery += '</div>';
+//	gallery += '</div>';
 
 	if (howtogetthere) {
 		html2 += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
@@ -1296,7 +1298,10 @@ let currentFeatureCoordinates = undefined;
     	margins: 5,
 	   	lastRow: 'nojustify'
   	});
-	refreshFsLightbox();
+//	refreshFsLightbox();
+	Fancybox.bind("[data-fancybox]", {
+        // Your custom options
+      });
 
 	if (coralBIG) {
 		map.addSource("coralBIG", { type: "geojson", data: coralBIG });
@@ -1482,5 +1487,6 @@ map.on('mouseleave', 'external-spot', () => {
 
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.7.4/index.min.js" integrity="sha512-zX7HYUuLHIKtz4/X0NjpNpSjsM3KPo1A7cKfM2o72osfmmfV7uJbiLZ+KBEM/jpQvEGFAdz3XqPq2GSbkz6qGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
 </body>
 </html>
