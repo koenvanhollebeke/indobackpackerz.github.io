@@ -1263,7 +1263,7 @@ let currentFeatureCoordinates = undefined;
 //		i--;
 //	};
 			
-//	gallery += '<div id="mygallery">';	
+	gallery += '<div id="mygallery">';	
 	if (clickedFeatures[0].properties.image && Object.keys(images).length > 0) {
 		i = Object.keys(images).length;
 		j = 0;
@@ -1275,7 +1275,7 @@ let currentFeatureCoordinates = undefined;
 			j++;
 		};
 	};
-//	gallery += '</div>';
+	gallery += '</div>';
 
 	if (howtogetthere) {
 		html2 += "<p> how to get there: "+ howtogetthere.replaceAll('[[','<a href="').replaceAll(']]','" target="_blank" rel="noopener noreferrer">link</a>') +"</p>";
@@ -1438,10 +1438,12 @@ function toggleSidebar(id) {
 				i = Object.keys(sources).length;
 				while (i > 0) {
 					if (sources[i-1].includes("youtube")) { 
-						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg"></a>';
+//						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg"></a>';
+						gallery += '<a data-fancybox="gallery" href=' + sources[i-1] + '><img src="https://img.youtube.com/vi/' + sources[i-1].replaceAll('https://www.youtube.com/watch?v=','') + '/default.jpg"></a>';
 					}
 					else {
-						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src=' + sources[i-1] + '></a>';
+//						gallery += '<a data-fslightbox="gallery" href=' + sources[i-1] + '><img src=' + sources[i-1] + '></a>';
+						gallery += '<a data-fancybox="gallery" href=' + sources[i-1] + '><img src=' + sources[i-1] + '></a>';
 					}
 					i--;
 				};
@@ -1456,7 +1458,10 @@ function toggleSidebar(id) {
     			margins: 5,
 	   			lastRow: 'nojustify'
   			});
-			refreshFsLightbox();
+//			refreshFsLightbox();
+			Fancybox.bind("[data-fancybox]", {
+        		// Your custom options
+      		});
 			toggleIt = collapsed;
 			map.setCenter(spot);
 			map.setZoom(zoomspot);
