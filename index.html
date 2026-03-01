@@ -971,14 +971,16 @@ map.addLayer({
                 'text-color': 'white'
             }
         });
-			
-  var arrowurl = 'https://i.imgur.com/LcIng3L.png';
-  map.loadImage(arrowurl, function(err, image) {
-    if (err) {
-      console.error('err image', err);
-      return;
-    }
-    map.addImage('arrow', image);
+
+	const image3 = await map.loadImage( "https://i.imgur.com/LcIng3L.png", );
+  	map.addImage("arrow", image3.data);
+  // var arrowurl = 'https://i.imgur.com/LcIng3L.png';
+  // map.loadImage(arrowurl, function(err, image) {
+  //  if (err) {
+  //    console.error('err image', err);
+  //    return;
+  //  }
+  //  map.addImage('arrow', image);
 
 	map.addSource("tollaut", {
     	type: "geojson",
