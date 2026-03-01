@@ -973,7 +973,7 @@ map.addLayer({
         });
 
 	const image3 = await map.loadImage( "https://i.imgur.com/LcIng3L.png", );
-  	map.addImage("arrow", image3.data);
+  	map.addImage("arrow2", image3.data);
   // var arrowurl = 'https://i.imgur.com/LcIng3L.png';
   // map.loadImage(arrowurl, function(err, image) {
   //  if (err) {
@@ -1009,13 +1009,13 @@ map.addLayer({
 	layout: {
             'symbol-placement': 'line',
 			'symbol-spacing': 1, // Distance between arrows
-            'icon-image': 'arrow',
+            'icon-image': 'arrow2',
 			'icon-allow-overlap': true,
 			'icon-size': 2,
 			// 'icon-rotation-alignment': 'map',
 			'visibility': 'visible',
         },
-	  minzoom: 10,
+	  minzoom: 5,
     });
 			
 });
