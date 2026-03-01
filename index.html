@@ -1278,7 +1278,7 @@ let currentFeatureCoordinates = undefined;
 				map.fitBounds(bounds, {
                     padding: 100
                 });
-				coordinates = map.getCenter();
+				var coordinates2 = map.getCenter();
 				console.log(bounds);
 				var description5 = "";
 				var websites, k, l;
@@ -1311,7 +1311,7 @@ let currentFeatureCoordinates = undefined;
                 // Populate the popup and set its coordinates
                 // based on the feature found.
 				new maplibregl.Popup()
-                .setLngLat(coordinates)
+                .setLngLat(coordinates2)
                 .setHTML(description5)
                 .addTo(map);
 				$(".flex-item").empty();
