@@ -1014,7 +1014,7 @@ map.addLayer({
     	},
   	});
 			
-	const image4 = await map.loadImage( "https://github.com/koenvanhollebeke/indobackpackerz.github.io/blob/main/images/ferry-14.svg", );
+	const image4 = await map.loadImage( "https://raw.githubusercontent.com/gmgeo/osmic/refs/heads/master/transport/ferry-14.svg" );
   	map.addImage("ferryport", image4.data);
 	map.addLayer({
     	'id': "ports",
@@ -1024,11 +1024,11 @@ map.addLayer({
     	'layout': {
 			'icon-image': 'ferryport',
             'icon-size': 1.0,
-			'icon-allow-overlap': true,
+			'icon-allow-overlap': true
 		},
     	'paint': {
       		'icon-color': "#3CB2E2",
-      		'icon-opacity': 1.0,
+      		'icon-opacity': 1.0
     	},
   	});
 
