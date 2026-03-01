@@ -1023,7 +1023,17 @@ map.addLayer({
 		'filter': ['==', '$type', 'Point'],
     	'layout': {
 			'icon-image': 'ferryport',
-            'icon-size': 1.0,
+            'icon-size': [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		10,
+        		0.6, // At zoom 10, icon size is 0.5x
+        		15,
+        		0.9, // At zoom 15, icon size is 1.5x
+        		20,
+        		1.0, // At zoom 20, icon size is 2.0x
+      		],
 			'icon-allow-overlap': true
 		},
     	'paint': {
