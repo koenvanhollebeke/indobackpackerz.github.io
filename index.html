@@ -1070,6 +1070,7 @@ let currentFeatureCoordinates = undefined;
            //     map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
+				console.log(coordinates);
 				const HC = Number(e.features[0].properties["Percent cover by benthic category average: Hard coral"]).toFixed(1);
 				const SC = Number(e.features[0].properties["Percent cover by benthic category average: Soft coral"]).toFixed(1);
 				const MA = Number(e.features[0].properties["Percent cover by benthic category average: Macroalgae"]).toFixed(1);
@@ -1272,7 +1273,6 @@ let currentFeatureCoordinates = undefined;
                 // map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates[0][0].slice();
-				console.log(featureCoordinates);
 				console.log(coordinates);
 				var description5 = "";
 				var websites, k, l;
