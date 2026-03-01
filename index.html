@@ -972,7 +972,7 @@ map.addLayer({
             }
         });
 
-	const image3 = await map.loadImage( "https://i.imgur.com/LcIng3L.png", );
+	const image3 = await map.loadImage( "https://i.ibb.co/zWb6RYBZ/Lc-Ing3L.png", );
   	map.addImage("arrow2", image3.data);
   // var arrowurl = 'https://i.imgur.com/LcIng3L.png';
   // map.loadImage(arrowurl, function(err, image) {
@@ -996,7 +996,7 @@ map.addLayer({
 		'filter': ['==', '$type', 'LineString'],
     	'layout': {},
     	'paint': {
-      		'line-color': "#0000FF",
+      		'line-color': "#3CB2E2",
       		'line-opacity': 0.8,
 	  		'line-width': 1.5,
     	},
@@ -1011,7 +1011,8 @@ map.addLayer({
 			'symbol-spacing': 1, // Distance between arrows
             'icon-image': 'arrow2',
 			'icon-allow-overlap': true,
-			'icon-size': 2,
+			'icon-size': 0.05,
+			'icon-opacity': 0.8,
 			// 'icon-rotation-alignment': 'map',
 			'visibility': 'visible',
         },
