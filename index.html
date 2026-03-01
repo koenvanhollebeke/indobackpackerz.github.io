@@ -1271,7 +1271,11 @@ let currentFeatureCoordinates = undefined;
                 // Change the cursor style as a UI indicator.
                 // map.getCanvas().style.cursor = 'pointer';
 
-                const coordinates = e.features[0].geometry.coordinates[0][0];
+                const coordinates = e.features[0].geometry.coordinates;
+				const bounds = coordinates.reduce((bounds, coord) => {
+                    return bounds.extend(coord);
+                }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
+				console.log(bounds);
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
