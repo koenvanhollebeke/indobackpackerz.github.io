@@ -1278,7 +1278,8 @@ let currentFeatureCoordinates = undefined;
 				map.fitBounds(bounds, {
                     padding: 100
                 });
-				console.log((bounds);
+				coordinates = map.getCenter();
+				console.log(bounds);
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
