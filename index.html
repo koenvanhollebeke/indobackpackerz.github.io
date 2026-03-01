@@ -998,7 +998,19 @@ map.addLayer({
     	'paint': {
       		'line-color': "#3CB2E2",
       		'line-opacity': 0.8,
-	  		'line-width': 10.5,
+	  		'line-width': 1.5,
+    	},
+  	});
+	map.addLayer({
+    	'id': "Tollautclick",
+    	'type': "line",
+    	'source': "tollaut",
+		'filter': ['==', '$type', 'LineString'],
+    	'layout': {},
+    	'paint': {
+      		'line-color': "#3CB2E2",
+      		'line-opacity': 0.01,
+	  		'line-width': 15,
     	},
   	});
 
@@ -1266,7 +1278,7 @@ let currentFeatureCoordinates = undefined;
     //        popup.remove();
     //    });
 
-	map.on('click', 'Tollaut', (e) => {
+	map.on('click', 'Tollautclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
@@ -1299,7 +1311,7 @@ let currentFeatureCoordinates = undefined;
 					websites = JSON.parse(e.features[0].properties["website"]);
 					l = 0;
 					while (l < Object.keys(websites).length) {
-					description5 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">' + websites[l] + '</a><br>';
+					description5 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">link</a><br>';
 					l++;
 					};
 				};
@@ -1310,25 +1322,24 @@ let currentFeatureCoordinates = undefined;
          //           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
          //       }
 
-				console.log(description5);
                 // Populate the popup and set its coordinates
                 // based on the feature found.
 				new maplibregl.Popup()
                 .setLngLat(coordinates2)
                 .setHTML(description5)
                 .addTo(map);
-				$(".flex-item").empty();
-  				$(".flex-item").html(description5);
+			//	$(".flex-item").empty();
+  			//	$(".flex-item").html(description5);
             }
         });
 
 	// Change the cursor to a pointer when the mouse is over the places layer.
-        map.on('mouseenter', 'Tollaut', () => {
+        map.on('mouseenter', 'Tollautclick', () => {
             map.getCanvas().style.cursor = 'pointer';
         });
 
         // Change it back to a pointer when it leaves.
-        map.on('mouseleave', 'Tollaut', () => {
+        map.on('mouseleave', 'Tollautclick', () => {
             map.getCanvas().style.cursor = '';
         });
 	  
