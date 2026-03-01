@@ -1150,9 +1150,9 @@
       ],
       "layout": {"line-join": "round"},
       "paint": {
-        "line-color": "rgba(108, 159, 182, 1)",
+        "line-color": "rgba(108, 159, 182, 0.4)",
         "line-dasharray": [2, 2],
-        "line-width": 1.5,
+        "line-width": 1.5
       }
     },
     {
