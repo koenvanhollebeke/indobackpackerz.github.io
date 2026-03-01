@@ -1070,7 +1070,6 @@ let currentFeatureCoordinates = undefined;
            //     map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
-				console.log(coordinates);
 				const HC = Number(e.features[0].properties["Percent cover by benthic category average: Hard coral"]).toFixed(1);
 				const SC = Number(e.features[0].properties["Percent cover by benthic category average: Soft coral"]).toFixed(1);
 				const MA = Number(e.features[0].properties["Percent cover by benthic category average: Macroalgae"]).toFixed(1);
@@ -1273,7 +1272,6 @@ let currentFeatureCoordinates = undefined;
                 // map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates[0][0].slice();
-				console.log(coordinates);
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
@@ -1290,7 +1288,7 @@ let currentFeatureCoordinates = undefined;
 					websites = JSON.parse(e.features[0].properties["website"]);
 					l = 0;
 					while (l < Object.keys(websites).length) {
-					description5 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">' + website[l] + '</a><br>';
+					description5 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">' + websites[l] + '</a><br>';
 					l++;
 					};
 				};
