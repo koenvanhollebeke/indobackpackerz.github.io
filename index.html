@@ -989,7 +989,7 @@ map.addLayer({
 	  	data: "./tollaut.geojson",
   	});
 	  
-  	map.addLayer({
+	map.addLayer({
     	'id': "Tollaut",
     	'type': "line",
     	'source': "tollaut",
@@ -1011,6 +1011,24 @@ map.addLayer({
       		'line-color': "#3CB2E2",
       		'line-opacity': 0.01,
 	  		'line-width': 15,
+    	},
+  	});
+			
+	const image4 = await map.loadImage( "https://github.com/gmgeo/osmic/blob/master/transport/ferry-14.svg", );
+  	map.addImage("ferryport", image4.data);
+	map.addLayer({
+    	'id': "ports",
+    	'type': "symbol",
+    	'source': "tollaut",
+		'filter': ['==', '$type', 'Point'],
+    	'layout': {
+			'icon-image': 'ferryport',
+            'icon-size': 1.0,
+			'icon-allow-overlap': true,
+		},
+    	'paint': {
+      		'icon-color': "#3CB2E2",
+      		'icon-opacity': 1.0,
     	},
   	});
 
@@ -1036,10 +1054,7 @@ map.addLayer({
         		0.045, // At zoom 20, icon size is 0.045x
       		],
 			// 'icon-rotation-alignment': 'map',
-			'visibility': 'visible',
-			'text-font': ['Noto Sans Regular'],
-      		'text-field': '{name}',
-      		'text-size': 12
+			'visibility': 'visible'
         },
 	  paint: {
 		  'icon-opacity': 0.8,
@@ -1061,7 +1076,8 @@ map.on("load", function () {
 		  { id: "Scientificdata-spot", name: "Scientific data spots", visible: false },
 		  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
           { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
-		  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true }
+		  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
+		  { id: "ports", name: "Tol Laut/Perintis ports", visible: true },
         ],
         position: "top-right",
         collapsed: true,
