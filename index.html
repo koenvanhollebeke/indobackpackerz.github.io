@@ -1271,7 +1271,7 @@ let currentFeatureCoordinates = undefined;
                 // Change the cursor style as a UI indicator.
                 // map.getCanvas().style.cursor = 'pointer';
 
-                const coordinates = e.features[0].geometry.coordinates.slice();
+                const coordinates = e.features[0].geometry.coordinates[0][0].slice();
 				console.log(featureCoordinates);
 				console.log(coordinates);
 				var description5 = "";
