@@ -1275,7 +1275,7 @@ let currentFeatureCoordinates = undefined;
 				const bounds = coordinates.reduce((bounds, coord) => {
                     return bounds.extend(coord);
                 }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
-				console.log(bounds);
+				console.log((bounds[0][0]+bounds[1][0])/2,(bounds[0][1]+bounds[1][1])/2);
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
@@ -1299,9 +1299,9 @@ let currentFeatureCoordinates = undefined;
 				description5 += "</p>";
 				description5 += "<p>ticket: " + e.features[0].properties["ticket"] + "</p>";
 				
-                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-                }
+         //       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+         //           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+         //       }
 
 				console.log(description5);
                 // Populate the popup and set its coordinates
