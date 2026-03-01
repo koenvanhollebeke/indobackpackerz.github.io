@@ -972,23 +972,50 @@ map.addLayer({
             }
         });
 			
-map.addSource("sulut", {
+  var arrowurl = 'https://i.imgur.com/LcIng3L.png';
+  map.loadImage(arrowurl, function(err, image) {
+    if (err) {
+      console.error('err image', err);
+      return;
+    }
+    map.addImage('arrow', image);
+
+	map.addSource("tollaut", {
     type: "geojson",
 //    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
 //	data: "https://dl.dropboxusercontent.com/scl/fi/eu0n6ctkanmrlsjub0ott/sulut.geojson?rlkey=q316fwzh00drlubsrpgbcj7j0&st=yx0f200v&raw=1",
 	  data: "./tollaut.geojson"
-  });
+  	});
+	  
   map.addLayer({
     id: "Tollaut",
     type: "line",
-    source: "sulut",
+    source: "tollaut",
+	filter: ['==', '$type', 'LineString'],
     layout: {},
     paint: {
-      "line-color": "#DDED24",
-      "line-opacity": 0.6,
+      "line-color": "#0000FF",
+      "line-opacity": 0.8,
+	  'line-width': 2,
     },
   });
 
+  map.addLayer({
+    'id': 'route-arrows'
+	'type': 'symbol'
+	'source': 'tollaut'
+	'layout': {
+            'symbol-placement': 'line',
+			'symbol-spacing': 1, // Distance between arrows
+            'icon-image': 'arrow',
+			'icon-allow-overlap': true,
+			'icon-size': 0.05,
+			// 'icon-rotation-alignment': 'map',
+			'visibility': 'visible',
+        },
+	  minzoom: 10,
+    });
+			
 });
 
 map.on("load", function () {
