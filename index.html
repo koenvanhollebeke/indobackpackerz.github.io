@@ -1400,6 +1400,11 @@ let currentFeatureCoordinates = undefined;
                 popup.setLngLat(coordinates).setHTML(description).addTo(map);
             }
         });
+	  	map.on('mouseleave', 'ports', () => {
+            currentFeatureCoordinates = undefined;
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 	  
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
