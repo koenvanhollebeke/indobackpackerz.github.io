@@ -1377,7 +1377,6 @@ let currentFeatureCoordinates = undefined;
 
         // Make sure to detect marker change for overlapping markers
         // and use mousemove instead of mouseenter event
-        let currentFeatureCoordinates = undefined;
         map.on('mousemove', 'ports', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
