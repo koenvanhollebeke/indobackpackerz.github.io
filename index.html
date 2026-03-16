@@ -1205,7 +1205,8 @@ let currentPopup = null;
 
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'mermaid-spot', () => {
-            map.getCanvas().style.cursor = '';
+            currentFeatureCoordinates = undefined;
+			map.getCanvas().style.cursor = '';
         });
 
 	  
