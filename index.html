@@ -765,6 +765,7 @@ class LayerManager {
     		filter: ["==", "$type", "Point"],
   		});
 		map.setLayoutProperty('snorkeling-spot', 'visibility', 'visible');
+		console.log(map.getLayoutProperty('snorkeling-spot','visibility'));
 
 		const image2 = await map.loadImage( "https://i.ibb.co/gvF8hsF/1870-snorkel-4x-grey.png", );
   		map.addImage("custom-marker2", image2.data);
@@ -1095,7 +1096,7 @@ map.on("load", function () {
       });
 	map.addControl(layerManager, "top-right");
 
-	console.log(map.getLayoutProperty('snorkeling-spot','visibility'));
+	
 	console.log(map.getLayoutProperty('external-spot','visibility'));
 	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
 	if (mermaid_visibility === 'visible' || visibility === undefined) {
