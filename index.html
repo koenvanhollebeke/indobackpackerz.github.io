@@ -1031,7 +1031,7 @@ map.addLayer({
 		'filter': ['==', '$type', 'LineString'],
     	'layout': {},
     	'paint': {
-      		'line-color': "#3CB2E2",
+      		'line-color': ['get', 'color'],
       		'line-opacity': 0.8,
 	  		'line-width': 1.5,
     	},
@@ -1044,7 +1044,7 @@ map.addLayer({
 		'filter': ['==', '$type', 'LineString'],
     	'layout': {},
     	'paint': {
-      		'line-color': "#3CB2E2",
+      		'line-color': ['get', 'color'],
       		'line-opacity': 0.01,
 	  		'line-width': 15,
     	},
@@ -1105,6 +1105,7 @@ map.addLayer({
         },
 	  paint: {
 		  'icon-opacity': 0.8,
+		  'icon-color': ['get', 'color'],
 	  },
 	  minzoom: 5,
     });
