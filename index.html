@@ -1080,7 +1080,7 @@ map.on("load", function () {
           { id: "snorkeling-spot", name: "our spots", visible: true },
 		  { id: "external-spot", name: "external spots", visible: true },
 		  { id: "mermaid-spot", name: "Mermaid spots", visible: false },
-		  { id: "mermaid-spot_label", name: "Mermaid spots %LC(=HC+SC)", visible: false },
+		//  { id: "mermaid-spot_label", name: "Mermaid spots %LC(=HC+SC)", visible: false },
 		  { id: "CRMIS-spot", name: "CRMIS spots", visible: false },
 		  { id: "CRMIS-spot_label", name: "CRMIS spots %LC(=HC+SC)", visible: false },
 		  { id: "Scientificdata-spot", name: "Scientific data spots", visible: false },
@@ -1093,6 +1093,14 @@ map.on("load", function () {
         collapsed: true,
       });
 	map.addControl(layerManager, "top-right");
+	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
+	if (mermaid_visibility === 'visible' || visibility === undefined) {
+		console.log('mermaid is on');
+		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
+	} else {
+		console.log('mermaid is off');
+		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
+	}
 });
 
 // Create a popup, but don't add it to the map yet.
