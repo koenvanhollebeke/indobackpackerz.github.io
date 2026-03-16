@@ -765,7 +765,6 @@ class LayerManager {
     		filter: ["==", "$type", "Point"],
   		});
 		map.setLayoutProperty('snorkeling-spot', 'visibility', 'visible');
-		console.log(map.getLayoutProperty('snorkeling-spot','visibility'));
 
 		const image2 = await map.loadImage( "https://i.ibb.co/gvF8hsF/1870-snorkel-4x-grey.png", );
   		map.addImage("custom-marker2", image2.data);
@@ -793,6 +792,7 @@ class LayerManager {
     		},
     		filter: ["==", "$type", "Point"],
   		});
+		map.setLayoutProperty('external-spot', 'visibility', 'visible');
 
 // colors to use for the categories
 const colors = ['#A52A2A', '#FF0000', '#FFA500', '#FFFF00', '#32CD32', '#008000'];
@@ -806,7 +806,6 @@ map.addSource("mermaidspot", {
     		'type': "circle",
     		source: "mermaidspot",
 			layout: {
-            visibility: "none",
           	},
     		'paint': {
 				'circle-color': [
@@ -832,6 +831,7 @@ map.addSource("mermaidspot", {
                 'circle-radius': 10,
 	  		},
   		});
+		map.setLayoutProperty('mermaid-spot', 'visibility', 'none');
 		map.addLayer({
             'id': 'mermaid-spot_label',
             'type': 'symbol',
@@ -849,12 +849,12 @@ map.addSource("mermaidspot", {
 				],
 				'text-font': ['Noto Sans Regular'],
                 'text-size': 9,
-				visibility: "none",
             },
             'paint': {
                 'text-color': 'white'
             }
         });
+		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
 
 map.addSource("CRMISspot", {
 		type: "geojson",
