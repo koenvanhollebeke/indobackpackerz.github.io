@@ -1158,9 +1158,6 @@ let currentPopup = null;
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
-                // Change the cursor style as a UI indicator.
-           //     map.getCanvas().style.cursor = 'pointer';
-
                 const coordinates = e.features[0].geometry.coordinates.slice(); 
 				const HC = Number(e.features[0].properties["Percent cover by benthic category average: Hard coral"]).toFixed(1);
 				const SC = Number(e.features[0].properties["Percent cover by benthic category average: Soft coral"]).toFixed(1);
@@ -1251,7 +1248,8 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-				new maplibregl.Popup()
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(description3)
                 .addTo(map);
@@ -1266,6 +1264,7 @@ let currentPopup = null;
 
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'CRMIS-spot', () => {
+			currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
         });
 	  
@@ -1331,7 +1330,8 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-				new maplibregl.Popup()
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(description4)
                 .addTo(map);
@@ -1348,6 +1348,7 @@ let currentPopup = null;
 
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'Scientificdata-spot', () => {
+			currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
         });
 	  
@@ -1424,7 +1425,7 @@ let currentPopup = null;
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'Tollautclick', () => {
             currentFeatureCoordinates = undefined;
-			coordinates5.length = 0;
+			coordinates5 = undefined;
 			map.getCanvas().style.cursor = '';
         });
 
