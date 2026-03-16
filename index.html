@@ -856,6 +856,16 @@ map.addSource("mermaidspot", {
         });
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
 
+		const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
+	if (mermaid_visibility === 'visible' || visibility === undefined) {
+		console.log('mermaid is on');
+		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
+	} else {
+		console.log('mermaid is off');
+		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
+	}
+
+			
 map.addSource("CRMISspot", {
 		type: "geojson",
   		data: "./snorkeling_indonesia_CRMIS.geojson",
@@ -1081,7 +1091,7 @@ map.on("load", function () {
         layers: [
           { id: "snorkeling-spot", name: "our spots", visible: true },
 		  { id: "external-spot", name: "external spots", visible: true },
-		  { id: "mermaid-spot", name: "Mermaid spots", visible: true },
+		  { id: "mermaid-spot", name: "Mermaid spots", visible: false },
 		//  { id: "mermaid-spot_label", name: "Mermaid spots %LC(=HC+SC)", visible: false },
 		  { id: "CRMIS-spot", name: "CRMIS spots", visible: false },
 		  { id: "CRMIS-spot_label", name: "CRMIS spots %LC(=HC+SC)", visible: false },
@@ -1096,17 +1106,7 @@ map.on("load", function () {
       });
 	map.addControl(layerManager, "top-right");
 
-	
-	console.log(map.getLayoutProperty('external-spot','visibility'));
-	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
-	if (mermaid_visibility === 'visible' || visibility === undefined) {
-		console.log('mermaid is on');
-		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
-	} else {
-		console.log('mermaid is off');
-		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
-	}
-});
+	});
 
 	  
 // Create a popup, but don't add it to the map yet.
