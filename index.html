@@ -1093,7 +1093,10 @@ map.on("load", function () {
         collapsed: true,
       });
 	map.addControl(layerManager, "top-right");
-	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
+});
+
+	  map.on('render', () => {
+    const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
 	if (mermaid_visibility === 'visible' || visibility === undefined) {
 		console.log('mermaid is on');
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
