@@ -1421,6 +1421,7 @@ let currentFeatureCoordinates = undefined;
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'Tollautclick', () => {
             currentFeatureCoordinates = undefined;
+			coordinates.length = 0;
 			map.getCanvas().style.cursor = '';
         });
 
