@@ -1375,8 +1375,6 @@ let currentPopup = null;
 				map.fitBounds(bounds, {
                     padding: 100
                 });
-				// var coordinates2 = map.getCenter();
-				let coordinates2 = new LngLatBounds(coordinates5[0], coordinates5[0]);
 				// console.log(bounds);
 				var description5 = "";
 				var websites, k, l;
@@ -1408,6 +1406,7 @@ let currentPopup = null;
                 // Populate the popup and set its coordinates
                 // based on the feature found.
 				if (currentPopup) currentPopup.remove(); // Remove old before new
+				var coordinates2 = map.getCenter();
 				currentPopup = new maplibregl.Popup()
                 .setLngLat(coordinates2)
                 .setHTML(description5)
