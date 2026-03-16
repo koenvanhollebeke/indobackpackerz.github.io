@@ -1354,7 +1354,8 @@ let currentFeatureCoordinates = undefined;
     //        popup.remove();
     //    });
 
-	map.on('click', 'Tollautclick', (e) => {
+		let currentPopup = null;
+		map.on('click', 'Tollautclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
@@ -1370,7 +1371,7 @@ let currentFeatureCoordinates = undefined;
                     padding: 100
                 });
 				var coordinates2 = map.getCenter();
-				console.log(bounds);
+				// console.log(bounds);
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
@@ -1400,7 +1401,8 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-				new maplibregl.Popup()
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
                 .setLngLat(coordinates2)
                 .setHTML(description5)
                 .addTo(map);
