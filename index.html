@@ -1152,6 +1152,7 @@ map.on("load", function () {
 //});
 
 let currentFeatureCoordinates = undefined;
+let currentPopup = null;
         map.on('click', 'mermaid-spot', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
@@ -1188,7 +1189,8 @@ let currentFeatureCoordinates = undefined;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-				new maplibregl.Popup()
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
                 .setLngLat(coordinates)
                 .setHTML(description2)
                 .addTo(map);
@@ -1354,7 +1356,6 @@ let currentFeatureCoordinates = undefined;
     //        popup.remove();
     //    });
 
-		let currentPopup = null;
 	  	var coordintates5;
 		map.on('click', 'Tollautclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
