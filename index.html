@@ -1007,8 +1007,14 @@ map.addLayer({
         });
 		map.setLayoutProperty('Scientificdata-spot_label', 'visibility', 'none');
 
-	const image3 = await map.loadImage( "https://i.ibb.co/zWb6RYBZ/Lc-Ing3L.png", );
-  	map.addImage("arrow2", image3.data);
+//	const image3 = await map.loadImage( "https://i.ibb.co/zWb6RYBZ/Lc-Ing3L.png", );
+//  map.addImage("arrow2", image3.data);
+	
+	const arrowSvg = require("./images/LcIng3L.svg"); //get the img path
+  	const img = new Image(32, 32); //create HTMLElement
+	img.src = arrowSvg; //set HTMLELement img src
+	img.onload = () => map.addImage("arrow-right", img, { sdf: true }); //when img is loaded, add it to the map
+			
   // var arrowurl = 'https://i.imgur.com/LcIng3L.png';
   // map.loadImage(arrowurl, function(err, image) {
   //  if (err) {
@@ -1087,7 +1093,7 @@ map.addLayer({
 	layout: {
             'symbol-placement': 'line',
 			'symbol-spacing': 10, // Distance between arrows
-            'icon-image': 'arrow2',
+            'icon-image': 'arrow-right',
 			'icon-allow-overlap': false,
 			// 'icon-size': 0.05,
 			"icon-size": [
