@@ -1086,7 +1086,7 @@ map.addLayer({
 	source: 'tollaut',
 	layout: {
             'symbol-placement': 'line',
-			'symbol-spacing': 1, // Distance between arrows
+			'symbol-spacing': 10, // Distance between arrows
             'icon-image': 'arrow2',
 			'icon-allow-overlap': false,
 			// 'icon-size': 0.05,
@@ -1108,7 +1108,7 @@ map.addLayer({
 	  },
 	  minzoom: 5,
     });
-	map.setLayoutProperty('route-arrows', 'visibility', 'none');
+	map.setLayoutProperty('route-arrows', 'visibility', 'visible');
 
 //	map.addSource('kk-2025', {
 //    'type': 'geojson',
