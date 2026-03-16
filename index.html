@@ -1389,7 +1389,7 @@ let currentPopup = null;
 				description5 += "<p>date: " + e.features[0].properties["date"] + "</p>";
 				description5 += "<p>description: " + e.features[0].properties["description"] + "</p>";
 				if (e.features[0].properties["image"]) {
-					description5 += '<img style="image-orientation: from-image" src=' + images + ' width="200">';
+					description5 += '<img style="image-orientation: from-image" src=' + images + ' >';
 			    }
 				description5 += "<p>";
 				if (e.features[0].properties["website"]) {
