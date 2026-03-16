@@ -1101,7 +1101,15 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('route-arrows', 'visibility', 'none');
-			
+
+	map.addLayer({
+		id: 'kk-2025',
+        type: 'raster',
+        tiles: [
+            "https://sidako.kkp.go.id/geoserver/konservasi/wms?service=WMS&version=1.1.0&request=GetMap&layers=konservasi%3Adata_kk_2025&bbox=94.9759292602539%2C-11.156095504760742%2C140.37501525878906%2C5.929525375366211&width=256&height=256&srs=EPSG%3A4326&styles=&format=image%2Fpng"
+        ],
+        tileSize: 256
+	});
 });
 
 map.on("load", function () {
