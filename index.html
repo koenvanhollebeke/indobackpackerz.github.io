@@ -857,7 +857,7 @@ map.addSource("mermaidspot", {
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
 
 		const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
-	if (mermaid_visibility === 'visible' || visibility === undefined) {
+	if (mermaid_visibility === 'visible' || mermaid_visibility === undefined) {
 		console.log('mermaid is on');
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
 	} else {
