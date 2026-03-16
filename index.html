@@ -761,10 +761,10 @@ class LayerManager {
         		20,
         		0.7, // At zoom 20, icon size is 2.0x
       		],
-			"visibility": "visible",
     		},
     		filter: ["==", "$type", "Point"],
   		});
+		map.setLayoutProperty('snorkeling-spot', 'visibility', 'visible');
 
 		const image2 = await map.loadImage( "https://i.ibb.co/gvF8hsF/1870-snorkel-4x-grey.png", );
   		map.addImage("custom-marker2", image2.data);
