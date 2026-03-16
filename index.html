@@ -1094,6 +1094,8 @@ map.on("load", function () {
       });
 	map.addControl(layerManager, "top-right");
 
+	console.log(map.getLayoutProperty('snorkeling-spot','visibility'));
+	console.log(map.getLayoutProperty('external-spot','visibility'));
 	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
 	if (mermaid_visibility === 'visible' || visibility === undefined) {
 		console.log('mermaid is on');
