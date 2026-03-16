@@ -761,7 +761,23 @@ class LayerManager {
 		});
 
 		map.on("load", async () => {
-  		const image = await map.loadImage( "https://i.ibb.co/CnhHVH3/1870-snorkel-4x.png", );
+
+		map.addSource('kk-2025', {
+    'type': 'geojson',
+    'data': 'https://dl.dropboxusercontent.com/scl/fi/h5uhbcvbo0tosxgyx9psa/kk.geojson?rlkey=1s4oxxavuo17adsersn2nwbvu&st=rd95pwyw&&raw=1',
+  	});
+  	map.addLayer({
+    'id': 'sidako-kk-2025',
+    'type': 'fill',
+    'source': 'kk-2025',
+    'paint': {
+      "fill-color": "#DDED24",
+      "fill-opacity": 0.4,
+	},
+  	});		
+	map.setLayoutProperty('sidako-kk-2025', 'visibility', 'none');
+			
+		const image = await map.loadImage( "https://i.ibb.co/CnhHVH3/1870-snorkel-4x.png", );
   		map.addImage("custom-marker", image.data);
   		map.addSource("snorkelingspot", {
     		type: "geojson",
@@ -1101,21 +1117,6 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('route-arrows', 'visibility', 'none');
-
-	map.addSource('kk-2025', {
-    'type': 'geojson',
-    'data': 'https://dl.dropboxusercontent.com/scl/fi/h5uhbcvbo0tosxgyx9psa/kk.geojson?rlkey=1s4oxxavuo17adsersn2nwbvu&st=rd95pwyw&&raw=1',
-  	});
-  	map.addLayer({
-    'id': 'sidako-kk-2025',
-    'type': 'fill',
-    'source': 'kk-2025',
-    'paint': {
-      "fill-color": "#DDED24",
-      "fill-opacity": 0.4,
-	},
-  	});		
-	map.setLayoutProperty('sidako-kk-2025', 'visibility', 'none');
 			
 });
 
