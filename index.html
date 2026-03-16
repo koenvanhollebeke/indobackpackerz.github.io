@@ -1093,10 +1093,8 @@ map.on("load", function () {
         collapsed: true,
       });
 	map.addControl(layerManager, "top-right");
-});
 
-	  map.on('render', () => {
-    const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
+	const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
 	if (mermaid_visibility === 'visible' || visibility === undefined) {
 		console.log('mermaid is on');
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
@@ -1106,6 +1104,7 @@ map.on("load", function () {
 	}
 });
 
+	  
 // Create a popup, but don't add it to the map yet.
 //const popup = new maplibregl.Popup({
 //   closeButton: false,
