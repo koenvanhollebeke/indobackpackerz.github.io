@@ -648,6 +648,18 @@ class LayerManager {
 	} else {
 		this.map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
 	}
+	const CRMIS_visibility = this.map.getLayoutProperty('CRMIS-spot','visibility');
+	if (CRMIS_visibility === 'visible' || CRMIS_visibility === undefined) {
+		this.map.setLayoutProperty('CRMIS-spot_label', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('CRMIS-spot_label', 'visibility', 'none');
+	}
+	const Scientificdata_visibility = this.map.getLayoutProperty('Scientificdata-spot','visibility');
+	if (Scientificdata_visibility === 'visible' || Scientificdata_visibility === undefined) {
+		this.map.setLayoutProperty('Scientificdata-spot_label', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('Scientificdata-spot_label', 'visibility', 'none');
+	}
     this.layerConfigs.get(layerId).visible = visible;
   }
 }
@@ -872,7 +884,6 @@ map.addLayer({
     		'type': "circle",
     		source: "CRMISspot",
 			layout: {
-            visibility: "none",
           	},
     		'paint': {
 				'circle-color': [
@@ -898,6 +909,7 @@ map.addLayer({
                 'circle-radius': 10,
 	  		},
   		});
+		map.setLayoutProperty('CRMIS-spot', 'visibility', 'none');
 	map.addLayer({
             'id': 'CRMIS-spot_label',
             'type': 'symbol',
@@ -915,12 +927,12 @@ map.addLayer({
 				],
 				'text-font': ['Noto Sans Regular'],
                 'text-size': 9,
-				visibility: "none",
             },
             'paint': {
                 'text-color': 'white'
             }
         });
+		map.setLayoutProperty('CRMIS-spot_label', 'visibility', 'none');
 
 		map.addSource("Scientificdataspot", {
 		type: "geojson",
@@ -931,7 +943,6 @@ map.addLayer({
     		'type': "circle",
     		source: "Scientificdataspot",
 			layout: {
-            visibility: "none",
           	},
     		'paint': {
 				'circle-color': [
@@ -957,6 +968,7 @@ map.addLayer({
                 'circle-radius': 10,
 	  		},
   		});
+		map.setLayoutProperty('Scientificdata-spot', 'visibility', 'none');
 	map.addLayer({
             'id': 'Scientificdata-spot_label',
             'type': 'symbol',
@@ -974,12 +986,12 @@ map.addLayer({
 				],
 				'text-font': ['Noto Sans Regular'],
                 'text-size': 9,
-				visibility: "none",
             },
             'paint': {
                 'text-color': 'white'
             }
         });
+		map.setLayoutProperty('Scientificdata-spot_label', 'visibility', 'none');
 
 	const image3 = await map.loadImage( "https://i.ibb.co/zWb6RYBZ/Lc-Ing3L.png", );
   	map.addImage("arrow2", image3.data);
@@ -1091,9 +1103,9 @@ map.on("load", function () {
 		  { id: "mermaid-spot", name: "Mermaid spots", visible: false },
 		//  { id: "mermaid-spot_label", name: "Mermaid spots %LC(=HC+SC)", visible: false },
 		  { id: "CRMIS-spot", name: "CRMIS spots", visible: false },
-		  { id: "CRMIS-spot_label", name: "CRMIS spots %LC(=HC+SC)", visible: false },
+		//  { id: "CRMIS-spot_label", name: "CRMIS spots %LC(=HC+SC)", visible: false },
 		  { id: "Scientificdata-spot", name: "Scientific data spots", visible: false },
-		  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
+		//  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
           { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
 		  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
 		  { id: "ports", name: "Tol Laut/Perintis ports", visible: true },
