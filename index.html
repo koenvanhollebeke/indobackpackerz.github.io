@@ -660,6 +660,12 @@ class LayerManager {
 	} else {
 		this.map.setLayoutProperty('Scientificdata-spot_label', 'visibility', 'none');
 	}
+	const Tollaut_visibility = this.map.getLayoutProperty('Tollaut','visibility');
+	if (Tollaut_visibility === 'visible' || Tollaut_visibility === undefined) {
+		this.map.setLayoutProperty('route-arrows', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('route-arrows', 'visibility', 'none');
+	}				
     this.layerConfigs.get(layerId).visible = visible;
   }
 }
@@ -1107,7 +1113,7 @@ map.on("load", function () {
 		  { id: "Scientificdata-spot", name: "Scientific data spots", visible: false },
 		//  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
           { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
-		  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
+		//  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
 		  { id: "ports", name: "Tol Laut/Perintis ports", visible: true },
         ],
         position: "top-right",
