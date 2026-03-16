@@ -644,10 +644,8 @@ class LayerManager {
     this.map.setLayoutProperty(layerId, 'visibility', visibility);
 	const mermaid_visibility = this.map.getLayoutProperty('mermaid-spot','visibility');
 	if (mermaid_visibility === 'visible' || mermaid_visibility === undefined) {
-		console.log('mermaid is on');
 		this.map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
 	} else {
-		console.log('mermaid is off');
 		this.map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
 	}
     this.layerConfigs.get(layerId).visible = visible;
