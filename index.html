@@ -642,6 +642,14 @@ class LayerManager {
   _toggleLayerVisibility(layerId, visible) {
     const visibility = visible ? 'visible' : 'none';
     this.map.setLayoutProperty(layerId, 'visibility', visibility);
+	const mermaid_visibility = this.map.getLayoutProperty('mermaid-spot','visibility');
+	if (mermaid_visibility === 'visible' || mermaid_visibility === undefined) {
+		console.log('mermaid is on');
+		this.map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
+	} else {
+		console.log('mermaid is off');
+		this.map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
+	}
     this.layerConfigs.get(layerId).visible = visible;
   }
 }
@@ -855,15 +863,6 @@ map.addSource("mermaidspot", {
             }
         });
 		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
-
-		const mermaid_visibility = map.getLayoutProperty('mermaid-spot','visibility');
-	if (mermaid_visibility === 'visible' || mermaid_visibility === undefined) {
-		console.log('mermaid is on');
-		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'visible');
-	} else {
-		console.log('mermaid is off');
-		map.setLayoutProperty('mermaid-spot_label', 'visibility', 'none');
-	}
 
 			
 map.addSource("CRMISspot", {
