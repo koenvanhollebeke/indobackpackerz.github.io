@@ -1103,20 +1103,20 @@ map.addLayer({
     });
 	map.setLayoutProperty('route-arrows', 'visibility', 'none');
 
-	map.addSource('kk-2025', {
-    'type': 'geojson',
-    'data': 'https://dl.dropboxusercontent.com/scl/fi/h5uhbcvbo0tosxgyx9psa/kk.geojson?rlkey=1s4oxxavuo17adsersn2nwbvu&st=rd95pwyw&&raw=1',
-  	});
-  	map.addLayer({
-    'id': 'sidako-kk-2025',
-    'type': 'fill',
-    'source': 'kk-2025',
-    'paint': {
-      "fill-color": "#DDED24",
-      "fill-opacity": 0.4,
-	},
-  	}, 'snorkeling-spot');		
-	map.setLayoutProperty('sidako-kk-2025', 'visibility', 'none');
+//	map.addSource('kk-2025', {
+//    'type': 'geojson',
+//    'data': 'https://dl.dropboxusercontent.com/scl/fi/h5uhbcvbo0tosxgyx9psa/kk.geojson?rlkey=1s4oxxavuo17adsersn2nwbvu&st=rd95pwyw&&raw=1',
+//  	});
+//  	map.addLayer({
+//    'id': 'sidako-kk-2025',
+//    'type': 'fill',
+//    'source': 'kk-2025',
+//   'paint': {
+//      "fill-color": "#DDED24",
+//      "fill-opacity": 0.3,
+//	},
+// 	}, 'snorkeling-spot');		
+//	map.setLayoutProperty('sidako-kk-2025', 'visibility', 'none');
 			
 });
 
@@ -1131,7 +1131,7 @@ map.on("load", function () {
 		//  { id: "CRMIS-spot_label", name: "CRMIS spots %LC(=HC+SC)", visible: false },
 		  { id: "Scientificdata-spot", name: "Scientific data spots", visible: false },
 		//  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
-		  { id: "sidako-kk-2025", name: "Marine protected areas", visible: false },
+//		  { id: "sidako-kk-2025", name: "Marine protected areas", visible: false },
           { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
 		//  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
 		  { id: "ports", name: "Tol Laut/Perintis ports", visible: false },
