@@ -1028,6 +1028,7 @@ map.addLayer({
 	  		'line-width': 1.5,
     	},
   	});
+	map.setLayoutProperty('Tollaut', 'visibility', 'visible');
 	map.addLayer({
     	'id': "Tollautclick",
     	'type': "line",
@@ -1040,6 +1041,7 @@ map.addLayer({
 	  		'line-width': 15,
     	},
   	});
+	map.setLayoutProperty('Tollautclick', 'visibility', 'none');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
   	map.addImage("ferryport", image4.data);
@@ -1068,6 +1070,7 @@ map.addLayer({
       		'icon-opacity': 1.0
     	},
   	});
+	map.setLayoutProperty('ports', 'visibility', 'none');
 
   map.addLayer({
     id: 'route-arrows',
@@ -1091,13 +1094,13 @@ map.addLayer({
         		0.045, // At zoom 20, icon size is 0.045x
       		],
 			// 'icon-rotation-alignment': 'map',
-			'visibility': 'visible'
         },
 	  paint: {
 		  'icon-opacity': 0.8,
 	  },
 	  minzoom: 5,
     });
+	map.setLayoutProperty('route-arrows', 'visibility', 'none');
 			
 });
 
@@ -1114,7 +1117,7 @@ map.on("load", function () {
 		//  { id: "Scientificdata-spot_label", name: "Scientific data spots %LC(=HC+SC)", visible: false },
           { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
 		//  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
-		  { id: "ports", name: "Tol Laut/Perintis ports", visible: true },
+		  { id: "ports", name: "Tol Laut/Perintis ports", visible: false },
         ],
         position: "top-right",
         collapsed: true,
