@@ -1355,6 +1355,7 @@ let currentFeatureCoordinates = undefined;
     //    });
 
 		let currentPopup = null;
+	  	var coordintates5;
 		map.on('click', 'Tollautclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
 			console.log(featureCoordinates);
@@ -1364,11 +1365,11 @@ let currentFeatureCoordinates = undefined;
                 // Change the cursor style as a UI indicator.
                 // map.getCanvas().style.cursor = 'pointer';
 
-                const coordinates = e.features[0].geometry.coordinates;
-				console.log(coordinates);
-				const bounds = coordinates.reduce((bounds, coord) => {
+                coordinates5 = e.features[0].geometry.coordinates;
+				console.log(coordinates5);
+				const bounds = coordinates5.reduce((bounds, coord) => {
                     return bounds.extend(coord);
-                }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
+                }, new maplibregl.LngLatBounds(coordinates5[0], coordinates5[0]));
 				map.fitBounds(bounds, {
                     padding: 100
                 });
@@ -1421,7 +1422,7 @@ let currentFeatureCoordinates = undefined;
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'Tollautclick', () => {
             currentFeatureCoordinates = undefined;
-			coordinates.length = 0;
+			coordinates5.length = 0;
 			map.getCanvas().style.cursor = '';
         });
 
