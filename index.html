@@ -663,14 +663,15 @@ class LayerManager {
 	const Tollaut_visibility = this.map.getLayoutProperty('Tollaut','visibility');
 	if (Tollaut_visibility === 'visible' || Tollaut_visibility === undefined) {
 		this.map.setLayoutProperty('route-arrows', 'visibility', 'visible');
+		this.map.setLayoutProperty('Tollautclick', 'visibility', 'visible');
 	} else {
 		this.map.setLayoutProperty('route-arrows', 'visibility', 'none');
+		this.map.setLayoutProperty('Tollautclick', 'visibility', 'none');
 	}				
     this.layerConfigs.get(layerId).visible = visible;
   }
 }
 
-  
   class ZoomControl {
       onAdd(map) {
         this._map = map;
@@ -1042,7 +1043,7 @@ map.addLayer({
 	  		'line-width': 15,
     	},
   	});
-	map.setLayoutProperty('Tollautclick', 'visibility', 'none');
+	map.setLayoutProperty('Tollautclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
   	map.addImage("ferryport", image4.data);
