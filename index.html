@@ -1357,6 +1357,7 @@ let currentFeatureCoordinates = undefined;
 		let currentPopup = null;
 		map.on('click', 'Tollautclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
+			console.log(featureCoordinates);
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
@@ -1364,6 +1365,7 @@ let currentFeatureCoordinates = undefined;
                 // map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates;
+				console.log(coordinates);
 				const bounds = coordinates.reduce((bounds, coord) => {
                     return bounds.extend(coord);
                 }, new maplibregl.LngLatBounds(coordinates[0], coordinates[0]));
