@@ -1010,10 +1010,15 @@ map.addLayer({
 //	const image3 = await map.loadImage( "https://i.ibb.co/zWb6RYBZ/Lc-Ing3L.png", );
 //  map.addImage("arrow2", image3.data);
 	
-	const arrowSvg = require("./images/LcIng3L.svg"); //get the img path
-  	const img = new Image(32, 32); //create HTMLElement
-	img.src = arrowSvg; //set HTMLELement img src
-	img.onload = () => map.addImage("arrow-right", img, { sdf: true }); //when img is loaded, add it to the map
+//	const arrowSvg = require("./images/LcIng3L.svg"); //get the img path
+ // 	const img = new Image(32, 32); //create HTMLElement
+//	img.src = arrowSvg; //set HTMLELement img src
+//	img.onload = () => map.addImage("arrow-right", img, { sdf: true }); //when img is loaded, add it to the map
+
+    import mySVG from './images/LcIng3L.svg';
+	let img = new Image(20,20);
+	img.onload = ()=> map.addImage("arrow-right", img, { sdf: true });
+	img.src = mySVG;
 			
   // var arrowurl = 'https://i.imgur.com/LcIng3L.png';
   // map.loadImage(arrowurl, function(err, image) {
