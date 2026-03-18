@@ -670,9 +670,11 @@ class LayerManager {
 	const Tollaut_visibility = this.map.getLayoutProperty('Tollaut','visibility');
 	if (Tollaut_visibility === 'visible' || Tollaut_visibility === undefined) {
 		this.map.setLayoutProperty('route-arrows', 'visibility', 'visible');
+		this.map.setLayoutProperty('route-labels', 'visibility', 'visible');
 		this.map.setLayoutProperty('Tollautclick', 'visibility', 'visible');
 	} else {
 		this.map.setLayoutProperty('route-arrows', 'visibility', 'none');
+		this.map.setLayoutProperty('route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Tollautclick', 'visibility', 'none');
 	}				
     this.layerConfigs.get(layerId).visible = visible;
@@ -1108,6 +1110,24 @@ map.addLayer({
     });
 	map.setLayoutProperty('route-arrows', 'visibility', 'visible');
 
+	map.addLayer({
+    id: 'route-labels',
+	type: 'symbol',
+	source: 'tollaut',
+	layout: {
+            'symbol-placement': 'line',
+			'symbol-spacing': 100, // Distance between arrows
+            'text-field': ['get', 'name'],
+				'text-font': ['Noto Sans Regular'],
+                'text-size': 9,
+        },
+	  paint: {
+		  'text-color': ['get', 'color'],
+	  },
+	  minzoom: 5,
+    });
+	map.setLayoutProperty('route-labels', 'visibility', 'visible');
+			   
 //	map.addSource('kk-2025', {
 //    'type': 'geojson',
 //    'data': 'https://dl.dropboxusercontent.com/scl/fi/h5uhbcvbo0tosxgyx9psa/kk.geojson?rlkey=1s4oxxavuo17adsersn2nwbvu&st=rd95pwyw&&raw=1',
