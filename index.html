@@ -1412,8 +1412,9 @@ let currentPopup = null;
 	//		    }
 	
 				if (e.features[0].properties["imo"]) {
-					description5 += '<iframe src="https://www.vesselfinder.com/aismap?imo=' + e.features[0].properties["imo"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
-					description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:525001106" style="height:300px;width:100%;"></iframe>';
+	//				description5 += '<iframe src="https://www.vesselfinder.com/aismap?imo=' + e.features[0].properties["imo"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
+					description5 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=525001106&track=true&names=true" style="height:300px;width:100%;"></iframe>';
+					description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:525001106" style="height:300px;width:100%;" target="_blank"></iframe>';
 				};
 				description5 += "<p>for schedules see here: ";
 				if (e.features[0].properties["website"]) {
