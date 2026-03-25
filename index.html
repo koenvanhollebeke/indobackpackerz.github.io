@@ -1406,10 +1406,14 @@ let currentPopup = null;
 				description5 += "<b>" + e.features[0].properties["name"] + "</b>";
 				description5 += "<p>date: " + e.features[0].properties["date"] + "</p>";
 				description5 += "<p>description: " + e.features[0].properties["description"] + "</p>";
-				if (e.features[0].properties["image"]) {
-					description5 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
-					description5 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
-			    }
+	//			if (e.features[0].properties["image"]) {
+	//				description5 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+	//				description5 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
+	//		    }
+	
+				if (e.features[0].properties["imo"]) {
+					description5 += '<iframe src="https://www.vesselfinder.com/aismap?imo=' + e.features[0].properties["imo"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
+				};
 				description5 += "<p>for schedules see here: ";
 				if (e.features[0].properties["website"]) {
 					websites = JSON.parse(e.features[0].properties["website"]);
@@ -1422,10 +1426,6 @@ let currentPopup = null;
 				description5 += "</p>";
 				description5 += "<p>ticket: " + e.features[0].properties["ticket"] + "</p>";
 	
-				if (e.features[0].properties["imo"]) {
-					description5 += '<iframe src="https://www.vesselfinder.com/aismap?imo=' + e.features[0].properties["imo"] + '&track=true&names=true" style="height:500px;width:100%;"></iframe>';
-				};
-
 	//       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
          //           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
          //       }
