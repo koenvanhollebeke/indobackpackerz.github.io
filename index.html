@@ -1421,16 +1421,16 @@ let currentPopup = null;
 				};
 				description5 += "</p>";
 				description5 += "<p>ticket: " + e.features[0].properties["mmsi"] + "</p>";
-				if (e.features[0].properties["mmsi"]) {
-					description5 += '<script type="text/javascipt">';
-					description5 += 'var width="100%";';
-					description5 += 'var height="300";';
-					description5 += 'var names=true;';
-					description5 += 'var mmsi=' + e.features[0].properties["mmsi"] + ';';
-					description5 =+ 'var show_track=true;';
-					description5 =+ '</script>';
-					description5 =+ '<script type="text/javascript" scr="https://www.vesselfinder.com/aismap.js"></script>';
-				};
+	//			if (e.features[0].properties["mmsi"]) {
+	//				description5 += '<script type="text/javascipt">';
+	//				description5 += 'var width="100%";';
+	//				description5 += 'var height="300";';
+	//				description5 += 'var names=true;';
+	//				description5 += 'var mmsi=' + e.features[0].properties["mmsi"] + ';';
+	//				description5 =+ 'var show_track=true;';
+	//				description5 =+ '</script>';
+	//				description5 =+ '<script type="text/javascript" scr="https://www.vesselfinder.com/aismap.js"></script>';
+	//			};
 
 	//       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
          //           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
