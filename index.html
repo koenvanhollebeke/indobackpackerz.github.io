@@ -677,6 +677,14 @@ class LayerManager {
 		this.map.setLayoutProperty('route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Tollautclick', 'visibility', 'none');
 	}				
+	const ports_visibility = this.map.getLayoutProperty('ports','visibility');
+	if (ports_visibility === 'visible' || ports_visibility === undefined) {
+		this.map.setLayoutProperty('ports', 'visibility', 'visible');
+		this.map.setLayoutProperty('pelniports', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('ports', 'visibility', 'none');
+		this.map.setLayoutProperty('pelniports', 'visibility', 'none');
+	}  
     this.layerConfigs.get(layerId).visible = visible;
   }
 }
@@ -1066,7 +1074,7 @@ map.addLayer({
     	'paint': {
       		'line-color': ['get', 'color'],
       		'line-opacity': 0.8,
-	  		'line-width': 1.5,
+	  		'line-width': 2.5,
     	},
   	});
 	map.setLayoutProperty('Pelni', 'visibility', 'visible');
@@ -1090,6 +1098,31 @@ map.addLayer({
     	'id': "ports",
     	'type': "symbol",
     	'source': "tollaut",
+		'filter': ['==', '$type', 'Point'],
+    	'layout': {
+			'icon-image': 'ferryport',
+            'icon-size': [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		10,
+        		0.6, // At zoom 10, icon size is 0.5x
+        		15,
+        		0.9, // At zoom 15, icon size is 1.5x
+        		20,
+        		1.0, // At zoom 20, icon size is 2.0x
+      		],
+			'icon-allow-overlap': true
+		},
+    	'paint': {
+      		'icon-color': "#3CB2E2",
+      		'icon-opacity': 1.0
+    	},
+  	});
+	map.addLayer({
+    	'id': "pelniports",
+    	'type': "symbol",
+    	'source': "pelni",
 		'filter': ['==', '$type', 'Point'],
     	'layout': {
 			'icon-image': 'ferryport',
