@@ -438,11 +438,12 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 }
 .maplibregl-popup {
         max-width: 400px !important;
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        overflow-y: scroll;
+		font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 
 @media screen and (max-width: 768px) {
     .maplibregl-popup {
-        max-width: 80% !important; /* Takes up 80% of screen width */
+        max-width: 60% !important; /* Takes up 80% of screen width */
     }
 }
 	
@@ -458,7 +459,7 @@ h1, h2, h3, h4, h5, h6, .h01, .h02, .h03, .h04, .h05, .h06 {
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css">
 	<!-- <script src="https://www.gstatic.com/charts/loader.js"></script> --> 
 	<!-- <script src="maplibre-gl-svg.js"></script> --> 
-	<script id="myshiptrackingscript" src="//www.myshiptracking.com/js/widgetApi.js" async defer></script>
+	<script id="myshiptrackingscript" src="//www.myshiptracking.com/js/widgetApi.js"></script>
 
    <header id="header" class="row">   
    		<div class="header-logo">
