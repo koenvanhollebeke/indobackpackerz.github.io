@@ -1589,6 +1589,82 @@ let currentPopup = null;
 			map.getCanvas().style.cursor = '';
         });
 
+		map.on('click', 'Pelniclick', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+                // Change the cursor style as a UI indicator.
+                // map.getCanvas().style.cursor = 'pointer';
+
+                const coordinates6 = e.features[0].geometry.coordinates;
+				const bounds = coordinates6.reduce((bounds, coord) => {
+                    return bounds.extend(coord);
+                }, new maplibregl.LngLatBounds(coordinates6[0], coordinates6[0]));
+				map.fitBounds(bounds, {
+                    padding: 100
+                });
+				// console.log(bounds);
+				var description6 = "";
+				var websites, k, l;
+				if (e.features[0].properties["image"]) {
+					images = e.features[0].properties["image"];
+				}
+				description6 += "<b>" + e.features[0].properties["name"] + "</b>";
+				description6 += "<p>date: " + e.features[0].properties["date"] + "<br>";
+				description6 += "ship :" + e.features[0].properties["ship"] + "<br>";
+				description6 += "description: " + e.features[0].properties["description"] + "<br>";
+				if (e.features[0].properties["remarks"]) {
+					description6 += "remarks: " + e.features[0].properties["remarks"] + "</p>";
+				}
+				else {
+					description6 += "</p>";
+				}
+	//			if (e.features[0].properties["image"]) {
+	//				description6 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+	//				description6 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
+	//		    }
+				description5 += "<p>for schedules see here: ";
+				if (e.features[0].properties["website"]) {
+					websites = JSON.parse(e.features[0].properties["website"]);
+					l = 0;
+					while (l < Object.keys(websites).length) {
+					description6 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">link</a>&nbsp';
+					l++;
+					};
+				};
+				description6 += "<br>";
+				description6 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
+				
+				if (e.features[0].properties["mmsi"]) {
+					description6 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
+					description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+				};
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				var coordinates3 = map.getCenter();
+				currentPopup = new maplibregl.Popup()
+                .setLngLat(coordinates3)
+                .setHTML(description6)
+                .addTo(map);
+			//	$(".flex-item").empty();
+  			//	$(".flex-item").html(description5);
+            }
+        });
+
+	// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Pelniclick', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Pelniclick', () => {
+            currentFeatureCoordinates = undefined;
+			map.getCanvas().style.cursor = '';
+        });
+	  
  		// Create a popup, but don't add it to the map yet.
         const popup = new maplibregl.Popup({
             closeButton: false,
@@ -1625,7 +1701,35 @@ let currentPopup = null;
             map.getCanvas().style.cursor = '';
             popup.remove();
         });
-	  
+
+	  	map.on('mousemove', 'pelniports', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+                // Change the cursor style as a UI indicator.
+                map.getCanvas().style.cursor = 'pointer';
+
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                const description = e.features[0].properties.description;
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+                popup.setLngLat(coordinates).setHTML(description).addTo(map);
+            }
+        });
+	  	map.on('mouseleave', 'pelniports', () => {
+            currentFeatureCoordinates = undefined;
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
