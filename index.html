@@ -676,7 +676,17 @@ class LayerManager {
 		this.map.setLayoutProperty('route-arrows', 'visibility', 'none');
 		this.map.setLayoutProperty('route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Tollautclick', 'visibility', 'none');
-	}				
+	}
+	const Pelni_visibility = this.map.getLayoutProperty('Pelni','visibility');
+	if (Tollaut_visibility === 'visible' || Tollaut_visibility === undefined) {
+		this.map.setLayoutProperty('pelni-route-arrows', 'visibility', 'visible');
+		this.map.setLayoutProperty('pelni-route-labels', 'visibility', 'visible');
+		this.map.setLayoutProperty('Pelniclick', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('pelni-route-arrows', 'visibility', 'none');
+		this.map.setLayoutProperty('pelni-route-labels', 'visibility', 'none');
+		this.map.setLayoutProperty('Pelniclick', 'visibility', 'none');
+	}
 	const ports_visibility = this.map.getLayoutProperty('ports','visibility');
 	if (ports_visibility === 'visible' || ports_visibility === undefined) {
 		this.map.setLayoutProperty('ports', 'visibility', 'visible');
@@ -1074,7 +1084,7 @@ map.addLayer({
     	'paint': {
       		'line-color': ['get', 'color'],
       		'line-opacity': 0.8,
-	  		'line-width': 2.5,
+	  		'line-width': 2.0,
     	},
   	});
 	map.setLayoutProperty('Pelni', 'visibility', 'visible');
@@ -1145,6 +1155,7 @@ map.addLayer({
     	},
   	});
 	map.setLayoutProperty('ports', 'visibility', 'none');
+	map.setLayoutProperty('pelniports', 'visibility', 'none');
 
   map.addLayer({
     id: 'route-arrows',
@@ -1176,6 +1187,36 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('route-arrows', 'visibility', 'visible');
+	map.addLayer({
+    id: 'pelni-route-arrows',
+	type: 'symbol',
+	source: 'pelni',
+	layout: {
+            'symbol-placement': 'line',
+			'symbol-spacing': 10, // Distance between arrows
+            'icon-image': 'arrow2',
+			'icon-allow-overlap': false,
+			// 'icon-size': 0.05,
+			"icon-size": [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		6,
+        		0.07, // At zoom 10, icon size is 0.035x
+        		8,
+        		0.08, // At zoom 15, icon size is 0.04x
+        		12,
+        		0.09, // At zoom 20, icon size is 0.045x
+      		],
+			// 'icon-rotation-alignment': 'map',
+        },
+	  paint: {
+		  'icon-opacity': 0.8,
+		  'icon-color': ['get', 'color'],
+	  },
+	  minzoom: 5,
+    });
+	map.setLayoutProperty('pelni-route-arrows', 'visibility', 'visible');
 
 	map.addLayer({
     id: 'route-labels',
@@ -1194,6 +1235,23 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('route-labels', 'visibility', 'visible');
+	map.addLayer({
+    id: 'pelni-route-labels',
+	type: 'symbol',
+	source: 'pelni',
+	layout: {
+            'symbol-placement': 'line',
+			'symbol-spacing': 100, // Distance between arrows
+            'text-field': ['get', 'name'],
+				'text-font': ['Noto Sans Regular'],
+                'text-size': 12,
+        },
+	  paint: {
+		  'text-color': ['get', 'color'],
+	  },
+	  minzoom: 5,
+    });
+	map.setLayoutProperty('pelni-route-labels', 'visibility', 'visible');
 			   
 //	map.addSource('kk-2025', {
 //    'type': 'geojson',
