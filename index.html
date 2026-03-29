@@ -1611,20 +1611,20 @@ let currentPopup = null;
 				if (e.features[0].properties["image"]) {
 					images = e.features[0].properties["image"];
 				}
-				description6 += "<b>" + e.features[0].properties["name"] + "</b>";
+				description6 += "<h1>" + e.features[0].properties["name"] + "</h1>";
 				description6 += "<p>date: " + e.features[0].properties["date"] + "<br>";
 				description6 += "ship :" + e.features[0].properties["ship"] + "<br>";
-				description6 += "description: " + e.features[0].properties["description"] + "<br>";
+				description6 += "route description: " + e.features[0].properties["description"] + "</p><p>";
 				if (e.features[0].properties["remarks"]) {
 					description6 += "remarks: " + e.features[0].properties["remarks"] + "</p>";
 				}
 				else {
 					description6 += "</p>";
 				}
-	//			if (e.features[0].properties["image"]) {
-	//				description6 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
-	//				description6 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
-	//		    }
+				if (e.features[0].properties["image"]) {
+					description6 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+					description6 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
+			    }
 				description6 += "<p>for schedules see here: ";
 				if (e.features[0].properties["website"]) {
 					websites = JSON.parse(e.features[0].properties["website"]);
@@ -1639,7 +1639,7 @@ let currentPopup = null;
 				
 				if (e.features[0].properties["mmsi"]) {
 					description6 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
-					description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+	//				description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
 				};
 
                 // Populate the popup and set its coordinates
