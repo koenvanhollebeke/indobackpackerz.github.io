@@ -679,7 +679,7 @@ class LayerManager {
 		this.map.setLayoutProperty('Tollautclick', 'visibility', 'none');
 	}
 	const Pelni_visibility = this.map.getLayoutProperty('Pelni','visibility');
-	if (Tollaut_visibility === 'visible' || Tollaut_visibility === undefined) {
+	if (Pelni_visibility === 'visible' || Pelni_visibility === undefined) {
 		this.map.setLayoutProperty('pelni-route-arrows', 'visibility', 'visible');
 		this.map.setLayoutProperty('pelni-route-labels', 'visibility', 'visible');
 		this.map.setLayoutProperty('Pelniclick', 'visibility', 'visible');
