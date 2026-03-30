@@ -1640,6 +1640,7 @@ let currentPopup = null;
 				if (e.features[0].properties["mmsi"]) {
 					description6 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
 	//				description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+					description6 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&is_widget=1" style="height:300px;width:100%;" target="_blank";></iframe>';
 				};
 
                 // Populate the popup and set its coordinates
