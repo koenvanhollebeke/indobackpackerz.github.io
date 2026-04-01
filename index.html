@@ -1596,16 +1596,13 @@ let currentPopup = null;
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
-                // Change the cursor style as a UI indicator.
-                // map.getCanvas().style.cursor = 'pointer';
-
-                const coordinates6 = e.features[0].geometry.coordinates;
-				const bounds = coordinates6.reduce((bounds, coord) => {
-                    return bounds.extend(coord);
-                }, new maplibregl.LngLatBounds(coordinates6[0], coordinates6[0]));
-				map.fitBounds(bounds, {
-                    padding: 100
-                });
+ //               const coordinates6 = e.features[0].geometry.coordinates;
+//				const bounds = coordinates6.reduce((bounds, coord) => {
+ //                   return bounds.extend(coord);
+ //               }, new maplibregl.LngLatBounds(coordinates6[0], coordinates6[0]));
+//				map.fitBounds(bounds, {
+//                    padding: 100
+//                });
 				// console.log(bounds);
 				var description6 = "";
 				var websites, k, l;
@@ -1643,15 +1640,6 @@ let currentPopup = null;
 	//				description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
 					description6 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&is_widget=1" height="400px" width="100%"></iframe>';
 				};
-
-                // Populate the popup and set its coordinates
-                // based on the feature found.
-				// if (currentPopup) currentPopup.remove(); // Remove old before new
-				// var coordinates3 = map.getCenter();
-				// currentPopup = new maplibregl.Popup()
-                // .setLngLat(coordinates3)
-                // .setHTML(description6)
-                // .addTo(map);
 
 				$(".flex-item").empty();
 				$(".flex-item").append(description6);
