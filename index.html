@@ -1592,7 +1592,7 @@ let currentPopup = null;
 
 		map.on('click', 'Pelniclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
-			console.log(e.features[0].properties["name"]);
+//			console.log(e.features[0].properties["name"]);
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
@@ -1611,7 +1611,7 @@ let currentPopup = null;
 				}
 				description6 += "<h1>" + e.features[0].properties["name"] + "</h1>";
 				description6 += "<p>date: " + e.features[0].properties["date"] + "<br>";
-				description6 += "ship :" + e.features[0].properties["ship"] + "<br>";
+				description6 += "ship: " + e.features[0].properties["ship"] + "<br>";
 				description6 += "route description: " + e.features[0].properties["description"] + "</p><p>";
 				if (e.features[0].properties["remarks"]) {
 					description6 += "remarks: " + e.features[0].properties["remarks"] + "</p>";
@@ -1640,7 +1640,7 @@ let currentPopup = null;
 	//				description6 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
 					description6 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&hours_ago=240&is_widget=1" height="400px" width="100%"></iframe>';
 				};
-				description6 += "Mind that the free AIS positions are lagging somewhat behind - Verify the timings to get the most accurate posirion between the two above sources";
+				description6 += "Mind that the free AIS positions are lagging somewhat behind - Verify the timings to get the most accurate position between the two above sources";
 
 				$(".flex-item").empty();
 				$(".flex-item").append(description6);
