@@ -1592,7 +1592,7 @@ let currentPopup = null;
 
 		map.on('click', 'Pelniclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
-			console.log(e.features[0].geometry);
+			console.log(e.features[0].properties["name"]);
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
