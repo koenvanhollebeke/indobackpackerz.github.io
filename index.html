@@ -1929,6 +1929,43 @@ let currentPopup = null;
             map.getCanvas().style.cursor = '';
             popup.remove();
         });
+
+		map.on('mousemove', 'ferryports', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+                // Change the cursor style as a UI indicator.
+                map.getCanvas().style.cursor = 'pointer';
+
+                const coordinates = e.features[0].geometry.coordinates.slice();
+                var description = "";
+				description += "<h2>" + e.features[0].properties.description + </h2>";
+				if (e.features[0].properties.properties["code"]) {
+					description += "<p>port code: " + e.features[0].properties.properties["code"];
+				}
+				if (e.features[0].properties.properties["link"]) {
+					description += 'more info: <a href=' + e.features[0].properties.properties["link"] + ' target="_blank" rel="noopener noreferrer">link</a>&nbsp';
+				}
+				description += "</p>";
+
+                // Ensure that if the map is zoomed out such that multiple
+                // copies of the feature are visible, the popup appears
+                // over the copy being pointed to.
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+                }
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+                popup.setLngLat(coordinates).setHTML(description).addTo(map);
+            }
+        });
+	  	map.on('mouseleave', 'ferryports', () => {
+            currentFeatureCoordinates = undefined;
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
 		map.on('click', 'snorkeling-spot', (e) => {
