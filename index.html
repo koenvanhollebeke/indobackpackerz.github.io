@@ -688,6 +688,16 @@ class LayerManager {
 		this.map.setLayoutProperty('pelni-route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Pelniclick', 'visibility', 'none');
 	}
+	const ferry_visibility = this.map.getLayoutProperty('Ferry','visibility');
+	if (ferry_visibility === 'visible' || ferry_visibility === undefined) {
+		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
+		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
+		this.map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
+	} else {
+		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'none');
+		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'none');
+		this.map.setLayoutProperty('Ferryclick', 'visibility', 'none');
+	}
 	const ports_visibility = this.map.getLayoutProperty('ports','visibility');
 	if (ports_visibility === 'visible' || ports_visibility === undefined) {
 		this.map.setLayoutProperty('ports', 'visibility', 'visible');
@@ -1102,6 +1112,40 @@ map.addLayer({
     	},
   	});
 	map.setLayoutProperty('Pelniclick', 'visibility', 'visible');
+
+	map.addSource("ferry", {
+    	type: "geojson",
+		//    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
+		//	data: "https://dl.dropboxusercontent.com/scl/fi/eu0n6ctkanmrlsjub0ott/sulut.geojson?rlkey=q316fwzh00drlubsrpgbcj7j0&st=yx0f200v&raw=1",
+	  	data: "./ferry.geojson",
+  	});
+	  
+	map.addLayer({
+    	'id': "Ferry",
+    	'type': "line",
+    	'source': "ferry",
+		'filter': ['==', '$type', 'LineString'],
+    	'layout': {},
+    	'paint': {
+      		'line-color': ['get', 'color'],
+      		'line-opacity': 0.8,
+	  		'line-width': 2.0,
+    	},
+  	});
+	map.setLayoutProperty('Ferry', 'visibility', 'visible');
+	map.addLayer({
+    	'id': "Ferryclick",
+    	'type': "line",
+    	'source': "ferry",
+		'filter': ['==', '$type', 'LineString'],
+    	'layout': {},
+    	'paint': {
+      		'line-color': ['get', 'color'],
+      		'line-opacity': 0.01,
+	  		'line-width': 6,
+    	},
+  	});
+	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
   	map.addImage("ferryport", image4.data);
@@ -1117,11 +1161,11 @@ map.addLayer({
         		["linear"],
         		["zoom"],
         		10,
-        		0.6, // At zoom 10, icon size is 0.5x
+        		0.5, // At zoom 10, icon size is 0.5x
         		15,
-        		0.9, // At zoom 15, icon size is 1.5x
+        		0.7, // At zoom 15, icon size is 1.5x
         		20,
-        		1.0, // At zoom 20, icon size is 2.0x
+        		0.8, // At zoom 20, icon size is 2.0x
       		],
 			'icon-allow-overlap': true
 		},
@@ -1142,11 +1186,36 @@ map.addLayer({
         		["linear"],
         		["zoom"],
         		10,
-        		0.6, // At zoom 10, icon size is 0.5x
+        		0.5, // At zoom 10, icon size is 0.5x
         		15,
-        		0.9, // At zoom 15, icon size is 1.5x
+        		0.7, // At zoom 15, icon size is 1.5x
         		20,
-        		1.0, // At zoom 20, icon size is 2.0x
+        		0.8, // At zoom 20, icon size is 2.0x
+      		],
+			'icon-allow-overlap': true
+		},
+    	'paint': {
+      		'icon-color': "#3CB2E2",
+      		'icon-opacity': 1.0
+    	},
+  	});
+	map.addLayer({
+    	'id': "ferryports",
+    	'type': "symbol",
+    	'source': "ferry",
+		'filter': ['==', '$type', 'Point'],
+    	'layout': {
+			'icon-image': 'ferryport',
+            'icon-size': [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		10,
+        		0.5, // At zoom 10, icon size is 0.5x
+        		15,
+        		0.7, // At zoom 15, icon size is 1.5x
+        		20,
+        		0.8, // At zoom 20, icon size is 2.0x
       		],
 			'icon-allow-overlap': true
 		},
@@ -1157,6 +1226,7 @@ map.addLayer({
   	});
 	map.setLayoutProperty('ports', 'visibility', 'none');
 	map.setLayoutProperty('pelniports', 'visibility', 'none');
+	map.setLayoutProperty('ferryports', 'visibility', 'none');
 
   map.addLayer({
     id: 'route-arrows',
@@ -1218,6 +1288,36 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('pelni-route-arrows', 'visibility', 'visible');
+	map.addLayer({
+    id: 'ferry-route-arrows',
+	type: 'symbol',
+	source: 'ferry',
+	layout: {
+            'symbol-placement': 'line',
+			'symbol-spacing': 10, // Distance between arrows
+            'icon-image': 'arrow2',
+			'icon-allow-overlap': false,
+			// 'icon-size': 0.05,
+			"icon-size": [
+        		"interpolate",
+        		["linear"],
+        		["zoom"],
+        		6,
+        		0.07, // At zoom 10, icon size is 0.035x
+        		8,
+        		0.08, // At zoom 15, icon size is 0.04x
+        		12,
+        		0.09, // At zoom 20, icon size is 0.045x
+      		],
+			// 'icon-rotation-alignment': 'map',
+        },
+	  paint: {
+		  'icon-opacity': 0.8,
+		  'icon-color': ['get', 'color'],
+	  },
+	  minzoom: 5,
+    });
+	map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
 
 	map.addLayer({
     id: 'route-labels',
@@ -1253,6 +1353,23 @@ map.addLayer({
 	  minzoom: 5,
     });
 	map.setLayoutProperty('pelni-route-labels', 'visibility', 'visible');
+	map.addLayer({
+    id: 'ferry-route-labels',
+	type: 'symbol',
+	source: 'ferry',
+	layout: {
+            'symbol-placement': 'line',
+			'symbol-spacing': 100, // Distance between arrows
+            'text-field': ['get', 'name'],
+				'text-font': ['Noto Sans Regular'],
+                'text-size': 14,
+        },
+	  paint: {
+		  'text-color': ['get', 'color'],
+	  },
+	  minzoom: 5,
+    });
+	map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
 			   
 //	map.addSource('kk-2025', {
 //    'type': 'geojson',
@@ -1285,8 +1402,10 @@ map.on("load", function () {
 //		  { id: "sidako-kk-2025", name: "Marine protected areas", visible: false },
           { id: "Pelni", name: "Pelni", visible: true },
 		  { id: "Tollaut", name: "Tol Laut/Perintis", visible: true },
+		  { id: "Ferry", name: "RORO Ferries", visible: true },
 		//  { id: "route-arrows", name: "Tol Laut/Perintis direction", visible: true },
 		  { id: "ports", name: "Tol Laut/Perintis & Pelni ports", visible: false },
+		  { id: "ferryports", name: "RORO ferry ports", visible: false },
         ],
         position: "top-right",
         collapsed: true,
