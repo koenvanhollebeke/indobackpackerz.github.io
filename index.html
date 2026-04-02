@@ -1940,7 +1940,7 @@ let currentPopup = null;
 
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 var description = "";
-				description += "<h2>" + e.features[0].properties.description + </h2>";
+				description += "<h2>" + e.features[0].properties.description + "</h2>";
 				if (e.features[0].properties.properties["code"]) {
 					description += "<p>port code: " + e.features[0].properties.properties["code"];
 				}
