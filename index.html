@@ -1608,8 +1608,8 @@ let currentPopup = null;
                 .setLngLat(coordinates)
                 .setHTML(description4)
                 .addTo(map);
-				$(".flex-item").empty();
-  				$(".flex-item").html(description4);
+			//	$(".flex-item").empty();
+  			//	$(".flex-item").html(description4);
             //    popup.setLngLat(coordinates).setMaxWidth("300px").setHTML(description3).addTo(map);
             }
         });
@@ -1930,7 +1930,7 @@ let currentPopup = null;
             popup.remove();
         });
 
-		map.on('mousemove', 'ferryports', (e) => {
+		map.on('click', 'ferryports', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
@@ -1940,9 +1940,9 @@ let currentPopup = null;
 
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 var description = "";
-				description += "<h2>" + e.features[0].properties.description + "</h2>";
+				description += "<h2>" + e.features[0].properties["description"] + "</h2>";
 				if (e.features[0].properties["code"]) {
-					description += "<p>port code: " + e.features[0].properties["code"];
+					description += "<p>port code: " + e.features[0].properties["code"] + "<br>";
 				}
 				if (e.features[0].properties["link"]) {
 					description += 'more info: <a href=' + e.features[0].properties["link"] + ' target="_blank" rel="noopener noreferrer">link</a>&nbsp';
@@ -1958,13 +1958,23 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(description).addTo(map);
+                // popup.setLngLat(coordinates).setHTML(description).addTo(map);
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
             }
         });
-	  	map.on('mouseleave', 'ferryports', () => {
-            currentFeatureCoordinates = undefined;
+	  	// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'ferryports', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'ferryports', () => {
+			currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
-            popup.remove();
         });
 	  
 		var zoomlevel, clickcenter, spot, zoomspot, coralBIG, coralACA;
