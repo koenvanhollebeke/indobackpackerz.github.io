@@ -1147,11 +1147,10 @@ map.addLayer({
   	});
 	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
 			
-	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrytris.png" );
-  	map.addImage("ferryport", image4.data, {
-        sdf: true,
-		pixelRatio: 2,
-      });
+	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
+  	map.addImage("ferryport", image4.data);
+	const image5 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrytris.png" );
+  	map.addImage("ferry2port", image5.data);
 			
 	map.addLayer({
     	'id': "ports",
@@ -1165,11 +1164,11 @@ map.addLayer({
         		["linear"],
         		["zoom"],
         		10,
-        		0.5, // At zoom 10, icon size is 0.5x
+        		0.6, // At zoom 10, icon size is 0.5x
         		15,
-        		0.7, // At zoom 15, icon size is 1.5x
+        		0.8, // At zoom 15, icon size is 1.5x
         		20,
-        		0.8, // At zoom 20, icon size is 2.0x
+        		0.9, // At zoom 20, icon size is 2.0x
       		],
 			'icon-allow-overlap': true
 		},
@@ -1190,11 +1189,11 @@ map.addLayer({
         		["linear"],
         		["zoom"],
         		10,
-        		0.5, // At zoom 10, icon size is 0.5x
+        		0.6, // At zoom 10, icon size is 0.5x
         		15,
-        		0.7, // At zoom 15, icon size is 1.5x
+        		0.8, // At zoom 15, icon size is 1.5x
         		20,
-        		0.8, // At zoom 20, icon size is 2.0x
+        		0.9, // At zoom 20, icon size is 2.0x
       		],
 			'icon-allow-overlap': true
 		},
@@ -1209,17 +1208,17 @@ map.addLayer({
     	'source': "ferry",
 		'filter': ['==', '$type', 'Point'],
     	'layout': {
-			'icon-image': 'ferryport',
+			'icon-image': 'ferry2port',
             'icon-size': [
         		"interpolate",
         		["linear"],
         		["zoom"],
         		10,
-        		1.5, // At zoom 10, icon size is 0.5x
+        		0.6, // At zoom 10, icon size is 0.5x
         		15,
-        		1.7, // At zoom 15, icon size is 1.5x
+        		0.8, // At zoom 15, icon size is 1.5x
         		20,
-        		1.8, // At zoom 20, icon size is 2.0x
+        		0.9, // At zoom 20, icon size is 2.0x
       		],
 			'icon-allow-overlap': true
 		},
