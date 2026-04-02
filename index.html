@@ -1940,9 +1940,9 @@ let currentPopup = null;
 
                 const coordinates = e.features[0].geometry.coordinates.slice();
                 var description = "";
-				description += "<h2>" + e.features[0].properties["description"] + "</h2>";
+				description += "<b>" + e.features[0].properties["description"] + "</b>";
 				if (e.features[0].properties["code"]) {
-					description += "<p>port code: " + e.features[0].properties["code"] + "<br>";
+					description += "<p>port code: <b>" + e.features[0].properties["code"] + "<\b><br>";
 				}
 				if (e.features[0].properties["link"]) {
 					description += 'more info: <a href=' + e.features[0].properties["link"] + ' target="_blank" rel="noopener noreferrer">link</a>&nbsp';
