@@ -1148,7 +1148,11 @@ map.addLayer({
 	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
-  	map.addImage("ferryport", image4.data);
+  	map.addImage("ferryport", image4.data, {
+        sdf: true,
+		pixelRatio: 2,
+      });
+			
 	map.addLayer({
     	'id': "ports",
     	'type': "symbol",
