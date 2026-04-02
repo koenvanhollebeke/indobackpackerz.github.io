@@ -1220,7 +1220,7 @@ map.addLayer({
 			'icon-allow-overlap': true
 		},
     	'paint': {
-      		'icon-color': "#3CB2E2",
+      		'icon-color': "#00D100",
       		'icon-opacity': 1.0
     	},
   	});
@@ -1780,6 +1780,83 @@ let currentPopup = null;
 
         // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'Pelniclick', () => {
+            currentFeatureCoordinates = undefined;
+			map.getCanvas().style.cursor = '';
+        });
+
+	    map.on('click', 'Ferryclick', (e) => {
+            const featureCoordinates = e.features[0].geometry.coordinates.toString();
+//			console.log(e.features[0].properties["name"]);
+            if (currentFeatureCoordinates !== featureCoordinates) {
+                currentFeatureCoordinates = featureCoordinates;
+
+ //               const coordinates7 = e.features[0].geometry.coordinates;
+//				const bounds = coordinates7.reduce((bounds, coord) => {
+ //                   return bounds.extend(coord);
+ //               }, new maplibregl.LngLatBounds(coordinates7[0], coordinates7[0]));
+//				map.fitBounds(bounds, {
+//                    padding: 100
+//                });
+				// console.log(bounds);
+				var description7 = "";
+				var websites, k, l;
+				if (e.features[0].properties["image"]) {
+					images = e.features[0].properties["image"];
+				}
+				description7 += "<h1>" + e.features[0].properties["name"] + "</h1>";
+				description7 += "<p>date: " + e.features[0].properties["date"] + "<br>";
+				description7 += "ship: " + e.features[0].properties["ship"] + "<br>";
+				description7 += "route description: " + e.features[0].properties["description"] + "</p><p>";
+				if (e.features[0].properties["remarks"]) {
+					description7 += "remarks: " + e.features[0].properties["remarks"] + "</p>";
+				}
+				else {
+					description7 += "</p>";
+				}
+				if (e.features[0].properties["image"]) {
+					description7 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+	//				description7 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
+			    }
+				description7 += "<p>for schedules see here: ";
+				if (e.features[0].properties["website"]) {
+					websites = JSON.parse(e.features[0].properties["website"]);
+					l = 0;
+					while (l < Object.keys(websites).length) {
+					description7 += '<a href=' + websites[l] + ' target="_blank" rel="noopener noreferrer">link</a>&nbsp';
+					l++;
+					};
+				};
+				description7 += "<br>";
+				description7 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
+				
+				if (e.features[0].properties["mmsi"]) {
+					description7 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:400px;width:100%;"></iframe>';
+	//				description7 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+				};
+				if (e.features[0].properties["imo"]) {
+					description7 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&hours_ago=240&is_widget=1" height="400px" width="100%"></iframe>';
+				};
+				description7 += "Mind that the free AIS positions are lagging somewhat behind - Verify the timings to get the most accurate position between the two above sources";
+
+				$(".flex-item").empty();
+				$(".flex-item").append(description7);
+				toggleIt = collapsed;
+            }
+			else
+			{
+				$(".flex-item").empty();
+				toggleIt = !collapsed;
+			}
+			if (toggleIt) toggleSidebar('right');
+        });
+
+	// Change the cursor to a pointer when the mouse is over the places layer.
+        map.on('mouseenter', 'Ferryclick', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Ferryclick', () => {
             currentFeatureCoordinates = undefined;
 			map.getCanvas().style.cursor = '';
         });
