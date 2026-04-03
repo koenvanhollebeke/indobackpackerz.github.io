@@ -1733,7 +1733,18 @@ let currentPopup = null;
 				}
 				description6 += "<h1>" + e.features[0].properties["name"] + "</h1>";
 				description6 += "<p>date: " + e.features[0].properties["date"] + "<br>";
-				description6 += "ship: " + e.features[0].properties["ship"] + "<br>";
+				if (e.features[0].properties["ship"] && Object.keys(e.features[0].properties["ship"]).length > 1) {
+					l = 0;
+					description6 += "ship: ";
+					while (l < Object.keys(e.features[0].properties["ship"]).length) {
+						description6 += e.features[0].properties["ship"][l] + ' ';
+						l++;
+					};
+					description6 += "<br>";
+				}
+				else {
+					description6 += "ship: " + e.features[0].properties["ship"] + "<br>";
+				}
 				description6 += "route description: " + e.features[0].properties["description"] + "</p><p>";
 				if (e.features[0].properties["remarks"]) {
 					description6 += "remarks: " + e.features[0].properties["remarks"] + "</p>";
@@ -1741,10 +1752,22 @@ let currentPopup = null;
 				else {
 					description6 += "</p>";
 				}
-				if (e.features[0].properties["image"]) {
-					description6 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
-					description6 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
-			    }
+				if (e.features[0].properties["image"] && Object.keys(e.features[0].properties["image"]).length > 1) {
+					l = 0;
+					while (l < Object.keys(e.features[0].properties["image"]).length) {
+						description6 += '<img style="image-orientation: from-image" src=' + e.features[0].properties["image"][l] + ' width="100%">';
+						l++;
+					};
+				}
+				else {
+					description6 += '<img style="image-orientation: from-image" src=' + e.features[0].properties["image"] + ' width="100%">';
+				}
+				
+				
+	//			if (e.features[0].properties["image"]) {
+	//				description6 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+	//				description6 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
+	//		    }
 				description6 += "<p>for schedules see here: ";
 				if (e.features[0].properties["website"]) {
 					websites = JSON.parse(e.features[0].properties["website"]);
