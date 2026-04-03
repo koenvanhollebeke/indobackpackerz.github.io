@@ -1733,11 +1733,12 @@ let currentPopup = null;
 				}
 				description6 += "<h1>" + e.features[0].properties["name"] + "</h1>";
 				description6 += "<p>date: " + e.features[0].properties["date"] + "<br>";
-				if (e.features[0].properties["ship"] && Object.keys(e.features[0].properties["ship"]).length > 1) {
+				ships = JSON.parse(e.features[0].properties["ship"]);
+				if (e.features[0].properties["ship"] && Object.keys(ships).length > 1) {
 					l = 0;
 					description6 += "ship: ";
-					while (l < Object.keys(e.features[0].properties["ship"]).length) {
-						description6 += e.features[0].properties["ship"][l] + ' ';
+					while (l < Object.keys(ships).length) {
+						description6 += ships[l] + ' ';
 						l++;
 					};
 					description6 += "<br>";
