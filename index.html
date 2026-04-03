@@ -1790,7 +1790,6 @@ let currentPopup = null;
 
 	    map.on('click', 'Ferryclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
-//			console.log(e.features[0].properties["name"]);
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
@@ -1801,7 +1800,7 @@ let currentPopup = null;
 //				map.fitBounds(bounds, {
 //                    padding: 100
 //                });
-				// console.log(bounds);
+
 				var description7 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
@@ -1814,7 +1813,12 @@ let currentPopup = null;
 					l = 0;
 					description7 += "ship: ";
 					while (l < Object.keys(ships).length) {
-						description7 += ships[l] + ' ';
+						if (l != (Object.keys(ships).length - 1)) { 
+							description7 += ships[l] + ', ';
+						}
+						else {
+							description7 += ships[l];
+						}
 						l++;
 					};
 					description7 += "<br>";
