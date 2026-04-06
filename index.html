@@ -1639,14 +1639,13 @@ let currentPopup = null;
                 // Change the cursor style as a UI indicator.
                 // map.getCanvas().style.cursor = 'pointer';
 
-                const coordinates5 = e.features[0].geometry.coordinates;
-				const bounds = coordinates5.reduce((bounds, coord) => {
-                    return bounds.extend(coord);
-                }, new maplibregl.LngLatBounds(coordinates5[0], coordinates5[0]));
-				map.fitBounds(bounds, {
-                    padding: 100
-                });
-				// console.log(bounds);
+//                const coordinates5 = e.features[0].geometry.coordinates;
+//				const bounds = coordinates5.reduce((bounds, coord) => {
+//                    return bounds.extend(coord);
+//                }, new maplibregl.LngLatBounds(coordinates5[0], coordinates5[0]));
+//				map.fitBounds(bounds, {
+//                    padding: 100
+//                });
 				var description5 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
@@ -1690,15 +1689,22 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-				if (currentPopup) currentPopup.remove(); // Remove old before new
-				var coordinates2 = map.getCenter();
-				currentPopup = new maplibregl.Popup()
-                .setLngLat(coordinates2)
-                .setHTML(description5)
-                .addTo(map);
-			//	$(".flex-item").empty();
-  			//	$(".flex-item").html(description5);
+	//			if (currentPopup) currentPopup.remove(); // Remove old before new
+	//			var coordinates2 = map.getCenter();
+	//			currentPopup = new maplibregl.Popup()
+    //            .setLngLat(coordinates2)
+	//            .setHTML(description5)
+   //             .addTo(map);
+				$(".flex-item").empty();
+				$(".flex-item").append(description5);
+				toggleIt = collapsed;
             }
+			else
+			{
+				$(".flex-item").empty();
+				toggleIt = !collapsed;
+			}
+			if (toggleIt) toggleSidebar('right');
         });
 
 	// Change the cursor to a pointer when the mouse is over the places layer.
@@ -1714,7 +1720,6 @@ let currentPopup = null;
 
 		map.on('click', 'Pelniclick', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
-//			console.log(e.features[0].properties["name"]);
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
 
@@ -1725,7 +1730,6 @@ let currentPopup = null;
 //				map.fitBounds(bounds, {
 //                    padding: 100
 //                });
-				// console.log(bounds);
 				var description6 = "";
 				var websites, k, l;
 				if (e.features[0].properties["image"]) {
