@@ -1661,10 +1661,10 @@ let currentPopup = null;
 				else {
 					description5 += "</p>";
 				}
-	//			if (e.features[0].properties["image"]) {
-	//				description5 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
+				if (e.features[0].properties["image"]) {
+					description5 += '<img style="image-orientation: from-image" src=' + images + ' width="100%">';
 	//				description5 += '&copy; <a href="https://terupdate.net" target="_blank" rel="noopener noreferrer">Terupdate</a>';
-	//		    }
+			    }
 				description5 += "<p>for schedules see here: ";
 				if (e.features[0].properties["website"]) {
 					websites = JSON.parse(e.features[0].properties["website"]);
@@ -1678,8 +1678,9 @@ let currentPopup = null;
 				description5 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
 				
 				if (e.features[0].properties["mmsi"]) {
-					description5 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:300px;width:100%;"></iframe>';
-					description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+					description5 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:400px;width:100%;"></iframe>';
+		//			description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+					description5 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&hours_ago=240&is_widget=1" height="400px" width="100%"></iframe>';
 				};
 				
 	
