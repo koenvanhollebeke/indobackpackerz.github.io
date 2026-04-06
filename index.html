@@ -1756,6 +1756,9 @@ let currentPopup = null;
 					};
 				};
 				description6 += "<br>";
+				if (e.features[0].properties["operator"]) {
+					description6 += 'operator: <a href=' + e.features[0].properties["website_operator"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["operator"] + '</a><br>';
+				}
 				description6 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
 				
 				if (e.features[0].properties["mmsi"]) {
