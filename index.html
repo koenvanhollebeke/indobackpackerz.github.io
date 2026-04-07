@@ -1941,7 +1941,12 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(description).addTo(map);
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+  //              popup.setLngLat(coordinates).setHTML(description).addTo(map);
             }
         });
 	  	map.on('mouseleave', 'ports', () => {
@@ -1976,7 +1981,12 @@ let currentPopup = null;
 
                 // Populate the popup and set its coordinates
                 // based on the feature found.
-                popup.setLngLat(coordinates).setHTML(description).addTo(map);
+				if (currentPopup) currentPopup.remove(); // Remove old before new
+				currentPopup = new maplibregl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+     //         popup.setLngLat(coordinates).setHTML(description).addTo(map);
             }
         });
 	  	map.on('mouseleave', 'pelniports', () => {
