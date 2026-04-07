@@ -1923,8 +1923,15 @@ let currentPopup = null;
                 map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice();
-                const description = e.features[0].properties.description;
-
+                var description = "";
+				description += "<b>" + e.features[0].properties["description"] + "</b>";
+				if (e.features[0].properties["code"]) {
+					description += '<p>port code: <b><a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["code"] + '</a></b><br>';
+				}
+				if (e.features[0].properties["link"]) {
+					description += 'syahbandar: <a href=' + e.features[0].properties["link"] + ' target="_blank" rel="noopener noreferrer">link</a></p>';
+				}
+				
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
                 // over the copy being pointed to.
@@ -1952,8 +1959,14 @@ let currentPopup = null;
                 map.getCanvas().style.cursor = 'pointer';
 
                 const coordinates = e.features[0].geometry.coordinates.slice();
-                const description = e.features[0].properties.description;
-
+                var description = "";
+				description += "<b>" + e.features[0].properties["description"] + "</b>";
+				if (e.features[0].properties["code"]) {
+					description += '<p>port code: <b><a href=' + e.features[0].properties["source"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["code"] + '</a></b><br>';
+				}
+				if (e.features[0].properties["link"]) {
+					description += 'syahbandar: <a href=' + e.features[0].properties["link"] + ' target="_blank" rel="noopener noreferrer">link</a></p>';
+				}
                 // Ensure that if the map is zoomed out such that multiple
                 // copies of the feature are visible, the popup appears
                 // over the copy being pointed to.
