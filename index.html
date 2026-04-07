@@ -1914,7 +1914,7 @@ let currentPopup = null;
 
         // Make sure to detect marker change for overlapping markers
         // and use mousemove instead of mouseenter event
-        map.on('mousemove', 'ports', (e) => {
+        map.on('click', 'ports', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
@@ -1955,7 +1955,7 @@ let currentPopup = null;
             popup.remove();
         });
 
-	  	map.on('mousemove', 'pelniports', (e) => {
+	  	map.on('click', 'pelniports', (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
                 currentFeatureCoordinates = featureCoordinates;
