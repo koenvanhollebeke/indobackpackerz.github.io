@@ -1675,14 +1675,28 @@ let currentPopup = null;
 					};
 				};
 				description5 += "<br>";
+				if (e.features[0].properties["operator"]) {
+					if (e.features[0].properties["website_operator"]) {
+						description6 += 'operator: <a href=' + e.features[0].properties["website_operator"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["operator"] + '</a><br>';
+					}
+					else {
+						description6 += 'operator: ' + e.features[0].properties["operator"] + '<br>';
+					}
+				}
 				description5 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
 				
 				if (e.features[0].properties["mmsi"]) {
 					description5 += '<iframe src="https://www.vesselfinder.com/aismap?mmsi=' + e.features[0].properties["mmsi"] + '&track=true&names=true" style="height:400px;width:100%;"></iframe>';
 		//			description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
+					description5 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["mmsi"] + '&hours_ago=240&is_widget=1" height="400px" width="100%"></iframe>';
+				};
+				if (!e.features[0].properties["mmsi"]) {
+					description5 += '<iframe src="https://www.vesselfinder.com/aismap?imo=' + e.features[0].properties["imo"] + '&track=true&names=true" style="height:400px;width:100%;"></iframe>';
+		//			description5 += '<iframe src="https://www.marinetraffic.com/en/ais/embed/mmsi:0/trackvessel:' + e.features[0].properties["mmsi"] + '" style="height:300px;width:100%;" target="_blank";></iframe>';
 					description5 += '<iframe src="https://goradar.ru/vessels_map.php?imo=' + e.features[0].properties["imo"] + '&hours_ago=240&is_widget=1" height="400px" width="100%"></iframe>';
 				};
-				
+				description5 += "Mind that the free AIS positions are lagging somewhat behind - Verify the timings to get the most accurate position between the two above sources";
+
 	
 	//       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
          //           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
