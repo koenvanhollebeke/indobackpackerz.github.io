@@ -1963,10 +1963,14 @@ let currentPopup = null;
   //              popup.setLngLat(coordinates).setHTML(description).addTo(map);
             }
         });
+		map.on('mouseenter', 'ports', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+	  
 	  	map.on('mouseleave', 'ports', () => {
             currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
-            popup.remove();
+    //        popup.remove();
         });
 
 	  	map.on('click', 'pelniports', (e) => {
@@ -2003,10 +2007,14 @@ let currentPopup = null;
      //         popup.setLngLat(coordinates).setHTML(description).addTo(map);
             }
         });
+		map.on('mouseenter', 'pelniports', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+	  
 	  	map.on('mouseleave', 'pelniports', () => {
             currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
-            popup.remove();
+      //      popup.remove();
         });
 
 		map.on('click', 'ferryports', (e) => {
