@@ -1677,10 +1677,10 @@ let currentPopup = null;
 				description5 += "<br>";
 				if (e.features[0].properties["operator"]) {
 					if (e.features[0].properties["website_operator"]) {
-						description6 += 'operator: <a href=' + e.features[0].properties["website_operator"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["operator"] + '</a><br>';
+						description5 += 'operator: <a href=' + e.features[0].properties["website_operator"] + ' target="_blank" rel="noopener noreferrer">' + e.features[0].properties["operator"] + '</a><br>';
 					}
 					else {
-						description6 += 'operator: ' + e.features[0].properties["operator"] + '<br>';
+						description5 += 'operator: ' + e.features[0].properties["operator"] + '<br>';
 					}
 				}
 				description5 += "ticket: " + e.features[0].properties["ticket"] + "</p>";
