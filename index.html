@@ -693,14 +693,10 @@ class LayerManager {
 		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
 		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
 		this.map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
-		this.map.setLayoutProperty('Ferrydash', 'visibility', 'visible');
-		this.map.setLayoutProperty('Ferrydashclick', 'visibility', 'visible');
 	} else {
 		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'none');
 		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Ferryclick', 'visibility', 'none');
-		this.map.setLayoutProperty('Ferrydash', 'visibility', 'none');
-		this.map.setLayoutProperty('Ferrydashclick', 'visibility', 'none');
 	}
 	const ports_visibility = this.map.getLayoutProperty('ports','visibility');
 	if (ports_visibility === 'visible' || ports_visibility === undefined) {
@@ -1121,7 +1117,7 @@ map.addLayer({
     	type: "geojson",
 		//    data: "https://raw.githubusercontent.com/koenvanhollebeke/gtfs-test/refs/heads/main/sulut.geojson",
 		//	data: "https://dl.dropboxusercontent.com/scl/fi/eu0n6ctkanmrlsjub0ott/sulut.geojson?rlkey=q316fwzh00drlubsrpgbcj7j0&st=yx0f200v&raw=1",
-	  	data: "./ferrydash.geojson",
+	  	data: "./ferry.geojson",
   	});
 	  
 	map.addLayer({
@@ -1136,23 +1132,9 @@ map.addLayer({
 	  		'line-width': 2.0,
     	},
   	});
-	map.setFilter('Ferry', ["any", ['==', ['get', 'dash'], 'no']])
+//	map.setFilter('Ferry', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferry', 'visibility', 'visible');
-	map.addLayer({
-    	'id': "Ferrydash",
-    	'type': "line",
-    	'source': "ferry",
-		'filter': ['==', '$type', 'LineString'],
-    	'layout': {},
-    	'paint': {
-      		'line-color': ['get', 'color'],
-      		'line-opacity': 0.8,
-	  		'line-width': 2.0,
-			'line-dasharray': [5, 2],
-    	},
-  	});
-	map.setFilter('Ferrydash', ["any", ['==', ['get', 'dash'], 'yes']])
-	map.setLayoutProperty('Ferrydash', 'visibility', 'visible');
+
 	map.addLayer({
     	'id': "Ferryclick",
     	'type': "line",
@@ -1165,22 +1147,7 @@ map.addLayer({
 	  		'line-width': 6,
     	},
   	});
-	map.setFilter('Ferryclick', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
-	map.addLayer({
-    	'id': "Ferrydashclick",
-    	'type': "line",
-    	'source': "ferry",
-		'filter': ['==', '$type', 'LineString'],
-    	'layout': {},
-    	'paint': {
-      		'line-color': ['get', 'color'],
-      		'line-opacity': 0.01,
-	  		'line-width': 6,
-    	},
-  	});
-	map.setFilter('Ferrydashclick', ["any", ['==', ['get', 'dash'], 'yes']])
-	map.setLayoutProperty('Ferrydashclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
   	map.addImage("ferryport", image4.data);
@@ -1355,7 +1322,6 @@ map.addLayer({
 	  },
 	  minzoom: 5,
     });
-	map.setFilter('ferry-route-arrows', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
 
 	map.addLayer({
@@ -1408,7 +1374,6 @@ map.addLayer({
 	  },
 	  minzoom: 5,
     });
-	map.setFilter('ferry-route-labels', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
 			   
 //	map.addSource('kk-2025', {
