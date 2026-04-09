@@ -693,10 +693,14 @@ class LayerManager {
 		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
 		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
 		this.map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
+		this.map.setLayoutProperty('Ferrydash', 'visibility', 'visible');
+		this.map.setLayoutProperty('Ferrydashclick', 'visibility', 'visible');
 	} else {
 		this.map.setLayoutProperty('ferry-route-arrows', 'visibility', 'none');
 		this.map.setLayoutProperty('ferry-route-labels', 'visibility', 'none');
 		this.map.setLayoutProperty('Ferryclick', 'visibility', 'none');
+		this.map.setLayoutProperty('Ferrydash', 'visibility', 'none');
+		this.map.setLayoutProperty('Ferrydashclick', 'visibility', 'none');
 	}
 	const ports_visibility = this.map.getLayoutProperty('ports','visibility');
 	if (ports_visibility === 'visible' || ports_visibility === undefined) {
@@ -1135,6 +1139,21 @@ map.addLayer({
 	map.setFilter('Ferry', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferry', 'visibility', 'visible');
 	map.addLayer({
+    	'id': "Ferrydash",
+    	'type': "line",
+    	'source': "ferry",
+		'filter': ['==', '$type', 'LineString'],
+    	'layout': {},
+    	'paint': {
+      		'line-color': ['get', 'color'],
+      		'line-opacity': 0.8,
+	  		'line-width': 2.0,
+			'line-dasharray': [5, 2],
+    	},
+  	});
+	map.setFilter('Ferrydash', ["any", ['==', ['get', 'dash'], 'yes']])
+	map.setLayoutProperty('Ferrydash', 'visibility', 'visible');
+	map.addLayer({
     	'id': "Ferryclick",
     	'type': "line",
     	'source': "ferry",
@@ -1148,6 +1167,20 @@ map.addLayer({
   	});
 	map.setFilter('Ferryclick', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
+	map.addLayer({
+    	'id': "Ferrydashclick",
+    	'type': "line",
+    	'source': "ferry",
+		'filter': ['==', '$type', 'LineString'],
+    	'layout': {},
+    	'paint': {
+      		'line-color': ['get', 'color'],
+      		'line-opacity': 0.01,
+	  		'line-width': 6,
+    	},
+  	});
+	map.setFilter('Ferrydashclick', ["any", ['==', ['get', 'dash'], 'yes']])
+	map.setLayoutProperty('Ferrydashclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
   	map.addImage("ferryport", image4.data);
