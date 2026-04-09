@@ -1124,7 +1124,7 @@ map.addLayer({
     	'id': "Ferry",
     	'type': "line",
     	'source': "ferry",
-		'filter': ["all", ['==', '$type', 'LineString'], ['==', ['get', 'dash'], 'no']],
+		'filter': ['==', '$type', 'LineString'],
     	'layout': {},
     	'paint': {
       		'line-color': ['get', 'color'],
@@ -1132,6 +1132,7 @@ map.addLayer({
 	  		'line-width': 2.0,
     	},
   	});
+	map.setFilter('Ferry', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferry', 'visibility', 'visible');
 	map.addLayer({
     	'id': "Ferryclick",
