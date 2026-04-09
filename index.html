@@ -1146,6 +1146,7 @@ map.addLayer({
 	  		'line-width': 6,
     	},
   	});
+	map.setFilter('Ferryclick', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('Ferryclick', 'visibility', 'visible');
 			
 	const image4 = await map.loadImage( "https://raw.githubusercontent.com/koenvanhollebeke/indobackpackerz.github.io/main/images/ferrybis.png" );
@@ -1321,6 +1322,7 @@ map.addLayer({
 	  },
 	  minzoom: 5,
     });
+	map.setFilter('ferry-route-arrows', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('ferry-route-arrows', 'visibility', 'visible');
 
 	map.addLayer({
@@ -1373,6 +1375,7 @@ map.addLayer({
 	  },
 	  minzoom: 5,
     });
+	map.setFilter('ferry-route-labels', ["any", ['==', ['get', 'dash'], 'no']])
 	map.setLayoutProperty('ferry-route-labels', 'visibility', 'visible');
 			   
 //	map.addSource('kk-2025', {
