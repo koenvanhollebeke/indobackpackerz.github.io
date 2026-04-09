@@ -1124,7 +1124,7 @@ map.addLayer({
     	'id': "Ferry",
     	'type': "line",
     	'source': "ferry",
-		'filter': ['all', ['==', '$type', 'LineString'], ['==', 'dash', 'no']],
+		'filter': ["all", ['==', '$type', 'LineString'], ['==', ['get', 'dash'], 'no']],
     	'layout': {},
     	'paint': {
       		'line-color': ['get', 'color'],
